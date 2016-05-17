@@ -43,21 +43,29 @@ h2, h3, h4, h5, h6{
     content: '>';
 }
 
-.navbar-default .navbar-nav > li > a,
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li.active > a,
-.navbar-default .navbar-nav > li.active > a:focus,
-.navbar-default .navbar-nav > li.active > a:hover{
+.navbar-template .navbar-nav > li > a:focus,
+.navbar-template .navbar-nav > li > a:hover{
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.navbar-template .navbar-nav > li > a,
+.navbar-template .navbar-nav > li.active > a,
+.navbar-template .navbar-nav > li.active > a:focus,
+.navbar-template .navbar-nav > li.active > a:hover{
     color: #ffffff;
 }
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default .navbar-nav > .active > a:hover{
+.navbar-template .navbar-nav > .active > a,
+.navbar-template .navbar-nav > .active > a:focus,
+.navbar-template .navbar-nav > .active > a:hover{
     background-color: #93dbff;
 
     border-radius: 8px;
+}
+
+.navbar-template .navbar-toggle{
+    background: #ffffff;
 }
 
 .btn-primary{
