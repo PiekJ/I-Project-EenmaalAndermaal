@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf8">
@@ -13,9 +13,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="./images/logo.png" alt="EenmaalAndermaal">
+                    <img class="header-logo" src="./images/logo.png" alt="EenmaalAndermaal">
 
-                    <h1>EenmaalAndermaal</h1>
+                    <h1 class="header-title">EenmaalAndermaal</h1>
                 </div>
             </div>
 
@@ -47,12 +47,30 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    <h2 class="header-pagetitle">Home</h2>
 
+                    <ul class="breadcrumb">
+                        <li><a href="#">EenmaalAndermaal</a></li>
+                        <li class="active">Home</li>
+                    </ul>
                 </div>
             </div>
 
 
             <div class="row">
+                <div class="col-md-12">
+                    <form action="#" method="post">
+                        <div class="input-group input-group-lg search-group">
+                            <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
+                            <select name="rubriek" class="form-control rubriek-form-control">
+                                <option value="0" selected>Alle rubrieken</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-primary" value="Zoeken">
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
