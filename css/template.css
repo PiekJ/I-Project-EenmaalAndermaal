@@ -73,6 +73,16 @@ hr {
     padding: 5px;
 }
 
+.search-group{
+    padding: 0 15px;
+}
+.search-group .search-form-control{
+    width: 75%;
+}
+.search-group .rubriek-form-control{
+    width: 25%;
+}
+
 @media (min-width: 768px) {
     .container-fluid > .navbar-collapse{
         /*padding-left: 0;*/
