@@ -9,6 +9,16 @@
     
 }
 
+hr {
+	background-color:#ffa034; 
+	color:#000000; 
+	height:1px; 
+	display: 
+	inline-block; 
+	text-align: 
+	left; width:100%;'
+}
+
 @media (min-width: 768px) {
     .container-fluid > .navbar-collapse{
         padding-left: 0;
