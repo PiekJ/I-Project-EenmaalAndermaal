@@ -39,7 +39,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#">Login</a></li>
-                            <li class="active"><a href="#">Registreren</a></li>
+                            <li><a href="#">Registreren</a></li>
                         </ul>
                     </div>
                 </div>
@@ -70,6 +70,18 @@
                             </span>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Aanbevolen veilingen</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Aflopende veilingen</h3>
                 </div>
             </div>
         </div>

@@ -23,8 +23,11 @@ body{
 }
 .header-pagetitle{
     float: left;
+    margin: 0;
+}
+
+h2, h3, h4, h5, h6{
     color: #1f62b2;
-    margin: 0 0 0 15px;
 }
 
 .navbar-template{
@@ -34,6 +37,7 @@ body{
 .breadcrumb{
     float: right;
     background: none;
+    padding: 8px 0;
 }
 .breadcrumb>li+li:before{
     content: '>';
@@ -86,9 +90,6 @@ hr {
     margin: 0;
 }
 
-.search-group{
-    padding: 0 15px;
-}
 .search-group .search-form-control{
     width: 75%;
 }
