@@ -1,5 +1,16 @@
-git clone https://github.com/PiekJ/I-Project-EenmaalAndermaal
- - de URL kun je vinden odner de knop "Clone or download" (kun je op de copieer knop drukken)
+SETUP
+Instaleer: https://git-scm.com/downloads !!!!!
+Start opdrachtprompt (CMD) en voer de twee hieronder commands uit
+git clone --global user.name "Jouw naam hier"
+git clone --global user.email "jouw github email"
+
+ALLEEN NAAR DE MASTER PUSHEN ALS HET ECHT WERKT!!!!
+
+git clone https://github.com/PiekJ/I-Project-EenmaalAndermaal.git
+ - hoeft maar eenmalig, letop dat deze een map maakt genaamt I-Project-EenmaalAndermaal in de huidige console map (om deze te veranderen typ: cd /map/naar/waar/je/heen/wilt en om van schrijf te veranderen typ: D:, C: etc)
+
+gitk
+ - grafische weergave van je wijzigingen
 
 git status
  - geeft je de status van (on)gecommitted veranderingen
@@ -12,4 +23,3 @@ git commit -m "Hier je commit bericht"
 
 git push origin master
  - stuurt de commit naar de github service
-
