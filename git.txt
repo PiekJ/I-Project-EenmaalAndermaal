@@ -23,3 +23,6 @@ git commit -m "Hier je commit bericht"
 
 git push origin master
  - stuurt de commit naar de github service
+
+git pull origin master
+ - haalt alle bewerkingen op van de github service en probeert deze samen te voegen met jouw bewerkingen
