@@ -54,6 +54,10 @@ body{
     
 }
 
+.well{
+	background: #fff;
+}
+
 hr {
 	background-color:#ffa034; 
 	color:#000000; 
