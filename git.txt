@@ -1,0 +1,15 @@
+git clone https://github.com/PiekJ/I-Project-EenmaalAndermaal
+ - de URL kun je vinden odner de knop "Clone or download" (kun je op de copieer knop drukken)
+
+git status
+ - geeft je de status van (on)gecommitted veranderingen
+
+git add .
+ - voegt alle gewijzigde bestanden toe aan een commit
+
+git commit -m "Hier je commit bericht"
+ - maakt een commit aan om die veranderingen naar de "master" te sturen.
+
+git push origin master
+ - stuurt de commit naar de github service
+
