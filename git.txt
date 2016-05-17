@@ -1,8 +1,8 @@
 SETUP
 Instaleer: https://git-scm.com/downloads !!!!!
 Start opdrachtprompt (CMD) en voer de twee hieronder commands uit
-git clone --global user.name "Jouw naam hier"
-git clone --global user.email "jouw github email"
+git config --global user.name "Jouw naam hier"
+git config --global user.email "jouw github email"
 
 ALLEEN NAAR DE MASTER PUSHEN ALS HET ECHT WERKT!!!!
 
