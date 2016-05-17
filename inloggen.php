@@ -13,6 +13,13 @@
             <div class="page-header">
                 <h2>Inloggen</h2>
             </div>
+            
+            <!-- Alert wordt niet standaard getoond -->
+            <div class="alert alert-warning hidden">
+              U moet ingelogd zijn om deze pagina te kunnen zien.
+            </div>
+            <!-- -->
+            
             <form class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <div class="form-group">
                     <div class="input-group">
