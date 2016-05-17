@@ -9,6 +9,11 @@
     
 }
 
+.textfield{
+    border: 2px solid #aaa;
+    padding: 5px;
+}
+
 @media (min-width: 768px) {
     .container-fluid > .navbar-collapse{
         padding-left: 0;
