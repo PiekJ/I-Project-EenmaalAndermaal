@@ -145,8 +145,8 @@ h2, h3, h4, h5, h6{
 }
 
 .carousel{
-	float: left;
 	min-height: 200px;
+    max-height: 200px;
 }
 
 .carousel-control.right {

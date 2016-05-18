@@ -16,30 +16,48 @@
 
             </div>
            <div class="row">
-    	<div id="theCarousel" class="carousel col-md-6 col-xs-6">
-    		<div class="carousel-inner">
-    			<div class="item active">
-    				<img  src="./images/Omafiets1.png" alt="omafiets" class="img-responsive">
-    			</div>
-    			<div class="item">
-    				<img  src="./images/logo.png" alt="omafiets" class="img-responsive">
-    			</div>
-    			<div class="item">
-    				<img  src="./images/Omafiets3.jpg" alt="omafiets" class="img-responsive">
-    			</div>
-    			<div class="item">
-    				<img  src="./images/fiets.jpg" alt="Mooiefiets" class="img-responsive">
-    			</div>
-    		</div>
-    		<a class ="carousel-control left" href = "#theCarousel" data-slide = "prev">
-    			<span class="icon-prev"></span>
-    		</a>
-    		<a class ="carousel-control right" href = "#theCarousel" data-slide = "next">
-    			<span class="icon-next"></span>
-    		</a>
+            <div class="col-md-6">
+                	<div id="theCarousel" class="carousel clear">
+                		<div class="carousel-inner">
+                			<div class="item active">
+                				<img  src="./images/Omafiets1.png" alt="omafiets" class="img-responsive">
+                			</div>
+                			<div class="item">
+                				<img  src="./images/logo.png" alt="omafiets" class="img-responsive">
+                			</div>
+                			<div class="item">
+                				<img  src="./images/Omafiets3.jpg" alt="omafiets" class="img-responsive">
+                			</div>
+                			<div class="item">
+                				<img  src="./images/fiets.jpg" alt="Mooiefiets" class="img-responsive">
+                			</div>
+                		</div>
+                		<a class ="carousel-control left" href = "#theCarousel" data-slide = "prev">
+                			<span class="icon-prev"></span>
+                		</a>
+                		<a class ="carousel-control right" href = "#theCarousel" data-slide = "next">
+                			<span class="icon-next"></span>
+                		</a>
+                    </div>
+
+                <div style="padding-top:10px;">
+                <img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
+                <img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
+                <img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
+                <h3 class="text-primary"> Beschrijving </h2>
+                <div class="well">
+                    <p>
+                        Een fiets is een voertuig dat door spierkracht wordt aangedreven. De snelheid kan variëren aangezien de gebruiker zelf kan bepalen hoeveel energie hij/zij in het aandrijven steekt. De hedendaagse fiets bestaat uit ten minste twee wielen, een frame, een zadel, een stuur en een trapas met pedalen. Sommige fietsen hebben een (hulp)motor. Fietsen met een elektrische motor als aandrijving worden ook wel "e-bikes" genoemd. Tot 1966 was de wettelijke term in Nederland rijwiel. In Vlaanderen wordt ook het Franse vélo gebruikt.
+                        Het grootste deel van de fietsen heeft een kettingaandrijving, hoewel een asaandrijving of riemaandrijving ook mogelijk zijn.
+                        Van de fiets zijn andere vervoermiddelen afgeleid, zoals de vooral in Azië populaire riksja en becak, en enkele gemotoriseerde varianten die als uitvindingen een "eigen" leven zijn gaan leiden: de bromfiets, snorfiets, scooter en motorfiets.
+                    </p>
+                </div>
+            </div>
     	</div>
 
-    	<div class="pull-right col-md-5">
+
+
+    	<div class="col-md-6">
     		<div class="well">
     			<p class="clear"> <span style="font-weight:bold;">Verkoper</span><span style="float:right;">Peter Petersen</span>
     			</p>
@@ -80,21 +98,6 @@
             <p> <button type="submit" class="btn btn-warning btn-xs">Opvragen</button>
             </p>
     	</div>
-    	<div class="row">
-    	<div class="pull-left col-xs-6" style="padding-top:10px;">
-    		<img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-    		<img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-    		<img  src="./images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-    		<h3 class="text-primary"> Beschrijving </h2>
-    		<div class="well">
-    			<p>
-    				Een fiets is een voertuig dat door spierkracht wordt aangedreven. De snelheid kan variëren aangezien de gebruiker zelf kan bepalen hoeveel energie hij/zij in het aandrijven steekt. De hedendaagse fiets bestaat uit ten minste twee wielen, een frame, een zadel, een stuur en een trapas met pedalen. Sommige fietsen hebben een (hulp)motor. Fietsen met een elektrische motor als aandrijving worden ook wel "e-bikes" genoemd. Tot 1966 was de wettelijke term in Nederland rijwiel. In Vlaanderen wordt ook het Franse vélo gebruikt.
-					Het grootste deel van de fietsen heeft een kettingaandrijving, hoewel een asaandrijving of riemaandrijving ook mogelijk zijn.
-					Van de fiets zijn andere vervoermiddelen afgeleid, zoals de vooral in Azië populaire riksja en becak, en enkele gemotoriseerde varianten die als uitvindingen een "eigen" leven zijn gaan leiden: de bromfiets, snorfiets, scooter en motorfiets.
-    			</p>
-    		</div>
-    	</div>
-
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
