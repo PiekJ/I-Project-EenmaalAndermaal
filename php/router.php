@@ -34,14 +34,30 @@
 	{
 		global $_CONFIG;
 
-		$start_pos = strlen($_CONFIG['url']['folder']) - 1;
+		$folder = $_CONFIG['url']['folder'];
+
+		if (is_bool($_CONFIG['url']['withIndex']) && $_CONFIG['url']['withIndex'])
+		{
+			$folder .= 'index.php/';
+		}
+
+		$start_pos = strlen($folder) - 1;
 		$end_pos = strpos($_SERVER['REQUEST_URI'], '?');
 		if ($end_pos !== false)
 		{
-			return substr($_SERVER['REQUEST_URI'], $start_pos, $end_pos - $start_pos);
+			$result = substr($_SERVER['REQUEST_URI'], $start_pos, $end_pos - $start_pos);
+		}
+		else
+		{
+			$result = substr($_SERVER['REQUEST_URI'], $start_pos);
 		}
 
-		return substr($_SERVER['REQUEST_URI'], $start_pos);
+		if (empty($result))
+		{
+			$result = '/';
+		}
+
+		return $result;
 	}
 
 	// voert de juiste callback uit aan de hand van request method en url

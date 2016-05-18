@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form action="<?php echo get_url(); ?>veilingen" method="get">
+        <form action="<?php echo get_url(true); ?>veilingen" method="get">
             <div class="input-group input-group-lg search-group">
                 <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
                 <select name="rubriek" class="form-control rubriek-form-control">

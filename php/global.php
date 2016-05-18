@@ -5,6 +5,7 @@
 	define('DS', DIRECTORY_SEPARATOR);
 	define('SYSTEM_FOLDER', __DIR__ . DS);
 	define('VIEWS_FOLDER', SYSTEM_FOLDER . 'views' . DS);
+	define('ROUTES_FOLDER', SYSTEM_FOLDER . 'routes' . DS);
 
 	session_start();
 
@@ -28,16 +29,25 @@
 	}
 
 	// genereert de base url van de website (https/http)
-	function get_url($https = null)
+	function get_url($addIndex = null, $https = null)
 	{
 		global $_CONFIG;
 
+		$url = 'http://';
+
 		if (is_bool($https) && $https)
 		{
-			return 'https://' . $_CONFIG['url']['domain'] . $_CONFIG['url']['folder'];
+			$url = 'https://';
 		}
 
-		return 'http://' . $_CONFIG['url']['domain'] . $_CONFIG['url']['folder'];
+		$url .= $_CONFIG['url']['domain'] . $_CONFIG['url']['folder'];
+
+		if (is_bool($addIndex) && $addIndex && is_bool($_CONFIG['url']['withIndex']) && $_CONFIG['url']['withIndex'])
+		{
+			$url .= 'index.php/';
+		}
+
+		return $url;
 	}
 
 	// set de locatie header om te redirecten
@@ -47,7 +57,7 @@
 
 		$url = (isset($url)) ? $url : '';
 
-		header('Location: ' . get_url($https) . $url);
+		header('Location: ' . get_url(true, $https) . $url);
 	}
 
 	// include sub php files
@@ -55,3 +65,5 @@
 
 	require_once SYSTEM_FOLDER . 'view.php';
 	require_once SYSTEM_FOLDER . 'router.php';
+
+	require_once SYSTEM_FOLDER . 'user.php';
