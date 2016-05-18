@@ -45,7 +45,7 @@
                             <li class="<?php echo (get_data_view('menu') == 5) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>account/registreren">Registreren</a></li>
                             <?php } else { ?>
                             <li><span><?php printf('Welkom %s %s', get_user_data('voornaam'), get_user_data('achternaam')); ?></span></li>
-                            <li><a href="<?php echo get_url(); ?>account/logout">Logout</a></li>
+                            <li><a href="<?php echo get_url(true); ?>account/logout">Logout</a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -57,7 +57,7 @@
                     <h2 class="header-pagetitle"><?php echo get_data_view('title'); ?></h2>
 
                     <ul class="breadcrumb">
-                        <li><a href="#"><?php echo get_data_view('sitename'); ?></a></li>
+                        <li><a href="<?php echo get_url(true); ?>"><?php echo get_data_view('sitename'); ?></a></li>
                         <li class="active"><?php echo get_data_view('title'); ?></li>
                     </ul>
                 </div>

@@ -37,6 +37,11 @@
         setcookie('password', $password_hash, PHP_INT_MAX, '/');
     }
 
+    function set_rememberusername_cookie($username)
+    {
+        setcookie('username', $username, PHP_INT_MAX, '/');
+    }
+
     // clear de rememberme cookies
     function clear_rememberme_cookies()
     {

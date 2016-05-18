@@ -7,6 +7,9 @@
             return;
         }
 
+        set_data_view('menu', 4);
+        set_data_view('title', 'Login');
+
         return display_view('account_login');
     });
 
@@ -25,6 +28,11 @@
 
         if (try_login_user($_POST['username'], $_POST['password'], false))
         {
+            if (isset($_POST['rememberusername']))
+            {
+                set_rememberusername_cookie($_POST['username']);
+            }
+
             if (isset($_POST['rememberme']))
             {
                 set_rememberme_cookies($_POST['username'], $_POST['password']);
