@@ -67,6 +67,7 @@
                     <div class="input-group">
                         <label for="identificatiemethode">Identificatiemethode</label><br>   
                         <select class="form-control" id="identificatiemethode">
+                            <option value="" disabled selected></option>
                             <option value="creditcard">Creditcard</option>
                             <option value="post">Post</option>
                         </select>
@@ -74,6 +75,7 @@
                     <div class="input-group">
                         <label for="betaalmethode">Betaalmethode</label><br>  
                         <select class="form-control" id="betaalmethode">
+                            <option value="" disabled selected></option>
                             <option value="creditcard2">Creditcard</option>
                             <option value="bankrekening">Bankrekening</option>
                         </select>
