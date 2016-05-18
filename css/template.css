@@ -114,6 +114,27 @@ h2, h3, h4, h5, h6{
     clear: both;
 }
 
+.veiling-rubrieken{
+    border-radius: 4px;
+    background: #06adff;
+}
+.veiling-rubrieken > ul, .veiling-rubrieken > ul ul{
+    list-style: none;
+}
+.veiling-rubrieken > ul{
+    padding: 15px;
+}
+.veiling-rubrieken > ul ul{
+    padding: 0 15px;
+}
+.veiling-rubrieken span{
+    color: #ffffff;
+    font-weight: bold;
+}
+.veiling-rubrieken a{
+    color: #ffffff;
+}
+
 .btn-primary{
     background-color: #ffa034;
     border-color: #ffa034;
