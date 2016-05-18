@@ -20,6 +20,7 @@
             </div>
             <!-- -->
             
+            <div class="row">
             <form class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <div class="form-group">
                     <div class="input-group">
@@ -30,7 +31,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>    
-                        <input type="email" class="form-control" id="wachtwoord" placeholder="">
+                        <input type="password" class="form-control" id="wachtwoord" placeholder="">
                     </div>
                 </div>
                 <div class="checkbox">

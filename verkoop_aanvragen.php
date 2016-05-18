@@ -27,6 +27,7 @@
                     Dit kan door die code aan te vragen per post of door bevestiging via een bankrekening of creditcard.
                 </p>
             </div>
+            <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <h3>Accountinformatie</h3>
                 <div class="textfield">
@@ -72,6 +73,8 @@
                             <option value="post">Post</option>
                         </select>
                     </div>
+                </div>
+                <div class="form-group">
                     <div class="input-group">
                         <label for="betaalmethode">Betaalmethode</label><br>  
                         <select class="form-control" id="betaalmethode">
@@ -80,22 +83,30 @@
                             <option value="bankrekening">Bankrekening</option>
                         </select>
                     </div>
-                    
-                    <div class="input-group">
-                        <label for="banknaam">Banknaam</label>   
-                        <input type="text" class="form-control" id="banknaam">
-                    </div>
-                    
-                    <div class="input-group">
-                        <labe for="rekeningnummer">Rekeningnummer</label>   
-                        <input type="text" class="form-control" id="rekeningnummer">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="creditcardnummer">Creditcardnummer</label>   
-                        <input type="text" class="form-control" id="creditcardnummer">
-                    </div>
                 </div>
+            </form>
+            <form class="form-inline col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="form-group">
+                        <div class="input-group">
+                            <label for="banknaam">Banknaam</label>   
+                            <input type="text" class="form-control" id="banknaam">
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="input-group">
+                            <label for="rekeningnummer">Rekeningnummer</label>   
+                            <input type="text" class="form-control" id="rekeningnummer">
+                        </div>
+                </div>
+            </form>
+            <!-- Inline CSS. Alhoewel dezelfde code toegepast is als bij de andere elementen, wordt er geen ruimte gecreëerd tussen het textveld van 'banknaam' en de label 'creditcardnummer'. -->
+            <form class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-top:15px">
+                    <div class="form-group">   
+                        <div class="input-group">
+                            <label for="creditcardnummer">Creditcardnummer</label>   
+                            <input type="text" class="form-control" id="creditcardnummer" disabled>
+                        </div>
+                    </div>
                 <button type="submit" class="btn btn-primary">Bevestig</button>
             </form>
         </div>

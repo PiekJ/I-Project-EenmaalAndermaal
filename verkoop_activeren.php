@@ -19,16 +19,18 @@
                    Afhankelijk van welke identificatiemethode u heeft gekozen, heeft u een code ontvangen via post of e-mail.<br>
                 Voer de code hieronder in.
                 </p>
-            </div>  
-            <form class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="creditcardnummer">Creditcardnummer</label>   
-                        <input type="text" class="form-control" id="creditcardnummer">
+            </div>
+            <div class="row">
+                <form class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="creditcardnummer">Creditcardnummer</label>   
+                            <input type="text" class="form-control" id="creditcardnummer">
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Bevestig</button>    
-            </form>
+                    <button type="submit" class="btn btn-primary">Bevestig</button>    
+                </form>
+            </div>
         </div>
     </body>
 </html>
