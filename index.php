@@ -80,43 +80,61 @@
             </div>
 
             <div class="row">
+                <?php for ($i = 0; $i < 4; $i++) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    1
-                </div>
+                    <div class="veiling-card">
+                        <div class="veiling-card-img">
+                            <img src="//placehold.it/300x300" alt="image">
+                        </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    2
-                </div>
+                        <div class="veiling-card-content">
+                            <div class="clear">
+                                <h4 class="veiling-card-title">Veiling item #1</h4>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    3
-                </div>
+                                <p class="veiling-card-time">00:00:20</p>
+                            </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    4
-                </div>
+                            <div class="clear">
+                                <p class="veiling-card-price">&euro; 0,00</p>
 
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    5
+                                <a href="#" class="btn btn-primary veiling-card-button">Bieden</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    6
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    7
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    8
-                </div>
+                <?php } ?>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <h3>Aflopende veilingen</h3>
                 </div>
+            </div>
+
+            <div class="row">
+                <?php for ($i = 0; $i < 4; $i++) { ?>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="veiling-card">
+                        <div class="veiling-card-img">
+                            <img src="//placehold.it/300x300" alt="image">
+                        </div>
+
+                        <div class="veiling-card-content">
+                            <div class="clear">
+                                <h4 class="veiling-card-title">Veiling item #1</h4>
+
+                                <p class="veiling-card-time">00:00:20</p>
+                            </div>
+
+                            <div class="clear">
+                                <p class="veiling-card-price">&euro; 0,00</p>
+
+                                <a href="#" class="btn btn-primary veiling-card-button">Bieden</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
         </div>
 
