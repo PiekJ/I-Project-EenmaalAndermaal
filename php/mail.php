@@ -7,7 +7,7 @@
         sendMail($_POST[email]);
     }
     function sendMail($email){
-        mail($email, "EenmaalAndermaal registratiecode", )
+        mail($email, "EenmaalAndermaal registratiecode", $message)
     }
     function createCode(){
         return substr(str_shuffle($char), 0, 6);
