@@ -78,7 +78,7 @@
         $code = substr(str_shuffle($char), 0, 6);
         $hashcode = md5($code);
         $message = "Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
-                Vul de volgende code <a href="$_SERVER[REQUEST_URI]">hier</a> in: $code";
+                Vul de volgende code <a href=\"" . $_SERVER['REQUEST_URI'] . "\">hier</a> in: ". $code;
         
         if($sent = mail($email, "EenmaalAndermaal registratiecode", $message)){
             setcookie("registratie_code", $hashcode, time() + 7200, "/");
@@ -86,6 +86,7 @@
         else{
             setcookie("registratie_code", "",  0 , "/");
         }
+        return $sent;
 
         // generates a actication code XXxx
         // sets a cookie with the value XXxx

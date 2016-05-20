@@ -52,10 +52,58 @@
         return;
     });
 
-    add_route('GET', 'account\/registreren', function() {
 
+    add_route('GET', 'account\/registreren', function() {
+        if (is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('menu', 5);
+        set_data_view('title', 'Account aanvragen');
+        
+
+        return display_view('account_registreren_code');
     });
 
+    add_route('POST', 'account\/registreren', function(){
+        if (is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        if(isset($_POST['email'])){
+            send_activation_code_user($_POST['email']);
+        }
+           
+        if(isset($_POST['code'])){
+            if($_POST['code'] == $_COOKIE['registratie_code']){
+                location('account/registreren/formulier');
+            }
+        }
+        
+        set_data_view('menu', 5);
+        set_data_view('title', 'Account aanvragen');
+        
+
+        return display_view('account_registreren_code');
+    });
+
+    add_route('GET', 'account\/registreren\/formulier', function() {
+        if (is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('title', 'Registratie formulier');
+
+        return display_view('account_registreren_code');
+        
+    });
+    
     add_route('GET', 'account\/verkoper\/registreren', function() {
 
     });
