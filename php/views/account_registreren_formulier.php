@@ -7,22 +7,22 @@
 
                 <fieldset class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Uw emailadres">
+                    <input type="email" class="form-control" name="email" placeholder="Uw emailadres" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="gebruikersnaam">Gebruikersnaam</label>
-                    <input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam">
+                    <input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="wachtwoord">Wachtwoord</label>
-                    <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord">
+                    <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="wachtwoordOpnieuw">Wachtwoord opnieuw</label>
-                    <input type="password" class="form-control" name="wachtwoordOpnieuw" placeholder="Wachtwoord">
+                    <input type="password" class="form-control" name="wachtwoordOpnieuw" placeholder="Wachtwoord" required>
                 </fieldset>
 
             </form>
@@ -33,69 +33,69 @@
 
                 <fieldset class="form-group">
                     <label for="voornaam">Voornaam</label>
-                    <input type="text" class="form-control" name="text" placeholder="Uw naam">
+                    <input type="text" class="form-control" name="voornaam" placeholder="Uw naam" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="achternaam">Achternaam</label>
-                    <input type="text" class="form-control" name="achternaam" placeholder="Uw Achternaam">
+                    <input type="text" class="form-control" name="achternaam" placeholder="Uw Achternaam" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="geboortedatum">geboortedatum</label>
-                    <input type="date" class="form-control" name="geboortedatum" placeholder="Uw geboortedatum">
+                    <input type="date" class="form-control" name="geboortedatum" placeholder="Uw geboortedatum" required>
                 </fieldset>
 
                 <br>
 
                 <fieldset class="form-group">
                 <label class="radio-inline">
-                  <input type="radio" name="geslacht" value="Man"> Man
+                  <input type="radio" name="geslacht" value="man"> Man
                 </label>
 
                 <label class="radio-inline">
-                  <input type="radio" name="geslacht" value="Vrouw"> Vrouw
+                  <input type="radio" name="geslacht" value="vrouw"> Vrouw
                 </label>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="adres">Straat en huisnummer</label>
-                    <input type="text" class="form-control" name="adres" placeholder="Straat en huisnummer">
+                    <input type="text" class="form-control" name="adresregel1" placeholder="Straat en huisnummer" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" placeholder="1234AA">
+                    <input type="text" class="form-control" name="postcode" placeholder="1234AA" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="plaatsnaam">Plaatsnaam</label>
-                    <input type="text" class="form-control" name="plaatsnaam" placeholder="Plaatsnaam">
+                    <input type="text" class="form-control" name="plaatsnaam" placeholder="Plaatsnaam" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="landnaam">Landnaam</label>
-                    <input type="text" class="form-control" name="landnaam" placeholder="Landnaam">
+                    <input type="text" class="form-control" name="landnaam" placeholder="Landnaam" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-control" name="telefoonnummer" placeholder="06-54322345">
+                    <input type="text" class="form-control" name="telefoonnummer" placeholder="06-54322345" required>
                 </fieldset>
                 
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->
                 <fieldset class="form-group">
                     <label for="selectie">Uw beveiligingsvraag</label>
                     <select class="form-control" name="geselecteerdBeveilingsvraag">
-                        <option>Wat is de meisjesnaam van uw moeder?</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <option value="1">Wat is de meisjesnaam van uw moeder?</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                     </fieldset>
                     <fieldset class="form-group">
                     <label for="beveilingsvraag">Uw antwoord</label>
-                    <input type="text" class="form-control" name="antwoord" placeholder="Antwoord">
+                    <input type="text" class="form-control" name="antwoordTekst" placeholder="Antwoord" required>
                 </fieldset>
 
             </div>
