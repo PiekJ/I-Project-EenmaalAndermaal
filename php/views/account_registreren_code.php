@@ -34,7 +34,7 @@
             <h4> Uw e-mailadres </h4>
             <form method="post">
                 <div class="input-group col-md-6">
-                    <input type="email" class="form-control " placeholder="e-mailadres" name="email" required>
+                    <input type="email" class="form-control " placeholder="" name="email" required>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Vraag aan</button>
@@ -43,7 +43,7 @@
             <h4> Uw ontvangen code </h4>
             <form method="post">
                 <div class="input-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Geheime code" name="code" required>
+                        <input type="text" class="form-control" placeholder="" name="code" required>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Registreer</button>

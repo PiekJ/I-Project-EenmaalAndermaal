@@ -30,6 +30,32 @@
         return false;
     }
 
+    function wachtwoord_vergeten_bevestigen($email){
+        {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Gebruiker WHERE emailadres = ?';
+
+        $result = sqlsrv_query($db, $sql, [$email]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        if ($user_data = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            if ($_POST['email'] == $user_data['emailadres'] &&
+                $_POST['beveiligingsvraag'] == $user_data['vraag'] &&
+                $_POST['antwoord'] == $user_data['antwoordTekst'])
+            {
+
+                return true;
+            }
+        }
+
+        return false;
+        }
+    }
     // set de rememberme cookies
     function set_rememberme_cookies($username, $password_hash)
     {
@@ -116,8 +142,23 @@
         // sends the XXxx to the $email
         // returns true/false if mail send succesfully (when false, delete the cookie)
     }
+    
+    function send_password_user($email)
+    {
+        $db = get_db();
+ 
+        $sql = 'SELECT wachtwoord FROM Gebruiker
+                WHERE emailadres = ?';
+ 
+        $result = sqlsrv_query($db, $sql, [$email]);
 
-    // registreert gebruiker
+        $message = 'Uw wachtwoord is /"' . $result . '/".';
+        
+        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message);
+
+        return $sent;
+    }
+
     function register_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser)
     {
         return false;
@@ -134,6 +175,27 @@
 
         return true;
     }
+
+    function get_vragen()
+     {
+         $db = get_db();
+ 
+         $sql = 'SELECT vraagnummer, tekst_vraag FROM Vraag';
+ 
+         $result = sqlsrv_query($db, $sql);
+         if($result === false)
+         {
+             die(var_export(sqlsrv_errors(), true));
+         }
+ 
+         $results = [];
+         while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+         {
+             $results[] = $row;
+         }
+ 
+         return $results;
+     }
 
     // haalt user data op uit session
     function get_user_data($field)

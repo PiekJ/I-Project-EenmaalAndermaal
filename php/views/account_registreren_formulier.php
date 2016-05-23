@@ -7,22 +7,22 @@
 
                 <fieldset class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Uw emailadres" required>
+                    <input type="email" class="form-control" name="email" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="gebruikersnaam">Gebruikersnaam</label>
-                    <input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam" required>
+                    <input type="text" class="form-control" name="gebruikersnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="wachtwoord">Wachtwoord</label>
-                    <input type="password" class="form-control" name="wachtwoord" placeholder="Wachtwoord" required>
+                    <input type="password" class="form-control" name="wachtwoord" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="wachtwoordOpnieuw">Wachtwoord opnieuw</label>
-                    <input type="password" class="form-control" name="wachtwoordOpnieuw" placeholder="Wachtwoord" required>
+                    <input type="password" class="form-control" name="wachtwoordOpnieuw" placeholder="" required>
                 </fieldset>
 
         </div>
@@ -32,17 +32,17 @@
 
                 <fieldset class="form-group">
                     <label for="voornaam">Voornaam</label>
-                    <input type="text" class="form-control" name="voornaam" placeholder="Uw naam" required>
+                    <input type="text" class="form-control" name="voornaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="achternaam">Achternaam</label>
-                    <input type="text" class="form-control" name="achternaam" placeholder="Uw Achternaam" required>
+                    <input type="text" class="form-control" name="achternaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="geboortedatum">geboortedatum</label>
-                    <input type="date" class="form-control" name="geboortedatum" placeholder="Uw geboortedatum" required>
+                    <input type="date" class="form-control" name="geboortedatum" placeholder="" required>
                 </fieldset>
 
                 <br>
@@ -59,42 +59,42 @@
 
                 <fieldset class="form-group">
                     <label for="adres">Straat en huisnummer</label>
-                    <input type="text" class="form-control" name="adresregel1" placeholder="Straat en huisnummer" required>
+                    <input type="text" class="form-control" name="adresregel1" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" placeholder="1234AA" required>
+                    <input type="text" class="form-control" name="postcode" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="plaatsnaam">Plaatsnaam</label>
-                    <input type="text" class="form-control" name="plaatsnaam" placeholder="Plaatsnaam" required>
+                    <input type="text" class="form-control" name="plaatsnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="landnaam">Landnaam</label>
-                    <input type="text" class="form-control" name="landnaam" placeholder="Landnaam" required>
+                    <input type="text" class="form-control" name="landnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-control" name="telefoonnummer" placeholder="06-54322345" required>
+                    <input type="text" class="form-control" name="telefoonnummer" placeholder="" required>
                 </fieldset>
                 
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->
                 <fieldset class="form-group">
                     <label for="selectie">Uw beveiligingsvraag</label>
                     <select class="form-control" name="geselecteerdBeveilingsvraag">
-                        <option value="1">Wat is de meisjesnaam van uw moeder?</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <?php foreach (get_data_view('vragen') as $nummer => $rubriek) {
+                            echo '<option value="' . $nummer . '">' . $rubriek . '</option>';
+                        }
+                        ?>
                     </select>
                     </fieldset>
                     <fieldset class="form-group">
                     <label for="beveilingsvraag">Uw antwoord</label>
-                    <input type="text" class="form-control" name="antwoordTekst" placeholder="Antwoord" required>
+                    <input type="text" class="form-control" name="antwoordTekst" placeholder="" required>
                 </fieldset>
 
             </div>
