@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="text-primary">Veiling <span style="float:right;">Resterende tijd 00:00:00</span></h3>
+        <h3 class="text-primary"><?php echo_data_view('veiling', 'titel'); ?> <span style="float:right;">Resterende tijd: <?php echo '00:00:00'; ?></span></h3>
     </div>
 </div>
 
@@ -40,41 +40,37 @@
             
             <h4 class="text-primary"> Beschrijving </h4>
             <div class="well">
-                <p>
-                                Een fiets is een voertuig dat door spierkracht wordt aangedreven. De snelheid kan variëren aangezien de gebruiker zelf kan bepalen hoeveel energie hij/zij in het aandrijven steekt. De hedendaagse fiets bestaat uit ten minste twee wielen, een frame, een zadel, een stuur en een trapas met pedalen. Sommige fietsen hebben een (hulp)motor. Fietsen met een elektrische motor als aandrijving worden ook wel "e-bikes" genoemd. Tot 1966 was de wettelijke term in Nederland rijwiel. In Vlaanderen wordt ook het Franse vélo gebruikt.
-                                Het grootste deel van de fietsen heeft een kettingaandrijving, hoewel een asaandrijving of riemaandrijving ook mogelijk zijn.
-                                Van de fiets zijn andere vervoermiddelen afgeleid, zoals de vooral in Azië populaire riksja en becak, en enkele gemotoriseerde varianten die als uitvindingen een "eigen" leven zijn gaan leiden: de bromfiets, snorfiets, scooter en motorfiets.
-                </p>
+                <p><?php echo_data_view('veiling', 'beschrijving'); ?></p>
             </div>
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="well">
-            <p class="clear"> <span style="font-weight:bold;">Verkoper</span><span style="float:right;">Peter Petersen</span>
+            <p class="clear"> <span style="font-weight:bold;">Verkoper</span><span style="float:right;"><?php echo 'Pietje Puk'; ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Plaatsnaam</span><span style="float:right;">Lienden</span>
+            <p class="clear"> <span style="font-weight:bold;">Plaatsnaam</span><span style="float:right;"><?php echo_data_view('veiling', 'plaatsnaam'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Land</span><span style="float:right;">Nederland</span>
+            <p class="clear"> <span style="font-weight:bold;">Land</span><span style="float:right;"><?php echo_data_view('veiling', 'landnaam'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Verzendmethode</span><span style="float:right;">Pakketpost</span>
+            <p class="clear"> <span style="font-weight:bold;">Verzendmethode</span><span style="float:right;"><?php echo_data_view('veiling', 'verzendinstructies'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Verzendkosten</span><span style="float:right;">&euro;14,00</span>
+            <p class="clear"> <span style="font-weight:bold;">Verzendkosten</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verzendkosten'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Betalingswijze</span><span style="float:right;">Paypal</span>
+            <p class="clear"> <span style="font-weight:bold;">Betalingswijze</span><span style="float:right;"><?php echo_data_view('veiling', 'betalingswijze'); ?></span>
             </p>
         </div>
 
         <div class="well">
-            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;">28-04-2016 14:00</span>
+            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;"><?php echo_data_view('veiling', 'looptijdBeginDag'); ?> <?php echo_data_view('veiling', 'looptijdBeginTijd'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;">28-04-2016 16:00</span>
+            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo_data_view('veiling', 'looptijdEindDag'); ?> <?php echo_data_view('veiling', 'looptijdEindTijd'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro;9,99</span>
+            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Hoogste bieder</span><span style="float:right;">Jan Jansen</span>
+            <p class="clear"> <span style="font-weight:bold;">Hoogste bieder</span><span style="float:right;"><?php echo_data_view('veiling', 'koper'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro;1,00</span>
+            <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>
             <p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
                 <form method="POST">
