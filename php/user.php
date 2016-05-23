@@ -72,6 +72,28 @@
         }
     }
 
+    function check_email_exists($email)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT COUNT(*) AS AANTAL FROM Gebruiker WHERE emailadres = ?';
+
+        $result = sqlsrv_query($db, $sql, [$email]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        if ($count_data = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC))
+        {
+            return $count_data[0] > 0;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     function send_activation_code_user($email)
     {
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";

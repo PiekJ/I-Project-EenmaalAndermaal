@@ -9,9 +9,15 @@
         Er is een e-mail met code verstuurd naar uw e-mailadres.
         </div>';
     }
-    else{
+    else if (get_data_view('sent') === false){
         echo '<div class="alert alert-warning">
         Het is niet gelukt om een email te verzenden.
+        </div>';
+    }
+    
+    if(get_data_view('email_exists')){
+        echo '<div class="alert alert-danger">
+        Dit e-mailadres is al in gebruik.
         </div>';
     }
     ?>
@@ -28,7 +34,7 @@
             <h4> Uw e-mailadres </h4>
             <form method="post">
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control " placeholder="e-mailadres" name="email">
+                    <input type="email" class="form-control " placeholder="e-mailadres" name="email" required>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Vraag aan</button>
@@ -37,7 +43,7 @@
             <h4> Uw ontvangen code </h4>
             <form method="post">
                 <div class="input-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Geheime code" name="code">
+                        <input type="text" class="form-control" placeholder="Geheime code" name="code" required>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Registreer</button>

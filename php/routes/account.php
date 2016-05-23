@@ -74,19 +74,25 @@
             return;
         }
         
-        if(isset($_POST['email'])){
-            $sent = send_activation_code_user($_POST['email']);
-            
-            set_data_view('sent', $sent);
-            
+        if(check_email_exists($_POST['email'])){
+            set_data_view('email_exists', 1);
         }
-           
-        if(isset($_POST['code'])){
-            if(isset($_COOKIE['registratie_code']) && $_POST['code'] == $_COOKIE['registratie_code']){
-                location('account/registreren/formulier');
+        else{    
+            set_data_view('email_exists', 0);
+            
+            if(isset($_POST['email'])){
+                $sent = send_activation_code_user($_POST['email']);
+
+                set_data_view('sent', $sent);
+
+            }
+
+            if(isset($_POST['code'])){
+                if(isset($_COOKIE['registratie_code']) && $_POST['code'] == $_COOKIE['registratie_code']){
+                    location('account/registreren/formulier');
+                }
             }
         }
-        
         set_data_view('menu', 5);
         set_data_view('title', 'Account aanvragen');
         
