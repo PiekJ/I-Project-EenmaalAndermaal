@@ -1,6 +1,4 @@
 <?php
-
-
 	// short en snelle definities
 	define('DS', DIRECTORY_SEPARATOR);
 	define('SYSTEM_FOLDER', __DIR__ . DS);

@@ -5,7 +5,7 @@
 		'db' => [
 			'server_name' => 'DESKTOP-LJ94PVH\SQLEXPRESS',
 			'options' => [
-				'Database' => 'EenmaalAndermaal',
+				'Database' => 'iproject16',
 				'UID' => 'sa',
 				'PWD' => '139742685'
 			]

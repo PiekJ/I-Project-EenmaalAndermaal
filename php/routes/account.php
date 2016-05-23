@@ -35,7 +35,7 @@
 
             if (isset($_POST['rememberme']))
             {
-                set_rememberme_cookies($_POST['username'], get_user_data('password'));
+                set_rememberme_cookies($_POST['username'], get_user_data('wachtwoord'));
             }
 
             location();
@@ -125,7 +125,7 @@
             return;
         }
         
-        register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], password_hash($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']); 
+        register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']); 
                       
         set_data_view('title', 'Registratie formulier');
 
