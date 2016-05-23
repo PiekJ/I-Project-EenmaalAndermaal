@@ -112,6 +112,7 @@
         }
         
         set_data_view('title', 'Registratie formulier');
+        set_data_view('vragen', get_vragen());
 
         return display_view('account_registreren_formulier');
         
@@ -124,7 +125,7 @@
             return;
         }
         
-        register_user($_POST['username'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], $_POST['wachtwoord'], $_POST['geselecteerdBeveilingsvraag'], $_POST['antwoordTekst']); 
+        register_user($_POST['username'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], $_POST['wachtwoord'], $_POST['telefoon'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']); 
                       
         set_data_view('title', 'Registratie formulier');
 

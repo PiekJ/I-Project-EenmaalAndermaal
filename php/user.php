@@ -162,9 +162,8 @@
         return $sent;
     }
 
-    function register_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser)
+    function register_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $telefoon, $question, $question_awnser)
     {
-        return false;
 
         $db = get_db();
 
@@ -175,7 +174,17 @@
         {
             die(var_export(sqlsrv_errors(), true));
         }
+        
+        //TELEFOON        
+        $telefoonsql = 'INSERT INTO Gebruikerstelefoon (volgnr, gebruiker, telefoon)
+        VALUES (?, ?, ?)';
 
+        $telefoonresult = sqlsrv_query($db, $telefoonsql, [0, $username, $telefoon]);
+        if($telefoonresult === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        
         return true;
     }
 
