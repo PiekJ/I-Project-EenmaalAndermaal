@@ -7,13 +7,13 @@
                 <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
                 <select name="rubriek" class="form-control rubriek-form-control">
                     <option value="0" selected>Alle rubrieken</option>
-                    <?php
-                        $previousDepthLevel = 0;
+                    <?php /*
+                        $previous_depth_level = 0;
                         foreach (get_data_view('rubrieken') as $rubriek) {
                         
                             $rubrieknaam = str_replace('  ', '&nbsp;&nbsp;', $rubriek['rubrieknaam']);
 
-                            if ($previousDepthLevel > $rubriek['depth_level'])
+                            if ($previous_depth_level > $rubriek['depth_level'])
                             {
                                 echo '</optgroup>';
                             }
@@ -27,9 +27,13 @@
                                 printf('<option value="%d">%s</option>', $rubriek['rubrieknummer'], $rubrieknaam);
                             }
 
-                            $previousDepthLevel = $rubriek['depth_level'];
-                        } 
+                            $previous_depth_level = $rubriek['depth_level'];
+                        } */
                     ?>
+
+                    <?php foreach (get_data_view('rubrieken') as $rubriek) {
+                        printf('<option value="%d">%s</option>', $rubriek['rubrieknummer'], str_replace('  ', '&nbsp;&nbsp;', $rubriek['rubrieknaam']));
+                    } ?>
                 </select>
                 <span class="input-group-btn">
                     <input type="submit" class="btn btn-primary" value="Zoeken">

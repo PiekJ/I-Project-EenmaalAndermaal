@@ -36,3 +36,73 @@
 
         return $results;
     }
+
+    function get_rubriek_id($rubrieknaam)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT rubrieknummer FROM Rubriek WHERE rubrieknaam = ?';
+
+        $result = sqlsrv_query($db, $sql);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $result = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        if (empty($result))
+        {
+            return null;
+        }
+
+        return $result['rubrieknummer'];
+    }
+
+    function get_veilingen($rubrieknummer = null, $searchText = null, $sortedBy = null)
+    {
+        $db = get_db();
+
+        $args = null;
+        $sql = 'SELECT * FROM Voorwerp';
+
+        if (is_int($rubrieknummer))
+        {
+            $sql = 'SELECT v.* FROM VoorwerpRubriek r WHERE r.rubrieknummer = ?';
+            $args = [$rubrieknummer];
+        }
+
+        $result = sqlsrv_query($db, $sql, $args);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
+
+    function add_veiling()
+    {
+
+    }
+
+    function get_veiling($veilingnummer)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Voorwerp WHERE voorwerpnummer = ?';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        return sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+    }

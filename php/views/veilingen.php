@@ -5,12 +5,12 @@
         <div class="veiling-rubrieken">
             <ul>
             <?php
-                $previousDepthLevel = 0;
+                $previous_depth_level = 0;
                 foreach (get_data_view('rubrieken') as $rubriek) {
                 
                     $rubrieknaam = str_replace('  ', '', $rubriek['rubrieknaam']);
 
-                    if ($previousDepthLevel > $rubriek['depth_level'])
+                    if ($previous_depth_level > $rubriek['depth_level'])
                     {
                         echo '</ul></li>';
                     }
@@ -21,10 +21,10 @@
                     }
                     else
                     {
-                        printf('<li><a href="%sveilingen/%s">%s</a></li>', get_url(true), $rubrieknaam, $rubrieknaam);
+                        printf('<li><a href="%sveilingen/%s">%s</a></li>', get_url(true), urlencode($rubrieknaam), $rubrieknaam);
                     }
                 
-                    $previousDepthLevel = $rubriek['depth_level'];
+                    $previous_depth_level = $rubriek['depth_level'];
                 } 
             ?>
             </ul>
