@@ -3,11 +3,11 @@
 
 <div class="row">
         <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <form>
+            <form method="post">
 
                 <fieldset class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="" required>
+                    <input type="email" class="form-control" name="email" value=" <?= htmlspecialchars($_SESSION['email']) ?>" placeholder="" disabled>
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -85,12 +85,12 @@
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->
                 <fieldset class="form-group">
                     <label for="selectie">Uw beveiligingsvraag</label>
-                    <select class="form-control" name="geselecteerdBeveilingsvraag">
-                        <?php foreach (get_data_view('vragen') as $nummer => $rubriek) {
-                            echo '<option value="' . $nummer . '">' . $rubriek . '</option>';
-                        }
-                        ?>
-                    </select>
+                <select class="form-control" name="beveilingsvraag">
+                    <?php foreach (get_data_view('vragen') as $rubriek) {
+                        echo '<option value="' . $rubriek['vraagnummer'] . '">' . $rubriek['tekst_vraag'] . '</option>';
+                    }
+                    ?>
+                </select>
                     </fieldset>
                     <fieldset class="form-group">
                     <label for="beveilingsvraag">Uw antwoord</label>
