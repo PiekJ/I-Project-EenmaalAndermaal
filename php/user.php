@@ -169,7 +169,7 @@
 
         $sql = 'INSERT INTO Gebruiker (gebruikersnaam, voornaam, achternaam, adresregel1, adresregel2, postcode, plaatsnaam, landnaam, geboortedag, geslacht, emailadres, wachtwoord, vraag, antwoordTekst) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-        $result = sqlsrv_query($db, $sql, func_get_args());
+        $result = sqlsrv_query($db, $sql, [$username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
