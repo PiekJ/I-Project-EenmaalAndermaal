@@ -35,7 +35,7 @@
                 
     <button type="submit" class="btn btn-primary">Inloggen</button>
 </form>
-<p>Nog geen account? Maak er <a href="#">hier</a> één aan.</p>
-<p>Wachtwoord vergeten? Klik <a href="#">hier</a>.</p>
+<p>Nog geen account? Maak er <a href="<?php echo get_url(true); ?>account/registreren">hier</a> één aan.</p>
+<p>Wachtwoord vergeten? Klik <a href="<?php echo get_url(true); ?>account/vergeten">hier</a>.</p>
 
 <?php echo display_view('template_footer'); ?>

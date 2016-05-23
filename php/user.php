@@ -30,6 +30,32 @@
         return false;
     }
 
+    function wachtwoord_vergeten_bevestigen($email){
+        {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Gebruiker WHERE emailadres = ?';
+
+        $result = sqlsrv_query($db, $sql, [$email]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        if ($user_data = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            if ($_POST['email'] == $user_data['emailadres'] &&
+                $_POST['beveiligingsvraag'] == $user_data['vraag'] &&
+                $_POST['antwoord'] == $user_data['antwoordTekst'])
+            {
+
+                return true;
+            }
+        }
+
+        return false;
+        }
+    }
     // set de rememberme cookies
     function set_rememberme_cookies($username, $password_hash)
     {
@@ -72,44 +98,117 @@
         }
     }
 
+    function check_email_exists($email)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT COUNT(*) AS AANTAL FROM Gebruiker WHERE emailadres = ?';
+
+        $result = sqlsrv_query($db, $sql, [$email]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        if ($count_data = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC))
+        {
+            return $count_data[0] > 0;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     function send_activation_code_user($email)
     {
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
         $hashcode = md5($code);
-        $message = "Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
-                Vul de volgende code <a href=\"" . $_SERVER['REQUEST_URI'] . "\">hier</a> in: $code";
+
+        $message = 'Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
+                Vul de volgende code <a href="' . get_url(true) . 'account/registreren"> hier </a> in:' . $code;
         
-        if($sent = mail($email, "EenmaalAndermaal registratiecode", $message)){
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        if($sent = mail($email, "EenmaalAndermaal registratiecode", $message, $headers)){
             setcookie("registratie_code", $hashcode, time() + 7200, "/");
+            $_SESSION['email'] = $email;
         }
         else{
             setcookie("registratie_code", "",  0 , "/");
         }
+        return $sent;
 
         // generates a actication code XXxx
         // sets a cookie with the value XXxx
         // sends the XXxx to the $email
         // returns true/false if mail send succesfully (when false, delete the cookie)
     }
-
-    // registreert gebruiker
-    function registrer_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser)
+    
+    function send_password_user($email)
     {
-        return false;
+        $db = get_db();
+ 
+        $sql = 'SELECT wachtwoord FROM Gebruiker
+                WHERE emailadres = ?';
+ 
+        $result = sqlsrv_query($db, $sql, [$email]);
+
+        $message = 'Uw wachtwoord is /"' . $result . '/".';
+        
+        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message);
+
+        return $sent;
+    }
+
+    function register_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $telefoon, $question, $question_awnser)
+    {
 
         $db = get_db();
 
         $sql = 'INSERT INTO Gebruiker (gebruikersnaam, voornaam, achternaam, adresregel1, adresregel2, postcode, plaatsnaam, landnaam, geboortedag, geslacht, emailadres, wachtwoord, vraag, antwoordTekst) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-        $result = sqlsrv_query($db, $sql, func_get_args()); // func_get_args, luiheid..... x]
+        $result = sqlsrv_query($db, $sql, [$username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
         }
+        
+        //TELEFOON        
+        $telefoonsql = 'INSERT INTO Gebruikerstelefoon (volgnr, gebruiker, telefoon)
+        VALUES (?, ?, ?)';
 
+        $telefoonresult = sqlsrv_query($db, $telefoonsql, [0, $username, $telefoon]);
+        if($telefoonresult === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        
         return true;
     }
+
+    function get_vragen()
+     {
+         $db = get_db();
+ 
+         $sql = 'SELECT vraagnummer, tekst_vraag FROM Vraag';
+ 
+         $result = sqlsrv_query($db, $sql);
+         if($result === false)
+         {
+             die(var_export(sqlsrv_errors(), true));
+         }
+ 
+         $results = [];
+         while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+         {
+             $results[] = $row;
+         }
+ 
+         return $results;
+     }
 
     // haalt user data op uit session
     function get_user_data($field)
