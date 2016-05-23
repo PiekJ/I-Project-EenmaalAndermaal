@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <?php for ($i = 0; $i < 24; $i++) { ?>
+    <?php foreach (get_data_view('veilingen') as $veiling) { ?>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="veiling-card">
             <div class="veiling-card-img">
@@ -40,13 +40,13 @@
 
             <div class="veiling-card-content">
                 <div class="clear">
-                    <h4 class="veiling-card-title">Veiling item #1</h4>
+                    <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
 
-                    <p class="veiling-card-time">00:00:20</p>
+                    <p class="veiling-card-time"><?php echo '00:00:00'; ?></p>
                 </div>
 
                 <div class="clear">
-                    <p class="veiling-card-price">&euro; 0,00</p>
+                    <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
 
                     <a href="#" class="btn btn-primary veiling-card-button">Bieden</a>
                 </div>
