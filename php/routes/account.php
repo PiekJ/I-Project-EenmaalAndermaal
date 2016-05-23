@@ -88,7 +88,8 @@
             }
 
             if(isset($_POST['code'])){
-                if(isset($_COOKIE['registratie_code']) && $_POST['code'] == $_COOKIE['registratie_code']){
+                if(isset($_COOKIE['registratie_code']) && md5($_POST['code']) == $_COOKIE['registratie_code']){
+                    $_SESSION['code_aangevraagd'] = true;
                     location('account/registreren/formulier');
                 }
             }
@@ -101,10 +102,13 @@
     });
 
     add_route('GET', 'account\/registreren\/formulier', function() {
-        if (is_user_logged_in())
+        if(is_user_logged_in())
         {
             location();
             return;
+        }
+        if(!isset($_SESSION['code_aangevraagd'])){
+            location('account/registreren');
         }
         
         set_data_view('title', 'Registratie formulier');
