@@ -4,17 +4,29 @@
     <div class="col-cs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="veiling-rubrieken">
             <ul>
-                <li><span>Fietsen</span>
-                    <ul>
-                        <li><a href="#">Elektrische fietsen</a></li>
-                        <li><a href="#">Kinderfietsen</a></li>
-                        <li><a href="#">Mountainbikes</a></li>
-                        <li><a href="#">Racefietsen</a></li>
-                        <li><a href="#">Stadsfietsen</a></li>
-                        <li><a href="#">Bakfietsen</a></li>
-                        <li><a href="#">Omafietsen</a></li>
-                    </ul>
-                </li>
+            <?php
+                $previousDepthLevel = 0;
+                foreach (get_data_view('rubrieken') as $rubriek) {
+                
+                    $rubrieknaam = str_replace('  ', '', $rubriek['rubrieknaam']);
+
+                    if ($previousDepthLevel > $rubriek['depth_level'])
+                    {
+                        echo '</ul></li>';
+                    }
+
+                    if ($rubriek['heeftSubrubriek'] == 1)
+                    {
+                        printf('<li><span>%s</span><ul>', $rubrieknaam);
+                    }
+                    else
+                    {
+                        printf('<li><a href="%sveilingen/%s">%s</a></li>', get_url(true), $rubrieknaam, $rubrieknaam);
+                    }
+                
+                    $previousDepthLevel = $rubriek['depth_level'];
+                } 
+            ?>
             </ul>
         </div>
     </div>

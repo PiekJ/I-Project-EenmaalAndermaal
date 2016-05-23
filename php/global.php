@@ -67,3 +67,4 @@
 	require_once SYSTEM_FOLDER . 'router.php';
 
 	require_once SYSTEM_FOLDER . 'user.php';
+	require_once SYSTEM_FOLDER . 'veiling.php';

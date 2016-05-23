@@ -7,6 +7,29 @@
                 <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
                 <select name="rubriek" class="form-control rubriek-form-control">
                     <option value="0" selected>Alle rubrieken</option>
+                    <?php
+                        $previousDepthLevel = 0;
+                        foreach (get_data_view('rubrieken') as $rubriek) {
+                        
+                            $rubrieknaam = str_replace('  ', '&nbsp;&nbsp;', $rubriek['rubrieknaam']);
+
+                            if ($previousDepthLevel > $rubriek['depth_level'])
+                            {
+                                echo '</optgroup>';
+                            }
+
+                            if ($rubriek['heeftSubrubriek'] == 1)
+                            {
+                                printf('<optgroup label="%s">', $rubrieknaam);
+                            }
+                            else
+                            {
+                                printf('<option value="%d">%s</option>', $rubriek['rubrieknummer'], $rubrieknaam);
+                            }
+
+                            $previousDepthLevel = $rubriek['depth_level'];
+                        } 
+                    ?>
                 </select>
                 <span class="input-group-btn">
                     <input type="submit" class="btn btn-primary" value="Zoeken">
