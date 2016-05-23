@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <form action="<?php echo get_url(true); ?>veilingen" method="get">
             <div class="input-group input-group-lg search-group">
-                <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
+                <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken..." required>
                 <select name="rubriek" class="form-control rubriek-form-control">
                     <option value="0" selected>Alle rubrieken</option>
                     <?php /*

@@ -136,5 +136,12 @@
             die(var_export(sqlsrv_errors(), true));
         }
 
-        return sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $result = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        
+        if (empty($result))
+        {
+            return null;
+        }
+
+        return $result;
     }
