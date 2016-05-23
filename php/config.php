@@ -15,6 +15,6 @@
 		'url' => [
 			'domain' => 'localhost:8080', // domain only
 			'folder' => '/', // begint en eindigt op /
-			'withIndex' => true
+			'with_index' => true
 		]
 	];

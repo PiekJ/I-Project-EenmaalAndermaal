@@ -42,7 +42,7 @@
 
 		$url .= $_CONFIG['url']['domain'] . $_CONFIG['url']['folder'];
 
-		if (is_bool($addIndex) && $addIndex && is_bool($_CONFIG['url']['withIndex']) && $_CONFIG['url']['withIndex'])
+		if (is_bool($addIndex) && $addIndex && is_bool($_CONFIG['url']['with_index']) && $_CONFIG['url']['with_index'])
 		{
 			$url .= 'index.php/';
 		}

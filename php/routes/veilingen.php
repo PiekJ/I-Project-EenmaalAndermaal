@@ -4,17 +4,25 @@
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
 
-        if (!empty($rubriek))
+        if (!isset($_GET['search'], $_GET['rubriek']))
         {
-            $rubriek = urldecode($rubriek);
-            $rubriek_id = get_rubriek_id($rubriek);
+            if (!empty($rubriek))
+            {
+                $rubriek = urldecode($rubriek);
+                $rubriek_id = get_rubriek_id($rubriek);
 
-            set_data_view('veilingen', get_veilingen($rubriek_id));
+                set_data_view('veilingen', get_veilingen($rubriek_id));
+            }
+            else
+            {
+                set_data_view('veilingen', get_veilingen());
+            }
         }
         else
         {
-            set_data_view('veilingen', get_veilingen());
+            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']));
         }
+
 
         set_data_view('rubrieken', get_rubrieken(true));
 
