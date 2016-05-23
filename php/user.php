@@ -82,6 +82,7 @@
         
         if($sent = mail($email, "EenmaalAndermaal registratiecode", $message)){
             setcookie("registratie_code", $hashcode, time() + 7200, "/");
+            $_SESSION['email'] = $email;
         }
         else{
             setcookie("registratie_code", "",  0 , "/");
@@ -95,7 +96,7 @@
     }
 
     // registreert gebruiker
-    function registrer_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser)
+    function register_user($username, $firstname, $lastname, $address1, $address2, $zipcode, $town, $country, $birthday, $sexe, $email, $password, $question, $question_awnser)
     {
         return false;
 

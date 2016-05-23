@@ -75,11 +75,14 @@
         }
         
         if(isset($_POST['email'])){
-            send_activation_code_user($_POST['email']);
+            $sent = send_activation_code_user($_POST['email']);
+            
+            set_data_view('sent', $sent);
+            
         }
            
         if(isset($_POST['code'])){
-            if($_POST['code'] == $_COOKIE['registratie_code']){
+            if(isset($_COOKIE['registratie_code']) && $_POST['code'] == $_COOKIE['registratie_code']){
                 location('account/registreren/formulier');
             }
         }
@@ -100,7 +103,7 @@
         
         set_data_view('title', 'Registratie formulier');
 
-        return display_view('account_registreren_code');
+        return display_view('account_registreren_formulier');
         
     });
 
@@ -111,9 +114,11 @@
             return;
         }
         
+        register_user($_POST['username'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], $_POST['wachtwoord'], $_POST['geselecteerdBeveilingsvraag'], $_POST['antwoordTekst']); 
+                      
         set_data_view('title', 'Registratie formulier');
 
-        return display_view('account_registreren_code');
+        return display_view('account_registreren_formulier');
         
     });
     

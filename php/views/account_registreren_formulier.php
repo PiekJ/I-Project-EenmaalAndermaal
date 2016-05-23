@@ -2,7 +2,7 @@
 <?php echo display_view('template_header'); ?>
 
 <div class="row">
-                <div class= "col-lg-3 col-md-3 col-sm-6 col-xs-6">
+        <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <form>
 
                 <fieldset class="form-group">
@@ -25,11 +25,10 @@
                     <input type="password" class="form-control" name="wachtwoordOpnieuw" placeholder="Wachtwoord" required>
                 </fieldset>
 
-            </form>
         </div>
 
-            <div class= "col-lg-8 col-md-8 col-sm-12 col-xs-12">
-            <form class="col-lg-6">
+            <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
 
                 <fieldset class="form-group">
                     <label for="voornaam">Voornaam</label>
@@ -102,5 +101,6 @@
 
                 <hr>
                 <button type="submit" class="btn btn-primary">Registreren</button>
+            </form>
         </div>
 <?php echo display_view('template_footer'); ?>
