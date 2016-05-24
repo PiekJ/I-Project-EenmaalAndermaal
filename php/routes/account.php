@@ -35,7 +35,7 @@
 
             if (isset($_POST['rememberme']))
             {
-                set_rememberme_cookies($_POST['username'], $_POST['password']);
+                set_rememberme_cookies($_POST['username'], get_user_data('password'));
             }
 
             location();

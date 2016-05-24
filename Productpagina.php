@@ -85,7 +85,7 @@
     			<p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro;1,00</span>
     			</p>
  				<p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
- 					<button style="float:right;" type="submit" class="btn btn-warning btn-xs ">Bied</button>
+ 					<input style="float:right;" type="submit" class="btn btn-primary btn-xs " value="Bied" name="Bieden">
                 	<input type="text" class="form-control" placeholder="Bod">
             	</P>
     		</div>
@@ -95,12 +95,12 @@
                 <input type="text" class="form-control" placeholder="e-mailadres">
             </div>
             <br>
-            <p> <button type="submit" class="btn btn-warning btn-xs">Opvragen</button>
-            </p>
+            <input type="submit" class="btn btn-primary btn-sm" value="Opvragen">
+            
     	</div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>   	
-   	</body>
-</html>
+   	
+    
