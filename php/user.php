@@ -236,3 +236,20 @@
     {
         return !empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
     }
+
+    function get_telefoon($gebruiker){
+        $db = get_db();
+
+        $sql = 'SELECT DISTINCT telefoon
+                FROM Gebruikerstelefoon
+                WHERE gebruiker = ?';
+
+        $result = sqlsrv_query($db, $sql, [$gebruiker]);
+        
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        
+        return sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+    }

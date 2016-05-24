@@ -204,6 +204,16 @@
     });
     
     add_route('GET', 'account\/verkoper\/registreren', function() {
+        if(!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('title', 'Aanvragen verkoopaccount');
+        set_data_view('menu', 3);
+
+        return display_view('account_verkoper_registreren');
 
     });
     
