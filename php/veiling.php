@@ -90,7 +90,7 @@
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.*, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
+        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
 
         if (is_int($rubrieknummer))
         {

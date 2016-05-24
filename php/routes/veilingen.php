@@ -11,16 +11,16 @@
                 $rubriek = urldecode($rubriek);
                 $rubriek_id = get_rubriek_id($rubriek);
 
-                set_data_view('veilingen', get_veilingen($rubriek_id));
+                set_data_view('veilingen', get_veilingen($rubriek_id, null, 0));
             }
             else
             {
-                set_data_view('veilingen', get_veilingen());
+                set_data_view('veilingen', get_veilingen(null, null, 0));
             }
         }
         else
         {
-            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']));
+            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']), 0);
         }
 
         if ($rubrieken_cache = fetch_cache('veilingen_rubrieken'))
