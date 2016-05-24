@@ -1,6 +1,32 @@
 <?php
 
-    function get_rubrieken($sorted = null)
+    function get_rubrieken()
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+
+        return $results;
+    }
+
+    /*function get_rubrieken_old($sorted = null)
     {
         $sorted = (is_bool($sorted)) ? $sorted : false;
 
@@ -35,7 +61,7 @@
         }
 
         return $results;
-    }
+    }*/
 
     function get_rubriek_id($rubrieknaam)
     {

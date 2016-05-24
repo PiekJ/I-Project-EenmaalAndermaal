@@ -23,7 +23,19 @@
             set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']));
         }
 
-        set_data_view('rubrieken', get_rubrieken(true));
+        if ($rubrieken_cache = fetch_cache('veilingen_rubrieken'))
+        {
+            set_data_view('rubrieken', $rubrieken_cache);
+
+        }
+        else
+        {
+            set_data_view('rubrieken', get_rubrieken());
+            $rubrieken = display_view('veilingen_rubrieken');
+            store_cache('veilingen_rubrieken', $rubrieken);
+
+            set_data_view('rubrieken', $rubrieken);
+        }
 
         return display_view('veilingen');
     });
