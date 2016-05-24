@@ -1,17 +1,14 @@
 <?php
 
-    add_route('GET', 'veilingen(|\/(?<rubriek>.*+))', function($rubriek = null) {
+    add_route('GET', 'veilingen(|\/(?<rubrieknummer>[0-9]+))', function($rubrieknummer = null) {
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
 
         if (!isset($_GET['search'], $_GET['rubriek']))
         {
-            if (!empty($rubriek))
+            if (!empty($rubrieknummer))
             {
-                $rubriek = urldecode($rubriek);
-                $rubriek_id = get_rubriek_id($rubriek);
-
-                set_data_view('veilingen', get_veilingen($rubriek_id, null, 0));
+                set_data_view('veilingen', get_veilingen($rubrieknummer, null, 0));
             }
             else
             {

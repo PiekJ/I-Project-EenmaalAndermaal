@@ -26,7 +26,7 @@
                 }
                 else
                 {
-                    printf('<li><a href="%sveilingen/%s">%s</a></li>', get_url(true), urlencode($rubrieknaam), $rubrieknaam);
+                    printf('<li><a href="%sveilingen/%s">%s</a></li>', get_url(true), $rubriek['rubrieknummer'], $rubrieknaam);
                 }
             }
         }

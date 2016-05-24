@@ -92,9 +92,9 @@
         $args = null;
         $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
 
-        if (is_int($rubrieknummer))
+        if (!empty($rubrieknummer))
         {
-            $sql = 'SELECT v.*, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
             $args = [$rubrieknummer];
         }
 
