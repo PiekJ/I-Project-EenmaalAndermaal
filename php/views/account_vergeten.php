@@ -6,7 +6,7 @@
     <?php 
     if(get_data_view('sent') && get_data_view('correct')){
         echo '<div class="alert alert-success">
-        Uw wachtwoord is verstuurd naar uw e-mailadres.
+        Uw nieuwe wachtwoord is verstuurd naar uw e-mailadres.
         </div>';
     }
     else if (get_data_view('sent') === false && get_data_view('correct')){
@@ -33,7 +33,7 @@
 
               <fieldset class="form-group">
                 <label for="selectie">Uw beveiligingsvraag</label>
-                <select class="form-control" name="beveilingsvraag">
+                <select class="form-control" name="beveiligingsvraag">
                     <?php foreach (get_data_view('vragen') as $rubriek) {
                   echo '<option value="' . $rubriek['vraagnummer'] . '">' . $rubriek['tekst_vraag'] . '</option>';
                     }
@@ -49,7 +49,7 @@
             -->
               </fieldset>
             
-            <button type="submit" class="btn btn-warning">Vraag aan</button>
+            <button type="submit" class="btn btn-primary">Vraag aan</button>
 
             </form>
 
