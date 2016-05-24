@@ -1,7 +1,5 @@
 <?php
 
-    define('CACHE_FOLDER', SYSTEM_FOLDER . 'cache' . DS);
-
     function get_file_cache($key)
     {
         return CACHE_FOLDER . md5($key);

@@ -4,6 +4,7 @@
 	define('SYSTEM_FOLDER', __DIR__ . DS);
 	define('VIEWS_FOLDER', SYSTEM_FOLDER . 'views' . DS);
 	define('ROUTES_FOLDER', SYSTEM_FOLDER . 'routes' . DS);
+	define('CACHE_FOLDER', SYSTEM_FOLDER . 'cache' . DS);
 
 	session_start();
 
