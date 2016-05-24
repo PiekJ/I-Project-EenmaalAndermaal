@@ -17,7 +17,7 @@
 
         if ($user_data = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
         {
-            if ($password_hashed === false && password_verify($password, $user_data['wachtwoord']) ||
+            if ($password_hashed === false && crypt($password, $user_data['wachtwoord']) ||
                 $password_hashed === true && $password == $user_data['wachtwoord'])
             {
                 $_SESSION['user_data'] = $user_data;

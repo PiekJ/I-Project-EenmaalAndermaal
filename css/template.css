@@ -68,6 +68,19 @@ h2, h3, h4, h5, h6{
     background: #ffffff;
 }
 
+.navbar-template .navbar-nav > li > span{
+    display: inline-block;
+    color: #ffffff;
+    padding: 10px 15px;
+    line-height: 20px;
+}
+@media (min-width: 768px) {
+    .navbar-template .navbar-nav > li > span{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+
 .veiling-card{
     margin: 0 0 30px 0;
 

@@ -17,19 +17,15 @@
     }
 
     require_once ROUTES_FOLDER . 'account.php';
+    require_once ROUTES_FOLDER . 'veilingen.php';
 
     add_route('GET', '', function() {
         set_data_view('menu', 0);
         set_data_view('title', 'Home');
 
+        set_data_view('rubrieken', get_rubrieken(true));
+
         return display_view('home');
-    });
-
-    add_route('GET', 'veilingen(|\/(?<rubriek>.*+))', function($rubriek = null) {
-        set_data_view('menu', 1);
-        set_data_view('title', 'Veilingen');
-
-        return display_view('veilingen');
     });
 
     exit(execute_route(get_request_method(), get_request_uri()));

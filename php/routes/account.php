@@ -35,7 +35,7 @@
 
             if (isset($_POST['rememberme']))
             {
-                set_rememberme_cookies($_POST['username'], get_user_data('password'));
+                set_rememberme_cookies($_POST['username'], get_user_data('wachtwoord'));
             }
 
             location();
@@ -181,7 +181,7 @@
         }
           
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        
+    
     if (empty($errors)){
                 
         $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
