@@ -64,11 +64,11 @@
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.* FROM Voorwerp v';
+        $sql = 'SELECT v.*, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
 
         if (is_int($rubrieknummer))
         {
-            $sql = 'SELECT v.* FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.*, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
             $args = [$rubrieknummer];
         }
 
