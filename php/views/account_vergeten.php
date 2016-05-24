@@ -6,7 +6,7 @@
     <?php 
     if(get_data_view('sent') && get_data_view('correct')){
         echo '<div class="alert alert-success">
-        Uw wachtwoord is verstuurd naar uw e-mailadres.
+        Uw nieuwe wachtwoord is verstuurd naar uw e-mailadres.
         </div>';
     }
     else if (get_data_view('sent') === false && get_data_view('correct')){
@@ -49,7 +49,7 @@
             -->
               </fieldset>
             
-            <button type="submit" class="btn btn-warning">Vraag aan</button>
+            <button type="submit" class="btn btn-primary">Vraag aan</button>
 
             </form>
 

@@ -119,16 +119,29 @@
     });
 
     add_route('POST', 'account\/registreren\/formulier', function() {
+        
         if (is_user_logged_in())
         {
             location();
             return;
         }
+    if($_POST['wachtwoord'] == $_POST['wachtwoordOpnieuw']){
         
-        register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], password_hash($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']); 
-                      
-        set_data_view('title', 'Registratie formulier');
+        set_data_view('wachtwoorden_overeen', true);
+        
+        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], password_hash($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
 
+        if($geregistreerd){
+            try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
+
+             location('account/login?username=' . $_POST['gebruikersnaam']);
+            return;
+        }
+    }
+    else{
+        set_data_view('wachtwoorden_overeen', false);
+    }
+        set_data_view('title', 'Registratie formulier');
         return display_view('account_registreren_formulier');
         
     });
@@ -160,9 +173,6 @@
         set_data_view('title', 'Wachtwoord vergeten');
         set_data_view('vragen', get_vragen());
         
-        send_password_user($_POST['email']);
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        
         if(wachtwoord_vergeten_bevestigen($_POST['email'])){
             
             set_data_view('correct', true);
@@ -173,7 +183,6 @@
         else{
             set_data_view('correct', false);
         }
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  
         
         return display_view('account_vergeten');
     

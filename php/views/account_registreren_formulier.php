@@ -3,6 +3,14 @@
 
 <div class="row">
         <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
+    <?php 
+    if(get_data_view('wachtwoorden_overeen') === false){
+        echo '<div class="alert alert-success">
+        De gegeven wachtwoorden komen niet overeen.
+        </div>';
+    }
+    ?>
             <form method="post">
 
                 <fieldset class="form-group">
