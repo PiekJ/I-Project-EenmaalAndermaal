@@ -107,6 +107,10 @@
             location();
             return;
         }
+        //VOOR TESTEN
+        $_SESSION['code_aangevraagd'] = true;
+        $_SESSION['email'] = 'henk@hotmail.com';
+        
         if(!isset($_SESSION['code_aangevraagd'])){
             location('account/registreren');
         }
@@ -152,7 +156,7 @@
 			$errors[] = 'Wachtwoord en het herhaalde wachtwoord zijn ongelijk aan elkaar';
 		}
 
-		if (!in_array($_POST['geslacht'], ['M', 'V']))
+		if (!isset($_POST['geslacht']) || !in_array(@$_POST['geslacht'], ['man', 'vrouw']))
 		{
 			$errors[] = 'U heeft geen geslacht opgegeven.';
 		}
@@ -171,12 +175,16 @@
 		{
 			$errors[] = 'U heeft geen geldig postcode opgegeven';
 		}
+        if (!preg_match('/06[0-9]{8}/', $_POST['telefoonnummer']) || !preg_match('/0[0-9]{3}[0-9]{6}/', $_POST['telefoonnummer']))
+        {
+            $errors[] = 'U heeft geen geldig telefoonnummer opgegeven';
+        }
           
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
     if (empty($errors)){
                 
-        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], password_hash($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
+        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
 
         if($geregistreerd){
             try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
@@ -184,10 +192,11 @@
             location();
             return;
         }
-    }   
+    }
         
 		set_data_view('gegevens', $_POST);
 		set_data_view('errors', $errors);
+        set_data_view('vragen', get_vragen());
         
         set_data_view('title', 'Registratie formulier');
         return display_view('account_registreren_formulier');

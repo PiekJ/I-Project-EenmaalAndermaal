@@ -122,10 +122,10 @@
     {
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = md5($code);
+        $hashcode = crypt($code);
 
         $message = 'Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
-                Vul de volgende code <a href="' . get_url(true) . 'account/registreren"> hier </a> in:' . $code;
+                Vul de volgende code <a href="' . get_url(true) . 'account/registreren">hier</a> in: ' . $code;
         
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -138,11 +138,6 @@
             setcookie("registratie_code", "",  0 , "/");
         }
         return $sent;
-
-        // generates a actication code XXxx
-        // sets a cookie with the value XXxx
-        // sends the XXxx to the $email
-        // returns true/false if mail send succesfully (when false, delete the cookie)
     }
     
     function send_password_user($email)
@@ -154,15 +149,18 @@
         
         $db = get_db();
  
-        $sql = 'UPDATE Gebruiker
-                SET wachtwoord =' . $hashcode . '
-                WHERE emailadres = ?';
+        $sql = "UPDATE Gebruiker
+                SET wachtwoord = '" . $hashcode . "'
+                WHERE emailadres = ?";
  
         $result = sqlsrv_query($db, $sql, [$email]);
 
         $message = 'Uw nieuwe wachtwoord is "' . $code . '".';
         
-        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message);
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        
+        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message, $headers);
 
         return $sent;
     }

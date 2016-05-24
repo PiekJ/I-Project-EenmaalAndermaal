@@ -1,11 +1,7 @@
 
 <?php echo display_view('template_header'); ?>
-
-<div class="row">
-        <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            
     <?php 
-    if(!empty(get_data_view('errors')){
+    if(!empty(get_data_view('errors'))){
         foreach(get_data_view('errors') as $error){
             echo '<div class="alert alert-danger">' .
             $error .
@@ -13,6 +9,9 @@
         }
     }
     ?>
+<div class="row">
+        <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
             <form method="post">
 
                 <fieldset class="form-group">
@@ -89,7 +88,7 @@
 
                 <fieldset class="form-group">
                     <label for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-control" name="telefoonnummer" value="<?=get_data_view('gegevens','telefoon')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="telefoonnummer" value="<?=get_data_view('gegevens','telefoonnummer')?>" placeholder="" required>
                 </fieldset>
                 
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->

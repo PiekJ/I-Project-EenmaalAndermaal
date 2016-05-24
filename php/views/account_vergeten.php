@@ -33,7 +33,7 @@
 
               <fieldset class="form-group">
                 <label for="selectie">Uw beveiligingsvraag</label>
-                <select class="form-control" name="beveilingsvraag">
+                <select class="form-control" name="beveiligingsvraag">
                     <?php foreach (get_data_view('vragen') as $rubriek) {
                   echo '<option value="' . $rubriek['vraagnummer'] . '">' . $rubriek['tekst_vraag'] . '</option>';
                     }
