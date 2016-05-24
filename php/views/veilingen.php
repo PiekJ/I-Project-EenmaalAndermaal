@@ -35,7 +35,7 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="veiling-card">
             <div class="veiling-card-img">
-                <img src="//placehold.it/300x300" alt="image">
+                <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
             </div>
 
             <div class="veiling-card-content">

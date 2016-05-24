@@ -44,3 +44,11 @@
 
         return display_view('veiling');
     });
+
+    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/bod', function($voorwerpnummer) {
+        
+    });
+
+    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/email', function($voorwerpnummer) {
+
+    });
