@@ -125,22 +125,70 @@
             location();
             return;
         }
-    if($_POST['wachtwoord'] == $_POST['wachtwoordOpnieuw']){
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //ERRORS
+    
+        $errors = [];
+		if (strlen($_POST['gebruikersnaam']) < 5)
+		{
+			$errors[] = 'Gebruikersnaam is te kort, deze moet minimaal 5 tekens lang zijn';
+		}
+		else if (strlen($_POST['gebruikersnaam']) > 25)
+		{
+			$errors[] = 'Gebruikersnaam is te lang, deze kan maximaal 25 tekens lang zijn';
+		}
+		else if (check_username_exists($_POST['gebruikersnaam']))
+		{
+			$errors[] = 'Gebruikersnaam bestaad al, kies een andere';
+		}
+
+		if (strlen($_POST['wachtwoord']) < 6)
+		{
+			$errors[] = 'Wachtwoord is te kort, deze moet minimaal 6 tekens lang zijn';
+		}
+
+		else if ($_POST['wachtwoord'] != $_POST['wachtwoordOpnieuw'])
+		{
+			$errors[] = 'Wachtwoord en het herhaalde wachtwoord zijn ongelijk aan elkaar';
+		}
+
+		if (!in_array($_POST['geslacht'], ['M', 'V']))
+		{
+			$errors[] = 'U heeft geen geslacht opgegeven.';
+		}
+
+		if (empty($_POST['voornaam']))
+		{
+			$errors[] = 'U heeft geen voornaam opgegeven.';
+		}
+
+		if (empty($_POST['achternaam']))
+		{
+			$errors[] = 'U heeft geen achternaam opgegeven.';
+		}
+
+		if (!preg_match('/^[0-9]{4}[A-Z]{2}$/i', $_POST['postcode']))
+		{
+			$errors[] = 'U heeft geen geldig postcode opgegeven';
+		}
+          
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
-        set_data_view('wachtwoorden_overeen', true);
-        
+    if (empty($errors)){
+                
         $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], password_hash($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
 
         if($geregistreerd){
             try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
 
-             location('account/login?username=' . $_POST['gebruikersnaam']);
+            location();
             return;
         }
-    }
-    else{
-        set_data_view('wachtwoorden_overeen', false);
-    }
+    }   
+        
+		set_data_view('gegevens', $_POST);
+		set_data_view('errors', $errors);
+        
         set_data_view('title', 'Registratie formulier');
         return display_view('account_registreren_formulier');
         
