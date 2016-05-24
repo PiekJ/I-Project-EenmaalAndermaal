@@ -36,7 +36,7 @@
 
         if (empty($veiling))
         {
-            location('');
+            location();
             return;
         }
 
