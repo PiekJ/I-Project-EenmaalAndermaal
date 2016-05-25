@@ -5,7 +5,7 @@
 		'db' => [
 			'server_name' => 'DESKTOP-LJ94PVH\SQLEXPRESS',
 			'options' => [
-				'Database' => 'EenmaalAndermaal',
+				'Database' => 'iproject16',
 				'UID' => 'sa',
 				'PWD' => '139742685'
 			]
@@ -15,6 +15,6 @@
 		'url' => [
 			'domain' => 'localhost:8080', // domain only
 			'folder' => '/', // begint en eindigt op /
-			'withIndex' => true
+			'with_index' => true
 		]
 	];
