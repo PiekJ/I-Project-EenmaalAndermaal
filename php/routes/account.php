@@ -107,10 +107,6 @@
             location();
             return;
         }
-        //VOOR TESTEN
-        $_SESSION['code_aangevraagd'] = true;
-        $_SESSION['email'] = 'henk@hotmail.com';
-        
         if(!isset($_SESSION['code_aangevraagd'])){
             location('account/registreren');
         }
@@ -123,82 +119,16 @@
     });
 
     add_route('POST', 'account\/registreren\/formulier', function() {
-        
         if (is_user_logged_in())
         {
             location();
             return;
         }
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //ERRORS
-    
-        $errors = [];
-		if (strlen($_POST['gebruikersnaam']) < 5)
-		{
-			$errors[] = 'Gebruikersnaam is te kort, deze moet minimaal 5 tekens lang zijn';
-		}
-		else if (strlen($_POST['gebruikersnaam']) > 25)
-		{
-			$errors[] = 'Gebruikersnaam is te lang, deze kan maximaal 25 tekens lang zijn';
-		}
-		else if (check_username_exists($_POST['gebruikersnaam']))
-		{
-			$errors[] = 'Gebruikersnaam bestaad al, kies een andere';
-		}
-
-		if (strlen($_POST['wachtwoord']) < 6)
-		{
-			$errors[] = 'Wachtwoord is te kort, deze moet minimaal 6 tekens lang zijn';
-		}
-
-		else if ($_POST['wachtwoord'] != $_POST['wachtwoordOpnieuw'])
-		{
-			$errors[] = 'Wachtwoord en het herhaalde wachtwoord zijn ongelijk aan elkaar';
-		}
-
-		if (!isset($_POST['geslacht']) || !in_array(@$_POST['geslacht'], ['man', 'vrouw']))
-		{
-			$errors[] = 'U heeft geen geslacht opgegeven.';
-		}
-
-		if (empty($_POST['voornaam']))
-		{
-			$errors[] = 'U heeft geen voornaam opgegeven.';
-		}
-
-		if (empty($_POST['achternaam']))
-		{
-			$errors[] = 'U heeft geen achternaam opgegeven.';
-		}
-
-		if (!preg_match('/^[0-9]{4}[A-Z]{2}$/i', $_POST['postcode']))
-		{
-			$errors[] = 'U heeft geen geldig postcode opgegeven';
-		}
-        if (!preg_match('/06[0-9]{8}/', $_POST['telefoonnummer']) || !preg_match('/0[0-9]{3}[0-9]{6}/', $_POST['telefoonnummer']))
-        {
-            $errors[] = 'U heeft geen geldig telefoonnummer opgegeven';
-        }
-          
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    if (empty($errors)){
-                
-        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
-
-        if($geregistreerd){
-            try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
-
-            location();
-            return;
-        }
-    }
         
-		set_data_view('gegevens', $_POST);
-		set_data_view('errors', $errors);
-        set_data_view('vragen', get_vragen());
-        
+        register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']); 
+                      
         set_data_view('title', 'Registratie formulier');
+
         return display_view('account_registreren_formulier');
         
     });
@@ -230,6 +160,9 @@
         set_data_view('title', 'Wachtwoord vergeten');
         set_data_view('vragen', get_vragen());
         
+        send_password_user($_POST['email']);
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
         if(wachtwoord_vergeten_bevestigen($_POST['email'])){
             
             set_data_view('correct', true);
@@ -240,6 +173,7 @@
         else{
             set_data_view('correct', false);
         }
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  
         
         return display_view('account_vergeten');
     

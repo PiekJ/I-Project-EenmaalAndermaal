@@ -1,17 +1,8 @@
 
 <?php echo display_view('template_header'); ?>
-    <?php 
-    if(!empty(get_data_view('errors'))){
-        foreach(get_data_view('errors') as $error){
-            echo '<div class="alert alert-danger">' .
-            $error .
-            '</div>';
-        }
-    }
-    ?>
+
 <div class="row">
         <div class= "col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            
             <form method="post">
 
                 <fieldset class="form-group">
@@ -21,7 +12,7 @@
 
                 <fieldset class="form-group">
                     <label for="gebruikersnaam">Gebruikersnaam</label>
-                    <input type="text" class="form-control" name="gebruikersnaam" value="<?=get_data_view('gegevens','gebruikersnaam')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="gebruikersnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -41,54 +32,54 @@
 
                 <fieldset class="form-group">
                     <label for="voornaam">Voornaam</label>
-                    <input type="text" class="form-control" name="voornaam" value="<?=get_data_view('gegevens','voornaam')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="voornaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="achternaam">Achternaam</label>
-                    <input type="text" class="form-control" name="achternaam" value="<?=get_data_view('gegevens','achternaam')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="achternaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="geboortedatum">geboortedatum</label>
-                    <input type="date" class="form-control" name="geboortedatum" value="<?=get_data_view('gegevens','geboortedatum')?>" placeholder="" required>
+                    <input type="date" class="form-control" name="geboortedatum" placeholder="" required>
                 </fieldset>
 
                 <br>
 
                 <fieldset class="form-group">
                 <label class="radio-inline">
-                  <input type="radio" name="geslacht" value="man" <?= (get_data_view('gegevens','geslacht') == 'man' ? 'checked' : '') ?>> Man
+                  <input type="radio" name="geslacht" value="man"> Man
                 </label>
 
                 <label class="radio-inline">
-                  <input type="radio" name="geslacht" value="vrouw" <?= (get_data_view('gegevens','geslacht') == 'vrouw' ? 'checked' : '') ?>> Vrouw
+                  <input type="radio" name="geslacht" value="vrouw"> Vrouw
                 </label>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="adres">Straat en huisnummer</label>
-                    <input type="text" class="form-control" name="adresregel1" value="<?=get_data_view('gegevens','adresregel1')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="adresregel1" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" value="<?=get_data_view('gegevens','postcode')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="postcode" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="plaatsnaam">Plaatsnaam</label>
-                    <input type="text" class="form-control" name="plaatsnaam" value="<?=get_data_view('gegevens','plaatsnaam')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="plaatsnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="landnaam">Landnaam</label>
-                    <input type="text" class="form-control" name="landnaam" value="<?=get_data_view('gegevens','landnaam')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="landnaam" placeholder="" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-control" name="telefoonnummer" value="<?=get_data_view('gegevens','telefoonnummer')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="telefoonnummer" placeholder="" required>
                 </fieldset>
                 
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->

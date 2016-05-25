@@ -4,8 +4,10 @@
     <div class="col-md-12">
         <form action="<?php echo get_url(true); ?>veilingen" method="get">
             <div class="input-group input-group-lg search-group">
-                <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken..." required>
-                <?php echo get_data_view('rubrieken'); ?>
+                <input type="text" name="search" class="form-control search-form-control" placeholder="Zoeken...">
+                <select name="rubriek" class="form-control rubriek-form-control">
+                    <option value="0" selected>Alle rubrieken</option>
+                </select>
                 <span class="input-group-btn">
                     <input type="submit" class="btn btn-primary" value="Zoeken">
                 </span>

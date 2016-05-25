@@ -31,6 +31,7 @@
     }
 
     function wachtwoord_vergeten_bevestigen($email){
+        {
         $db = get_db();
 
         $sql = 'SELECT * FROM Gebruiker WHERE emailadres = ?';
@@ -45,13 +46,14 @@
         {
             if ($_POST['email'] == $user_data['emailadres'] &&
                 $_POST['beveiligingsvraag'] == $user_data['vraag'] &&
-                $_POST['antwoord'] == $user_data['antwoordTekst']){
-                
+                $_POST['antwoord'] == $user_data['antwoordTekst'])
+            {
+
                 return true;
             }
-            else{
-                return false;
-            }
+        }
+
+        return false;
         }
     }
     // set de rememberme cookies
@@ -122,10 +124,10 @@
     {
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = crypt($code);
+        $hashcode = md5($code);
 
         $message = 'Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
-                Vul de volgende code <a href="' . get_url(true) . 'account/registreren">hier</a> in: ' . $code;
+                Vul de volgende code <a href="' . get_url(true) . 'account/registreren"> hier </a> in:' . $code;
         
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -138,29 +140,25 @@
             setcookie("registratie_code", "",  0 , "/");
         }
         return $sent;
+
+        // generates a actication code XXxx
+        // sets a cookie with the value XXxx
+        // sends the XXxx to the $email
+        // returns true/false if mail send succesfully (when false, delete the cookie)
     }
     
     function send_password_user($email)
     {
-        
-        $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
-        $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = crypt($code);
-        
         $db = get_db();
  
-        $sql = "UPDATE Gebruiker
-                SET wachtwoord = '" . $hashcode . "'
-                WHERE emailadres = ?";
+        $sql = 'SELECT wachtwoord FROM Gebruiker
+                WHERE emailadres = ?';
  
         $result = sqlsrv_query($db, $sql, [$email]);
 
-        $message = 'Uw nieuwe wachtwoord is "' . $code . '".';
+        $message = 'Uw wachtwoord is /"' . $result . '/".';
         
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        
-        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message, $headers);
+        $sent = mail($email, "EenmaalAndermaal vergeten wachtwoord", $message);
 
         return $sent;
     }
