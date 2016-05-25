@@ -211,9 +211,9 @@
             location();
             return;
         }
-        
+    
         set_data_view('title', 'Aanvragen verkoopaccount');
-        set_data_view('menu', 3);
+        set_data_view('menu', 2);
 
         return display_view('account_verkoper_registreren');
 
@@ -257,7 +257,7 @@
         set_data_view('gegevens', $_POST);
         
         set_data_view('title', 'Aanvragen verkoopaccount');
-        set_data_view('menu', 3);
+        set_data_view('menu', 2);
 
         return display_view('account_verkoper_registreren');
         

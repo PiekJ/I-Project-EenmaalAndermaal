@@ -6,6 +6,12 @@
         Er is een e-mail met code verstuurd naar uw e-mailadres.
         </div>';
     } 
+    if(check_verkoopaccount($_SESSION['user_data']['gebruikersnaam'])){
+        echo '<div class="alert alert-warning">
+        U heeft al een verkoopaccount.
+        </div>'; 
+    }
+
     if(get_data_view('errors') !== null){
         foreach(get_data_view('errors') as $error){
             echo '<div class="alert alert-danger">' .
@@ -19,11 +25,10 @@
               U heeft al een verkoopaccount.
             </div>
             
-            <div class="well col-lg-10 col-md-10 col-sm-12 col-xs-12">
+            <div class="well col-lg-10 col-md-10 col-sm-12 col-xs-12" <?=(check_verkoopaccount($_SESSION['user_data']['gebruikersnaam']) ? "style = 'display : none'" : " ")?>>
                 <p>
-                    Voordat u in aanmerking komt voor een verkoopaacount, moeten wij u kunnen identificeren.<br>
-                    U biedt ons die mogelijkheid door een code aan te vragen die uw account bevordert.<br>
-                    Dit kan door die code aan te vragen per post of door bevestiging via een bankrekening of creditcard.
+                    Voordat u in aanmerking komt voor een verkoopaccount, moeten wij u kunnen identificeren.<br>
+                    U biedt ons die mogelijkheid door een code aan te vragen die uw account bevordert.
                 </p>
             </div>
             <div class="row">
@@ -83,13 +88,13 @@
                 </div>
             </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" <?=(check_verkoopaccount($_SESSION['user_data']['gebruikersnaam']) ? "style = 'display : none'" : " ")?>>
                 <form action="<?php echo get_url(true); ?>account/verkoper/registreren/activeren">
                     <p>Heeft u al een code?</p>
                     <button type="submit" class="btn btn-primary">Activeer verkoopaccount</button>
                 </form>
             </div>
-            <form method="post" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <form method="post" class="col-lg-3 col-md-3 col-sm-6 col-xs-12" <?=(check_verkoopaccount($_SESSION['user_data']['gebruikersnaam']) ? "style = 'display : none'" : " ")?>>
                 <div class="form-group">
                     <div class="input-group">
                         <label for="identificatiemethode">Identificatiemethode</label><br>   
@@ -139,10 +144,10 @@
                     <div class="form-group">   
                         <div class="input-group">
                             <label for="creditcardnummer">Creditcardnummer</label>   
-                            <input type="text" class="form-control" name="creditcardnummer" id="creditcardnummer" value="<?=get_data_view('gegevens','creditcardnummer')?>"  required>
+                            <input type="text" class="form-control" name="creditcardnummer" id="creditcardnummer" value="<?=get_data_view('gegevens','creditcardnummer')?>"  required >
                         </div>
                     </div>
-                <button type="submit" class="btn btn-primary">Bevestig</button>
+                <button type="submit" class="btn btn-primary" id="bevestig">Bevestig</button>
             </form>
 </div>
             
