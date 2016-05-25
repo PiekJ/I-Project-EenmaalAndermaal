@@ -122,7 +122,7 @@
     {
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = crypt($code);
+        $hashcode = md5($code);
 
         $message = 'Bedankt voor het bezoeken van de veilingwebsite EenmaalAndermaal!<br>
                 Vul de volgende code <a href="' . get_url(true) . 'account/registreren">hier</a> in: ' . $code;
@@ -145,7 +145,7 @@
         
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = crypt($code);
+        $hashcode = md5($code);
         
         $db = get_db();
  
@@ -252,4 +252,26 @@
         }
         
         return sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+    }
+
+    function send_activation_code_verkoop($email)
+    {
+        $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
+        $code = substr(str_shuffle($char), 0, 6);
+        $hashcode = md5($code);
+
+        $message = 'Bedankt voor meehelpen aan het groeien van EenmaalAndermaal!<br>
+                Met de volgende code kunt u <a href="' . get_url(true) . 'account/verkoper/registreren/activeren">hier</a> uw verkoopaccount activeren: ' . $code;
+        
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        if($sent = mail($email, "EenmaalAndermaal registratiecode", $message, $headers)){
+            setcookie("activering_code", $hashcode, time() + (1 * 365 * 24 * 60 * 60), "/"); //verloopt na 1 jaar
+            $_SESSION['email'] = $email;
+        }
+        else{
+            setcookie("activering_code", "",  0 , "/");
+        }
+        return $sent;
     }

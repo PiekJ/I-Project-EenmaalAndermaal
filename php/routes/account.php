@@ -73,27 +73,29 @@
             location();
             return;
         }
-        
-        if(check_email_exists($_POST['email'])){
-            set_data_view('email_exists', true);
-        }
-        else{    
-            set_data_view('email_exists', false);
-            
-            if(isset($_POST['email'])){
-                $sent = send_activation_code_user($_POST['email']);
-
-                set_data_view('sent', $sent);
-
+        if(isset($_POST['email'])){
+            if(check_email_exists($_POST['email'])){
+                set_data_view('email_exists', true);
             }
+            else{    
+                set_data_view('email_exists', false);
 
-            if(isset($_POST['code'])){
-                if(isset($_COOKIE['registratie_code']) && md5($_POST['code']) == $_COOKIE['registratie_code']){
+                    $sent = send_activation_code_user($_POST['email']);
+
+                    set_data_view('sent', $sent);
+            }
+        }
+
+            if(!empty($_POST['code']) && !empty($_COOKIE['registratie_code'])){
+                if(md5($_POST['code']) == $_COOKIE['registratie_code']){
                     $_SESSION['code_aangevraagd'] = true;
                     location('account/registreren/formulier');
+                    set_data_view('code_correct', true);
+                }
+                else{
+                    set_data_view('code_correct', false);
                 }
             }
-        }
         set_data_view('menu', 5);
         set_data_view('title', 'Account aanvragen');
         
@@ -108,8 +110,8 @@
             return;
         }
         //VOOR TESTEN
-        $_SESSION['code_aangevraagd'] = true;
-        $_SESSION['email'] = 'henk@hotmail.com';
+        //$_SESSION['code_aangevraagd'] = true;
+        //$_SESSION['email'] = 'henk@hotmail.com';
         
         if(!isset($_SESSION['code_aangevraagd'])){
             location('account/registreren');
@@ -184,7 +186,7 @@
         
     if (empty($errors)){
                 
-        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
+        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], md5($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
 
         if($geregistreerd){
             try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
@@ -254,3 +256,15 @@
         return display_view('account_vergeten');
     
      });
+
+    add_route('GET', 'account\/verkoper\/registreren\/activeren', function(){
+        if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('title', 'Verkoopaccount activeren');
+        return display_view('account_verkoper_registreren_code');
+        
+    });

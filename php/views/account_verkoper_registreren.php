@@ -71,8 +71,10 @@
             </div>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <p>Heeft u al een code?</p>
-                <button type="submit" class="btn btn-primary">Activeer verkoopaccount</button>
+                <form action="<?php echo get_url(true); ?>account/verkoper/registreren/activeren">
+                    <p>Heeft u al een code?</p>
+                    <button type="submit" class="btn btn-primary">Activeer verkoopaccount</button>
+                </form>
             </div>
             <form class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="form-group">
