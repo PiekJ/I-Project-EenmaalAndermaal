@@ -1,7 +1,7 @@
 
 <?php echo display_view('template_header'); ?>
     <?php 
-    if(!empty(get_data_view('errors'))){
+    if(get_data_view('errors') !== null){
         foreach(get_data_view('errors') as $error){
             echo '<div class="alert alert-danger">' .
             $error .

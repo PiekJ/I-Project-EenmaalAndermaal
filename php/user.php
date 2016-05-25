@@ -145,7 +145,7 @@
         
         $char = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxz";
         $code = substr(str_shuffle($char), 0, 6);
-        $hashcode = md5($code);
+        $hashcode = crypt($code);
         
         $db = get_db();
  
