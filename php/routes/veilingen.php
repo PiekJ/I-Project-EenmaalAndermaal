@@ -24,9 +24,9 @@
         }
         else
         {
-            $rubriek = (!empty($_GET['rubriek'])) ? _GET['rubriek'] : null;
+            $rubriek = (!empty($_GET['rubriek'])) ? $_GET['rubriek'] : null;
 
-            set_data_view('veilingen', get_veilingen($rubriek, $_GET['search']), $pagination_current, $pagination_max, 'looptijdEindDag, looptijdEindTijd', 'DESC');
+            set_data_view('veilingen', get_veilingen($rubriek, $_GET['search'], $pagination_current, $pagination_max, 'looptijdEindDag, looptijdEindTijd', 'DESC'));
             $pagination_url .= '?search=' . $_GET['search'] . '&rubriek=' . $_GET['rubriek'] . '&page=';
         }
 

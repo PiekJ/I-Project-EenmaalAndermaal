@@ -108,8 +108,6 @@
             $args[] = $pagination_max;
         }
 
-        var_dump($sql);
-
         $result = sqlsrv_query($db, $sql, $args);
         if($result === false)
         {
