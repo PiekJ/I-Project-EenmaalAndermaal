@@ -1,10 +1,23 @@
 <?php echo display_view('template_header'); ?>
 
-<!-- Alert wordt niet standaard getoond -->
+<?php
+    if(get_data_view('sent')){
+        echo '<div class="alert alert-success">
+        Er is een e-mail met code verstuurd naar uw e-mailadres.
+        </div>';
+    } 
+    if(!empty(get_data_view('errors'))){
+        foreach(get_data_view('errors') as $error){
+            echo '<div class="alert alert-danger">' .
+            $error .
+            '</div>';
+        }
+    }
+?>
+            <!-- Alert wordt niet standaard getoond -->
             <div class="alert alert-warning hidden">
               U heeft al een verkoopaccount.
             </div>
-            <!-- -->
             
             <div class="well col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <p>
@@ -16,7 +29,7 @@
             <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <h3>Accountinformatie</h3>
-                <div class="well">
+                <div class="well clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <p> 
                             <?php
@@ -37,7 +50,7 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <h3>Persoonlijke informatie</h3>
-                <div class="well">
+                <div class="well clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <p>
                         <?php
@@ -76,11 +89,11 @@
                     <button type="submit" class="btn btn-primary">Activeer verkoopaccount</button>
                 </form>
             </div>
-            <form class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <form method="post" class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <div class="input-group">
                         <label for="identificatiemethode">Identificatiemethode</label><br>   
-                        <select class="form-control" id="identificatiemethode" onchange="identificatieKeus(this)">
+                        <select class="form-control" name="optie" id="optie" onchange="identificatieKeus(this)">
                             <option value="creditcard">Creditcard</option>
                             <option value="post">Post</option>
                         </select>
@@ -97,8 +110,7 @@
                         }
                     }
                 </script>
-                
-                
+                 
                 <!-- 
                 <div class="form-group">
                     <div class="input-group">
@@ -114,20 +126,20 @@
                 <div class="form-group">
                         <div class="input-group">
                             <label for="banknaam">Banknaam</label>   
-                            <input type="text" class="form-control" id="banknaam">
+                            <input type="text" class="form-control" name="banknaam" id="banknaam" value="<?=get_data_view('gegevens','banknaam')?>" required>
                         </div>
                 </div>
                 <div class="form-group">
                         <div class="input-group">
                             <label for="rekeningnummer">Rekeningnummer</label>   
-                            <input type="text" class="form-control" id="rekeningnummer">
+                            <input type="text" class="form-control" name="rekeningnummer" id="rekeningnummer" value="<?=get_data_view('gegevens','rekeningnummer')?>"  required>
                         </div>
                 </div>
             <!-- Inline CSS. Alhoewel dezelfde code toegepast is als bij de andere elementen, wordt er geen ruimte gecreëerd tussen het textveld van 'banknaam' en de label 'creditcardnummer'. -->
                     <div class="form-group">   
                         <div class="input-group">
                             <label for="creditcardnummer">Creditcardnummer</label>   
-                            <input type="text" class="form-control" id="creditcardnummer">
+                            <input type="text" class="form-control" name="creditcardnummer" id="creditcardnummer" value="<?=get_data_view('gegevens','creditcardnummer')?>"  required>
                         </div>
                     </div>
                 <button type="submit" class="btn btn-primary">Bevestig</button>

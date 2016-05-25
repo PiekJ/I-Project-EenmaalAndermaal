@@ -177,7 +177,7 @@
 		{
 			$errors[] = 'U heeft geen geldig postcode opgegeven';
 		}
-        if (!preg_match('/06[0-9]{8}/', $_POST['telefoonnummer']) || !preg_match('/0[0-9]{3}[0-9]{6}/', $_POST['telefoonnummer']))
+        if (!preg_match('/^06[0-9]{8}$/', $_POST['telefoonnummer']) || !preg_match('/^0[0-9]{3}[0-9]{6}$/', $_POST['telefoonnummer']))
         {
             $errors[] = 'U heeft geen geldig telefoonnummer opgegeven';
         }
@@ -217,6 +217,50 @@
 
         return display_view('account_verkoper_registreren');
 
+    });
+
+    add_route('POST', 'account\/verkoper\/registreren', function(){
+        if(!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //ERRORS
+        
+        $errors = [];
+		if (!preg_match('/^[A-Z]{2}[0-9]{2} [A-Z]{4} [0-9]{4} [0-9]{4} [0-9]{2}$/i', $_POST['rekeningnummer']))
+		{
+			$errors[] = 'U heeft geen geldig rekeningnummer opgegeven';
+		}
+        if (!empty($_POST['creditcardnummer']) && !preg_match('/^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/', $_POST['creditcardnummer']))
+		{
+			$errors[] = 'U heeft geen geldig creditcardnummer opgegeven';
+		}
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
+        if (empty($errors)){
+                
+            $geregistreerd = register_verkoper($_POST['banknaam'], $_POST['rekeningnummer'], $_POST['optie'], 
+            (empty($_POST['creditcardnummer']) ? NULL : $_POST['creditcardnummer']));    
+
+            if($geregistreerd){
+                $sent = send_activation_code_verkoop($_SESSION['user_data']['emailadres']);
+                set_data_view('sent', $sent);
+
+            }
+        }
+        
+        set_data_view('errors', $errors);
+        set_data_view('gegevens', $_POST);
+        
+        set_data_view('title', 'Aanvragen verkoopaccount');
+        set_data_view('menu', 3);
+
+        return display_view('account_verkoper_registreren');
+        
     });
     
     add_route('GET', 'account\/vergeten', function(){
@@ -262,6 +306,28 @@
         {
             location();
             return;
+        }
+        
+        set_data_view('title', 'Verkoopaccount activeren');
+        return display_view('account_verkoper_registreren_code');
+        
+    });
+
+    add_route('POST', 'account\/verkoper\/registreren\/activeren', function(){
+        if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        if(!empty($_POST['code']) && !empty($_COOKIE['activering_code_verkoper'])){
+            if(md5($_POST['code']) == $_COOKIE['activering_code_verkoper']){
+                activate_verkoper($_SESSION['user_data']['gebruikersnaam']);
+                set_data_view('code_correct', true);
+            }
+            else{
+                set_data_view('code_correct', false);
+            }
         }
         
         set_data_view('title', 'Verkoopaccount activeren');

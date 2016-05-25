@@ -154,6 +154,11 @@
                 WHERE emailadres = ?";
  
         $result = sqlsrv_query($db, $sql, [$email]);
+        
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
 
         $message = 'Uw nieuwe wachtwoord is "' . $code . '".';
         
@@ -188,6 +193,23 @@
             die(var_export(sqlsrv_errors(), true));
         }
         
+        return true;
+    }
+
+    
+    function register_verkoper($banknaam, $rekening, $optie, $creditcard)
+    {
+        $db = get_db();
+
+        $sql = "INSERT INTO Verkoper (gebruiker, bank, bankRekening, controleOptie, creditcard)
+        VALUES ('" . $_SESSION['user_data']['gebruikersnaam'] . "', ?, ?, ?, ?)";
+
+        $result = sqlsrv_query($db, $sql, [$banknaam, $rekening, $optie, $creditcard]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+                
         return true;
     }
 
@@ -267,11 +289,25 @@
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
         if($sent = mail($email, "EenmaalAndermaal registratiecode", $message, $headers)){
-            setcookie("activering_code", $hashcode, time() + (1 * 365 * 24 * 60 * 60), "/"); //verloopt na 1 jaar
-            $_SESSION['email'] = $email;
+            setcookie("activering_code_verkoper", $hashcode, time() + (1 * 365 * 24 * 60 * 60), "/"); //verloopt na 1 jaar
         }
         else{
-            setcookie("activering_code", "",  0 , "/");
+            setcookie("activering_code_verkoper", "",  0 , "/");
         }
         return $sent;
+    }
+
+    function activate_verkoper($gebruikersnaam){
+        $db = get_db();
+ 
+        $sql = "UPDATE Gebruiker
+                SET Verkoper = '1'
+                WHERE gebruikersnaam = ?";
+ 
+        $result = sqlsrv_query($db, $sql, [$gebruikersnaam]);
+        
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
     }
