@@ -1,29 +1,38 @@
 <?php
 
-    add_route('GET', 'veilingen(|\/(?<rubriek>.*+))', function($rubriek = null) {
+    add_route('GET', 'veilingen(|\/(?<rubrieknummer>[0-9]+))', function($rubrieknummer = null) {
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
 
         if (!isset($_GET['search'], $_GET['rubriek']))
         {
-            if (!empty($rubriek))
+            if (!empty($rubrieknummer))
             {
-                $rubriek = urldecode($rubriek);
-                $rubriek_id = get_rubriek_id($rubriek);
-
-                set_data_view('veilingen', get_veilingen($rubriek_id));
+                set_data_view('veilingen', get_veilingen($rubrieknummer, null, 0));
             }
             else
             {
-                set_data_view('veilingen', get_veilingen());
+                set_data_view('veilingen', get_veilingen(null, null, 0));
             }
         }
         else
         {
-            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']));
+            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']), 0);
         }
 
-        set_data_view('rubrieken', get_rubrieken(true));
+        if ($rubrieken_cache = fetch_cache('veilingen_rubrieken'))
+        {
+            set_data_view('rubrieken', $rubrieken_cache);
+
+        }
+        else
+        {
+            set_data_view('rubrieken', get_rubrieken());
+            $rubrieken = display_view('veilingen_rubrieken');
+            store_cache('veilingen_rubrieken', $rubrieken);
+
+            set_data_view('rubrieken', $rubrieken);
+        }
 
         return display_view('veilingen');
     });
@@ -36,7 +45,7 @@
 
         if (empty($veiling))
         {
-            location('');
+            location();
             return;
         }
 

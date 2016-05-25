@@ -23,7 +23,19 @@
         set_data_view('menu', 0);
         set_data_view('title', 'Home');
 
-        set_data_view('rubrieken', get_rubrieken(true));
+        if ($rubrieken_cache = fetch_cache('home_rubrieken'))
+        {
+            set_data_view('rubrieken', $rubrieken_cache);
+
+        }
+        else
+        {
+            set_data_view('rubrieken', get_rubrieken());
+            $rubrieken = display_view('home_rubrieken');
+            store_cache('home_rubrieken', $rubrieken);
+
+            set_data_view('rubrieken', $rubrieken);
+        }
 
         return display_view('home');
     });

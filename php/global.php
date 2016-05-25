@@ -4,6 +4,7 @@
 	define('SYSTEM_FOLDER', __DIR__ . DS);
 	define('VIEWS_FOLDER', SYSTEM_FOLDER . 'views' . DS);
 	define('ROUTES_FOLDER', SYSTEM_FOLDER . 'routes' . DS);
+	define('CACHE_FOLDER', SYSTEM_FOLDER . 'cache' . DS);
 
 	session_start();
 
@@ -63,6 +64,7 @@
 
 	require_once SYSTEM_FOLDER . 'view.php';
 	require_once SYSTEM_FOLDER . 'router.php';
+	require_once SYSTEM_FOLDER . 'cache.php';
 
 	require_once SYSTEM_FOLDER . 'user.php';
 	require_once SYSTEM_FOLDER . 'veiling.php';
