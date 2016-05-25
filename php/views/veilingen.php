@@ -17,7 +17,7 @@
                         echo '<div class="row">';
                     }
                         ?>
-                        <div class="col-md-4">
+                        <div class="col-md-4" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
                             <div class="veiling-card">
                                 <div class="veiling-card-img">
                                     <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">

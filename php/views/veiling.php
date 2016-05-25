@@ -40,7 +40,7 @@
             
             <h4 class="text-primary"> Beschrijving </h4>
             <div class="well">
-                <p><?php echo_data_view('veiling', 'beschrijving'); ?></p>
+                <p><?php echo get_data_view('veiling', 'beschrijving'); ?></p>
             </div>
         </div>
     </div>

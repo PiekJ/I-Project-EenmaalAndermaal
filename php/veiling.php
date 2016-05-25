@@ -90,11 +90,11 @@
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
+        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
 
         if (!empty($rubrieknummer))
         {
-            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
             $args = [$rubrieknummer];
         }
 
@@ -143,6 +143,14 @@
         }
 
         return $results;
+    }
+
+    function count_down_veiling($veiling)
+    {
+        $begin_datetime = $veiling['looptijdBeginDag'];
+        $begin_datetime += $veiling['looptijdBeginTijd'];
+
+        exit($begin_datetime);
     }
 
     function add_veiling()
