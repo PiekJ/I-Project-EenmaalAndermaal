@@ -20,15 +20,20 @@
         Dit e-mailadres is al in gebruik.
         </div>';
     }
+    if(get_data_view('code_correct') === false){
+        echo '<div class="alert alert-danger">
+        De gegeven code klopt niet.
+        </div>';
+    }
     ?>
     
 
     
             <div class="well">
-                <h4> De voordelen van het hebben van een account zijn: </h4>
+                <h4>De voordelen van het hebben van een account zijn: </h4>
                 <ul>
-                    <li> dat u kunt bieden op veilingen; </li>
-                    <li> dat u een verkoopaccount kan aanvragen voor het starten van een veiling.</li>
+                    <li>dat u kunt bieden op veilingen;</li>
+                    <li>dat u een verkoopaccount kan aanvragen voor het starten van een veiling.</li>
                 </ul>
             </div>
             <h4> Uw e-mailadres </h4>
