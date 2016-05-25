@@ -21,9 +21,8 @@
         </div>';
     }
     ?>
+        <div class="row">
             <div class="col-lg-4 col-md-5 col-sm-8- col-xs-12">
-                
-
             <form method="post">
 
               <fieldset class="form-group">
@@ -44,9 +43,8 @@
               <fieldset class="form-group">
                 <label for="antwoord">Antwoord</label>
                 <input type="text" class="form-control" name="antwoord" placeholder="" required>
-                <!--    optioneel mededeling
-                <small class="text-muted">Let op! Uw antwoord is hoofdlettergevoelig</small>
-            -->
+                <small class="text-muted">Let op! Uw antwoord is hoofdlettergevoelig.</small>
+                
               </fieldset>
             
             <button type="submit" class="btn btn-primary">Vraag aan</button>
@@ -54,5 +52,7 @@
             </form>
 
         </div>
+        </div>
+    </div>
 </div>
 <?php echo display_view('template_footer'); ?>

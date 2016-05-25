@@ -6,6 +6,9 @@
 	define('ROUTES_FOLDER', SYSTEM_FOLDER . 'routes' . DS);
 	define('CACHE_FOLDER', SYSTEM_FOLDER . 'cache' . DS);
 
+	ini_set('log_errors', '1');
+    ini_set("error_log", SYSTEM_FOLDER . 'php-error.log');
+
 	session_start();
 
 	// initializeert de database connectie als deze niet bestaad en geeft deze terug.

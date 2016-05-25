@@ -73,27 +73,29 @@
             location();
             return;
         }
-        
-        if(check_email_exists($_POST['email'])){
-            set_data_view('email_exists', true);
-        }
-        else{    
-            set_data_view('email_exists', false);
-            
-            if(isset($_POST['email'])){
-                $sent = send_activation_code_user($_POST['email']);
-
-                set_data_view('sent', $sent);
-
+        if(isset($_POST['email'])){
+            if(check_email_exists($_POST['email'])){
+                set_data_view('email_exists', true);
             }
+            else{    
+                set_data_view('email_exists', false);
 
-            if(isset($_POST['code'])){
-                if(isset($_COOKIE['registratie_code']) && md5($_POST['code']) == $_COOKIE['registratie_code']){
+                    $sent = send_activation_code_user($_POST['email']);
+
+                    set_data_view('sent', $sent);
+            }
+        }
+
+            if(!empty($_POST['code']) && !empty($_COOKIE['registratie_code'])){
+                if(md5($_POST['code']) == $_COOKIE['registratie_code']){
                     $_SESSION['code_aangevraagd'] = true;
                     location('account/registreren/formulier');
+                    set_data_view('code_correct', true);
+                }
+                else{
+                    set_data_view('code_correct', false);
                 }
             }
-        }
         set_data_view('menu', 5);
         set_data_view('title', 'Account aanvragen');
         
@@ -108,8 +110,8 @@
             return;
         }
         //VOOR TESTEN
-        $_SESSION['code_aangevraagd'] = true;
-        $_SESSION['email'] = 'henk@hotmail.com';
+        //$_SESSION['code_aangevraagd'] = true;
+        //$_SESSION['email'] = 'henk@hotmail.com';
         
         if(!isset($_SESSION['code_aangevraagd'])){
             location('account/registreren');
@@ -175,7 +177,7 @@
 		{
 			$errors[] = 'U heeft geen geldig postcode opgegeven';
 		}
-        if (!preg_match('/06[0-9]{8}/', $_POST['telefoonnummer']) || !preg_match('/0[0-9]{3}[0-9]{6}/', $_POST['telefoonnummer']))
+        if (!preg_match('/^06[0-9]{8}$/', $_POST['telefoonnummer']) || !preg_match('/^0[0-9]{3}[0-9]{6}$/', $_POST['telefoonnummer']))
         {
             $errors[] = 'U heeft geen geldig telefoonnummer opgegeven';
         }
@@ -184,7 +186,7 @@
     
     if (empty($errors)){
                 
-        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], crypt($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
+        $geregistreerd = register_user($_POST['gebruikersnaam'], $_POST['voornaam'], $_POST['achternaam'], $_POST['adresregel1'], '', $_POST['postcode'], $_POST['plaatsnaam'], $_POST['landnaam'], $_POST['geboortedatum'], $_POST['geslacht'],  $_SESSION['email'], md5($_POST['wachtwoord']), $_POST['telefoonnummer'], $_POST['beveilingsvraag'], $_POST['antwoordTekst']);         
 
         if($geregistreerd){
             try_login_user($_POST['gebruikersnaam'], $_POST['wachtwoord'], false);
@@ -204,7 +206,61 @@
     });
     
     add_route('GET', 'account\/verkoper\/registreren', function() {
+        if(!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('title', 'Aanvragen verkoopaccount');
+        set_data_view('menu', 3);
 
+        return display_view('account_verkoper_registreren');
+
+    });
+
+    add_route('POST', 'account\/verkoper\/registreren', function(){
+        if(!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //ERRORS
+        
+        $errors = [];
+		if (!preg_match('/^[A-Z]{2}[0-9]{2} [A-Z]{4} [0-9]{4} [0-9]{4} [0-9]{2}$/i', $_POST['rekeningnummer']))
+		{
+			$errors[] = 'U heeft geen geldig rekeningnummer opgegeven';
+		}
+        if (!empty($_POST['creditcardnummer']) && !preg_match('/^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/', $_POST['creditcardnummer']))
+		{
+			$errors[] = 'U heeft geen geldig creditcardnummer opgegeven';
+		}
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
+        if (empty($errors)){
+                
+            $geregistreerd = register_verkoper($_POST['banknaam'], $_POST['rekeningnummer'], $_POST['optie'], 
+            (empty($_POST['creditcardnummer']) ? NULL : $_POST['creditcardnummer']));    
+
+            if($geregistreerd){
+                $sent = send_activation_code_verkoop($_SESSION['user_data']['emailadres']);
+                set_data_view('sent', $sent);
+
+            }
+        }
+        
+        set_data_view('errors', $errors);
+        set_data_view('gegevens', $_POST);
+        
+        set_data_view('title', 'Aanvragen verkoopaccount');
+        set_data_view('menu', 3);
+
+        return display_view('account_verkoper_registreren');
+        
     });
     
     add_route('GET', 'account\/vergeten', function(){
@@ -244,3 +300,37 @@
         return display_view('account_vergeten');
     
      });
+
+    add_route('GET', 'account\/verkoper\/registreren\/activeren', function(){
+        if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('title', 'Verkoopaccount activeren');
+        return display_view('account_verkoper_registreren_code');
+        
+    });
+
+    add_route('POST', 'account\/verkoper\/registreren\/activeren', function(){
+        if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        if(!empty($_POST['code']) && !empty($_COOKIE['activering_code_verkoper'])){
+            if(md5($_POST['code']) == $_COOKIE['activering_code_verkoper']){
+                activate_verkoper($_SESSION['user_data']['gebruikersnaam']);
+                set_data_view('code_correct', true);
+            }
+            else{
+                set_data_view('code_correct', false);
+            }
+        }
+        
+        set_data_view('title', 'Verkoopaccount activeren');
+        return display_view('account_verkoper_registreren_code');
+        
+    });
