@@ -66,38 +66,16 @@
         return $results;
     }*/
 
-    function get_rubriek_id($rubrieknaam)
-    {
-        $db = get_db();
-
-        $sql = 'SELECT rubrieknummer FROM Rubriek WHERE rubrieknaam = ?';
-
-        $result = sqlsrv_query($db, $sql, [$rubrieknaam]);
-        if($result === false)
-        {
-            die(var_export(sqlsrv_errors(), true));
-        }
-
-        $result = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-
-        if (empty($result))
-        {
-            return null;
-        }
-
-        return $result['rubrieknummer'];
-    }
-
     function get_veilingen($rubrieknummer = null, $search_text = null, $pagination = null, $pagination_max = null, $order_by = null, $order_by_asc = null)
     {
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
+        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
 
-        if (!empty($rubrieknummer))
+        if (is_numeric($rubrieknummer))
         {
-            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM VoorwerpRubriek r INNER JOIN Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer ON v.voorwerpnummer = r.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE r.rubrieknummer = ?';
             $args = [$rubrieknummer];
         }
 
@@ -119,7 +97,7 @@
             $sql .= ' ORDER BY ' . $order_by . ' ' . ((empty($order_by_asc) || $order_by_asc) ? 'ASC' : 'DESC');
         }
 
-        if (is_int($pagination))
+        if (is_numeric($pagination))
         {
             if (empty($order_by))
             {
@@ -150,10 +128,17 @@
 
     function count_down_veiling($veiling)
     {
-        $begin_datetime = $veiling['looptijdBeginDag'];
-        $begin_datetime += $veiling['looptijdBeginTijd'];
+        $begin_datetime = new DateTime('now');
+        $eind_datetime = $veiling['looptijdEind'];
+        $diff_timestamp = $eind_datetime->getTimestamp() - $begin_datetime->getTimestamp();
 
-        exit($begin_datetime);
+        /*$h = floor($diff_timestamp / 3600);
+        $diff_timestamp %= 3600;
+        $m = floor($diff_timestamp / 60);
+        $diff_timestamp %= 60;
+        $s = $diff_timestamp;*/
+
+        return $diff_timestamp;
     }
 
     function add_veiling()
@@ -165,7 +150,7 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT * FROM Voorwerp WHERE voorwerpnummer = ?';
+        $sql = 'SELECT v.*, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v WHERE v.voorwerpnummer = ?';
 
         $result = sqlsrv_query($db, $sql, [$veilingnummer]);
         if($result === false)

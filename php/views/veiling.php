@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3 class="text-primary"><?php echo_data_view('veiling', 'titel'); ?> <span style="float:right;">Resterende tijd: <?php echo '00:00:00'; ?></span></h3>
+        <h3 class="text-primary"><?php echo_data_view('veiling', 'titel'); ?> <span style="float:right;" class="countdown" data-countdown="<?php echo count_down_veiling(get_data_view('veiling')); ?>"></span></h3>
     </div>
 </div>
 
@@ -40,7 +40,7 @@
             
             <h4 class="text-primary"> Beschrijving </h4>
             <div class="well">
-                <p><?php echo get_data_view('veiling', 'beschrijving'); ?></p>
+                <p><?php echo strip_tags(get_data_view('veiling', 'beschrijving'), '<br>'); ?></p>
             </div>
         </div>
     </div>
@@ -62,9 +62,9 @@
         </div>
 
         <div class="well">
-            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;"><?php echo_data_view('veiling', 'looptijdBeginDag'); ?> <?php echo_data_view('veiling', 'looptijdBeginTijd'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdBeginDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdBeginTijd')->format('h:i:s'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo_data_view('veiling', 'looptijdEindDag'); ?> <?php echo_data_view('veiling', 'looptijdEindTijd'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdEindDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdEindTijd')->format('h:i:s'); ?></span>
             </p>
             <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
             </p>
