@@ -3,9 +3,11 @@
     add_route('GET', 'veilingen(|\/(?<rubrieknummer>[0-9]+))', function($rubrieknummer = null) {
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
+        
+        
 
         if (!isset($_GET['search'], $_GET['rubriek']))
-        {
+        { 
             if (!empty($rubrieknummer))
             {
                 set_data_view('veilingen', get_veilingen($rubrieknummer, null, 0));
@@ -17,6 +19,9 @@
         }
         else
         {
+            //slaat gegeven rubriek op voor aanbevolen veilingen op de homepage
+            setcookie('zoekopdracht', $_GET['rubriek'], PHP_INT_MAX, '/'); 
+            
             set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']), 0);
         }
 

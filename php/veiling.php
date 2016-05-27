@@ -4,7 +4,10 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT * FROM Rubriek';
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer IN (
+                    SELECT rubrieknummer
+                    FROM VoorwerpRubriek)';
 
         //$startTime = microtime(true);
         $result = sqlsrv_query($db, $sql);
@@ -178,4 +181,39 @@
         }
 
         return $result;
+    }
+
+    function get_aanbevolen_veilingen($zoekopdracht = null)
+    {
+        $db = get_db();
+
+        $args = null;
+        $sql = 'SELECT TOP 4 v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer
+        WHERE v.voorwerpnummer IN
+            (SELECT voorwerpnummer
+             FROM VoorwerpRubriek
+             WHERE rubrieknummer = ?)
+        ORDER BY NEWID()';
+        
+        /*
+        if (!empty($order_by))
+        {
+            $sql .= ' ORDER BY ' . $order_by . ' ' . ((empty($order_by_asc) || $order_by_asc) ? 'ASC' : 'DESC');
+        }
+        */
+
+
+        $result = sqlsrv_query($db, $sql, [$zoekopdracht]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        return $results;
     }

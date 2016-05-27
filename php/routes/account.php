@@ -324,6 +324,7 @@
             if(md5($_POST['code']) == $_COOKIE['activering_code_verkoper']){
                 activate_verkoper($_SESSION['user_data']['gebruikersnaam']);
                 set_data_view('code_correct', true);
+                setcookie("activering_code_verkoper", "",  0 , "/");
             }
             else{
                 set_data_view('code_correct', false);
