@@ -138,8 +138,48 @@
         return $diff_timestamp;
     }
 
-    function add_veiling()
+    function add_veiling($titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, 
+        $verzendkosten, $verzendinstructies, $verkoper, $looptijdEindDag, $rubrieknummer, $filenaam)
     {
+        $db = get_db();
+
+        $sql = 'INSERT INTO Voorwerp (titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, plaatsnaam, landnaam, looptijdBeginDag, looptijdBeginTijd, verzendkosten, verzendinstructies, verkoper, looptijdEindDag) VALUES (?, ?, ?, ?, ? ,?, ?, ?, ?, ? ,?, ?, ?)';
+
+        $result= sqlsrv_query($db, $sql, [$titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, $verzendkosten, 
+            $verzendinstructies, 
+            $verkoper, $looptijdEindDag]);
+
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        //$voorwerpnummer ='SELECT voorwerpnummer FROM Voorwerp WHERE titel = $titel, $beschrijving, $startprijs, $'
+
+        $voorwerpnummersql='SELECT SCOPE_IDENTITY() AS [SCOPE IDENTITY]';
+
+        //RUBRIEK
+        $rubrieksql = 'INSERT INTO VoorwerpRubriek (rubrieknummer, voorwerpnummer) VALUES (?, ?)';
+
+        $rubriekresult= sqlsrv_query($db, $rubrieksql, [$rubrieknummer, $voorwerpnummersql]);
+
+        if($rubriekresult === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        //BESTAND
+        $bestandsql = 'INSERT INTO  Bestand (filenaam, voorwerpnummer) VALUES (?, ?)';
+
+        foreach ($filenaam as $bestand){
+        $bestandresult= sqlsrv_query($db, $bestandsql, [$bestand, $voorwerpnummersql]);
+        }
+
+        if($bestandsql === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
 
     }
 

@@ -3,18 +3,18 @@
 	// configuratie array
 	$_CONFIG = [
 		'db' => [
-			'server_name' => 'DESKTOP-LJ94PVH\SQLEXPRESS',
+			'server_name' => 'DESKTOP-0DJP0GS\SQLEXPRESS',
 			'options' => [
 				'Database' => 'iproject16',
 				'UID' => 'sa',
-				'PWD' => '139742685'
+				'PWD' => 'Pocky'
 			]
 		],
 
 		'sitename' => 'EenmaalAndermaal',
 		'url' => [
-			'domain' => 'localhost:8080', // domain only
-			'folder' => '/', // begint en eindigt op /
-			'with_index' => true
+			'domain' => 'localhost', // domain only
+			'folder' => '/GitHub/I-Project-EenmaalAndermaal/', // begint en eindigt op /
+			'with_index' => false
 		]
 	];

@@ -75,3 +75,102 @@
     add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/email', function($voorwerpnummer) {
 
     });
+
+    add_route('GET','veiling\/create', function(){
+        set_data_view('menu', 2);
+        set_data_view('title', 'Veiling maken');
+
+
+        return display_view('veiling_formulier');
+    });
+
+
+    add_route('POST', 'veiling\/create', function(){
+
+        $errors=[];
+
+        if(strlen($_POST['titel']) < 3)
+        {
+            $errors[] ='Titel is te kort';
+        }
+        
+        else if(strlen($_POST['titel']) > 255)
+        {
+            $errors[] = 'Titel is te lang';
+        }
+
+        if(empty($_POST['land']))
+        {
+            $errors[] = 'U heeft geen land opgegeven';
+        }
+        elseif(strlen($_POST['land']) > 90)
+        {
+            $errors[] = 'Landnaam te lang, deze kan maximaal 90 tekens lang zijn';
+        }
+
+        if(empty($_POST['beschrijving']))
+        {
+            $errors[] = 'U heeft geen beschrijving opgegeven';
+        }
+
+        if (empty($_POST['plaatsnaam'])) 
+        {
+            $errors[] ='U heeft geen plaatsnaam opgegeven';
+        }
+        elseif (strlen($_POST['plaatsnaam']) > 50)  {
+            $errors[] ='Plaatsnaam te lang, deze kan maximaal 50 tekens lang zijn';
+        }
+
+        if (empty($_POST['startprijs'])) 
+        {
+            $errors[] ='U heeft geen startprijs opgegeven';
+        }
+
+        if (empty($_POST['betalingswijze'])) 
+        {
+            $errors[] ='U heeft geen betalingswijze  opgegeven';
+        }
+        
+        if (strlen($_POST['betalingsinstructie']) > 255) 
+        {
+            $errors[] ='betalingsinstructie te lang, deze kan maximaal 255 karakters bevatten';
+        }
+    
+        if (empty($_POST['verzendkosten'])) 
+        {
+            $errors[] ='U heeft geen verzendkosten opgegeven';
+        }
+
+        if (strlen($_POST['verzendinstructies']) > 255 && strlen($_POST['verzendinstructies']) < 0) 
+        {
+            $errors[] ='verzendinstructies te groot, deze kan maximaal 255 karakters bevatten';
+        }
+
+        if (empty($_POST['startdatum'])) 
+        {
+            $errors[] ='U heeft geen startdatum opgegeven';
+        }
+
+        if (empty($_POST['starttijd'])) 
+        {
+            $errors[] ='U heeft geen starttijd opgegeven';
+        }
+
+        if (empty($_POST['einddatum'])) 
+        {
+            $errors[] ='U heeft geen einddatum opgegeven';
+        }
+
+
+        if(empty($errors))
+        {
+            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], 'henk', $_POST['einddatum'], '1', 'filenaam' );
+            echo '<h1>FOUT</h1>';
+        }
+        set_data_view('gegevens', $_POST);
+        set_data_view('errors', $errors);
+        set_data_view('title', 'Veiling maken');
+
+        return display_view('veiling_formulier');
+    });
+
