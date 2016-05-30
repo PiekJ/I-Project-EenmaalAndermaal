@@ -168,7 +168,7 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT v.*, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v WHERE v.voorwerpnummer = ?';
+        $sql = 'SELECT v.*, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, dbo.berekenMinimalBod(ISNULL(v.verkoopPrijs, v.startprijs)) AS minimalBod FROM Voorwerp v WHERE v.voorwerpnummer = ?';
 
         $result = sqlsrv_query($db, $sql, [$veilingnummer]);
         if($result === false)
@@ -181,6 +181,36 @@
         if (empty($result))
         {
             return null;
+        }
+
+        return $result;
+    }
+
+    function add_veiling_bod($veilingnummer, $bod)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT dbo.checkBodBedrag(?, ?, CONVERT(date, getdate()), CONVERT(time, getdate())) AS valide';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod]);
+        if ($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        if (!isset($row['valide']) || $row['valide'] != 1)
+        {
+            return false;
+        }
+
+        $sql = 'INSERT INTO Bod (voorwerp, bodBedrag, gebruiker, bodDag, bodTijd) VALUES (?, ?, ?, CONVERT(date, getdate()), CONVERT(time, getdate()))';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod, get_user_data('gebruikersnaam')]);
+        if ($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
         }
 
         return $result;

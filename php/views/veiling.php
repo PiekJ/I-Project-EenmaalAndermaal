@@ -69,26 +69,26 @@
             <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>
             <p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
-                <form method="POST">
+                <?php if (is_user_logged_in()) { ?>
+                <?php if (get_data_view('bod_error') !== null) { 
+                    if (get_data_view('bod_error')) { ?>
+                    <div class="alert alert-success">Bod toegevoegd</div>
+                <?php } else { ?>
+                    <div class="alert alert-danger">Uw bod is niet toegevoegd!</div>
+                <?php } } ?>
+                <form method="post">
                     <div class="input-group">
-                        <input type="text" name="bod" class="form-control" placeholder="Bod">
+                        <input type="text" name="bod" class="form-control" placeholder="Bod" value="<?php echo get_data_view('veiling', 'minimalBod'); ?>">
                         <span class="input-group-btn">
                             <input type="submit" class="btn btn-primary" value="Bied">
                         </span>
                     </div>
                 </form>
+                <?php } else { ?>
+                    <span style="float:right;">Log in om te kunnen bieden</span>
+                <?php } ?>
             </p>
         </div>
-
-        <h4> Uw e-mailadres voor extra informatie </h4>
-        <form method="POST">
-            <div class="input-group">
-                <input type="text" name="email" class="form-control" placeholder="Emailadres">
-                <span class="input-group-btn">
-                    <input type="submit" class="btn btn-primary" value="Opvragen">
-                </span>
-            </div>
-        </form>
             
     </div>
 </div>
