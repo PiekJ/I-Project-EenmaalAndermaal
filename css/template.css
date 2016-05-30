@@ -158,19 +158,6 @@ h2, h3, h4, h5, h6{
     margin: 0 auto;
 }
 
-.carousel{
-	min-height: 200px;
-    max-height: 200px;
-}
-
-.carousel-control.right {
-  background-color:#ffa034; 
-}
-
-.carousel-control.left {
-  background-color:#ffa034; 
-}
-
 .well{
 	background: #fff;
 }
