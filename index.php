@@ -1,7 +1,5 @@
 <?php
 
-    //
-
     require_once './php/global.php';
 
     set_data_view('sitename', $_CONFIG['sitename']);
@@ -25,11 +23,13 @@
         set_data_view('menu', 0);
         set_data_view('title', 'Home');
         
+        set_data_view('aflopende_veilingen', get_aflopende_veilingen());
+        
         if(isset($_COOKIE['zoekopdracht'])){
-            set_data_view('veilingen', get_aanbevolen_veilingen($_COOKIE['zoekopdracht']));
+            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekopdracht']));
         }
         else{
-            set_data_view('veilingen', get_veilingen());
+            set_data_view('aanbevolen_veilingen', get_veilingen());
         }
         set_data_view('rubrieken', get_rubrieken());
         $rubrieken = display_view('veilingen_rubrieken');

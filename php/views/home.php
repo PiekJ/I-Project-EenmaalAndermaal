@@ -26,7 +26,7 @@
         <div>
             <?php 
                 $i = 0;
-                foreach (get_data_view('veilingen') as $veiling) { 
+                foreach (get_data_view('aanbevolen_veilingen') as $veiling) { 
                     if ($i++ % 4 == 0)
                     {
                         echo '<div class="row">';
@@ -42,28 +42,18 @@
                                     <div class="clear">
                                         <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
 
-                                        <p class="veiling-card-time"><?php echo '00:00:00'; ?></p>
+                                        <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
                                     </div>
 
                                     <div class="clear">
                                         <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
 
-                                        <a href="#" class="btn btn-primary veiling-card-button">Bieden</a>
+                                        <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php
-                    if ($i % 4 == 0)
-                    {
-                        echo '</div>';
-                    }
-                }
-                if ($i % 4 != 0)
-                {
-                    echo '</div>';
-                }
-            ?>
+                        <?php } ?>
         </div>
     </div>
 </div>
@@ -75,29 +65,38 @@
 </div>
 
 <div class="row">
-    <?php for ($i = 0; $i < 4; $i++) { ?>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="veiling-card">
-            <div class="veiling-card-img">
-                <img src="//placehold.it/300x300" alt="image">
-            </div>
+    <div class="col-md-12">
+            <?php 
+                $i = 0;
+                foreach (get_data_view('aflopende_veilingen') as $veiling) { 
+                    if ($i++ % 4 == 0)
+                    {
+                        echo '<div class="row">';
+                    }
+                        ?>
+                        <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
+                            <div class="veiling-card">
+                                <div class="veiling-card-img">
+                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                </div>
 
-            <div class="veiling-card-content">
-                <div class="clear">
-                    <h4 class="veiling-card-title">Veiling item #1</h4>
+                                <div class="veiling-card-content">
+                                    <div class="clear">
+                                        <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
 
-                    <p class="veiling-card-time">00:00:20</p>
-                </div>
+                                        <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
+                                    </div>
 
-                <div class="clear">
-                    <p class="veiling-card-price">&euro; 0,00</p>
+                                    <div class="clear">
+                                        <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
 
-                    <a href="#" class="btn btn-primary veiling-card-button">Bieden</a>
-                </div>
-            </div>
+                                        <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
         </div>
-    </div>
-    <?php } ?>
 </div>
 
 <?php echo display_view('template_footer'); ?>
