@@ -123,6 +123,27 @@
         return $results;
     }
 
+    function get_bestanden($veilingnummer)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Bestand WHERE voorwerpnummer = ?';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
+
     function count_down_veiling($veiling)
     {
         $begin_datetime = new DateTime('now');

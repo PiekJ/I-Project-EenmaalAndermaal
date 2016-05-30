@@ -10,18 +10,13 @@
     <div class="col-md-6">
         <div id="theCarousel" class="carousel clear">
             <div class="carousel-inner">
-                <div class="item active">
-                    <img  src="<?php echo get_url(); ?>images/Omafiets1.png" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/logo.png" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/Omafiets3.jpg" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" class="img-responsive">
-                </div>
+                <?php 
+                    $active = true;
+                    foreach (get_data_view('bestanden') as $bestand) {
+                        printf('<div class="item %s"><img  src="%spics/%s" alt="%s" class="img-responsive"></div>', ($active) ? 'active' : '', get_url(), $bestand['filenaam'], null);
+                        $active = false;
+                    }
+                ?>
             </div>
 
             <a class ="carousel-control left" href = "#theCarousel" data-slide = "prev">
@@ -33,14 +28,15 @@
         </div>
 
         <div style="padding-top:10px;">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
+            <?php 
+                foreach (get_data_view('bestanden') as $bestand) {
+                    printf('<img src="%spics/%s" alt="%s" style="width: 100px; height: 100px" class="img-thumbnail">', get_url(), $bestand['filenaam'], null);
+                }
+            ?>
             
             <h4 class="text-primary"> Beschrijving </h4>
-            <div class="well">
-                <p><?php echo strip_tags(get_data_view('veiling', 'beschrijving'), '<br>'); ?></p>
+            <div class="well" style="word-wrap: break-word;">
+                <?php echo strip_tags(preg_replace(['/<style\\b[^>]*>(.*?)<\\/style>/s', '/<script\\b[^>]*>(.*?)<\\/script>/s'], '', get_data_view('veiling', 'beschrijving')), '<br><b><strong><i><u><small><p>'); ?>
             </div>
         </div>
     </div>

@@ -64,6 +64,7 @@
         }
 
         set_data_view('veiling', $veiling);
+        set_data_view('bestanden', get_bestanden($veiling['voorwerpnummer']));
 
         return display_view('veiling');
     });
