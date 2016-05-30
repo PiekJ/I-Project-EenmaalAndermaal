@@ -10,18 +10,13 @@
     <div class="col-md-6">
         <div id="theCarousel" class="carousel clear">
             <div class="carousel-inner">
-                <div class="item active">
-                    <img  src="<?php echo get_url(); ?>images/Omafiets1.png" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/logo.png" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/Omafiets3.jpg" alt="omafiets" class="img-responsive">
-                </div>
-                <div class="item">
-                    <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" class="img-responsive">
-                </div>
+                <?php 
+                    $active = true;
+                    foreach (get_data_view('bestanden') as $bestand) {
+                        printf('<div class="item %s"><img  src="%spics/%s" alt="%s" class="img-responsive"></div>', ($active) ? 'active' : '', get_url(), $bestand['filenaam'], null);
+                        $active = false;
+                    }
+                ?>
             </div>
 
             <a class ="carousel-control left" href = "#theCarousel" data-slide = "prev">
@@ -33,14 +28,15 @@
         </div>
 
         <div style="padding-top:10px;">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
-            <img  src="<?php echo get_url(); ?>images/fiets.jpg" alt="Mooiefiets" width="100" heigth="100" class="img-thumbnail">
+            <?php 
+                foreach (get_data_view('bestanden') as $bestand) {
+                    printf('<img src="%spics/%s" alt="%s" style="width: 100px; height: 100px" class="img-thumbnail">', get_url(), $bestand['filenaam'], null);
+                }
+            ?>
             
             <h4 class="text-primary"> Beschrijving </h4>
-            <div class="well">
-                <p><?php echo strip_tags(get_data_view('veiling', 'beschrijving'), '<br>'); ?></p>
+            <div class="well" style="word-wrap: break-word;">
+                <?php echo strip_tags(preg_replace(['/<style\\b[^>]*>(.*?)<\\/style>/s', '/<script\\b[^>]*>(.*?)<\\/script>/s'], '', get_data_view('veiling', 'beschrijving')), '<br><b><strong><i><u><small><p>'); ?>
             </div>
         </div>
     </div>
@@ -73,26 +69,26 @@
             <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>
             <p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
-                <form method="POST">
+                <?php if (is_user_logged_in()) { ?>
+                <?php if (get_data_view('bod_error') !== null) { 
+                    if (get_data_view('bod_error')) { ?>
+                    <div class="alert alert-success">Bod toegevoegd</div>
+                <?php } else { ?>
+                    <div class="alert alert-danger">Uw bod is niet toegevoegd!</div>
+                <?php } } ?>
+                <form method="post">
                     <div class="input-group">
-                        <input type="text" name="bod" class="form-control" placeholder="Bod">
+                        <input type="text" name="bod" class="form-control" placeholder="Bod" value="<?php echo get_data_view('veiling', 'minimalBod'); ?>">
                         <span class="input-group-btn">
                             <input type="submit" class="btn btn-primary" value="Bied">
                         </span>
                     </div>
                 </form>
+                <?php } else { ?>
+                    <span style="float:right;">Log in om te kunnen bieden</span>
+                <?php } ?>
             </p>
         </div>
-
-        <h4> Uw e-mailadres voor extra informatie </h4>
-        <form method="POST">
-            <div class="input-group">
-                <input type="text" name="email" class="form-control" placeholder="Emailadres">
-                <span class="input-group-btn">
-                    <input type="submit" class="btn btn-primary" value="Opvragen">
-                </span>
-            </div>
-        </form>
             
     </div>
 </div>

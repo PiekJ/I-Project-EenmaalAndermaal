@@ -64,14 +64,30 @@
         }
 
         set_data_view('veiling', $veiling);
+        set_data_view('bestanden', get_bestanden($veiling['voorwerpnummer']));
 
         return display_view('veiling');
     });
 
-    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/bod', function($voorwerpnummer) {
-        
-    });
+    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)', function($voorwerpnummer) {
+        if (isset($_POST['bod']) && is_user_logged_in())
+        {
+            set_data_view('bod_error', add_veiling_bod($voorwerpnummer, floatval(str_replace(',', '.', $_POST['bod']))));
+        }
 
-    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/email', function($voorwerpnummer) {
+        set_data_view('menu', 1);
+        set_data_view('title', 'Veiling');
 
+        $veiling = get_veiling($voorwerpnummer);
+
+        if (empty($veiling))
+        {
+            location();
+            return;
+        }
+
+        set_data_view('veiling', $veiling);
+        set_data_view('bestanden', get_bestanden($veiling['voorwerpnummer']));
+
+        return display_view('veiling');
     });
