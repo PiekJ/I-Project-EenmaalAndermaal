@@ -58,7 +58,7 @@
 	{
 		$result = call_user_func_array('get_data_view', func_get_args());
 
-		echo htmlspecialchars($result);
+		echo ($result);//htmlspecialchars
 	}
 
 	// returnt een view

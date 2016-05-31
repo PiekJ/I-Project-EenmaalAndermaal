@@ -8,8 +8,11 @@
 
 	ini_set('log_errors', '1');
     ini_set("error_log", SYSTEM_FOLDER . 'php-error.log');
+    ini_set('mssql.charset', 'ANSI');
 
 	session_start();
+
+	header('Content-Type: text/html; charset=ANSI');
 
 	// initializeert de database connectie als deze niet bestaad en geeft deze terug.
 	function get_db()
