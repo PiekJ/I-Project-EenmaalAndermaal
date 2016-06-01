@@ -62,13 +62,14 @@
             </p>
             <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdEindDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdEindTijd')->format('h:i:s'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>
             <p class="clear"> <span style="font-weight:bold;">Hoogste bieder</span><span style="float:right;"><?php echo_data_view('veiling', 'koper'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
             </p>
             <p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
+                <?php if (get_data_view('veiling', 'veilingGesloten') == 0) { ?>
                 <?php if (is_user_logged_in()) { ?>
                 <?php if (get_data_view('bod_error') !== null) { 
                     if (get_data_view('bod_error')) { ?>
@@ -86,6 +87,8 @@
                 </form>
                 <?php } else { ?>
                     <span style="float:right;">Log in om te kunnen bieden</span>
+                <?php } } else { ?>
+                    <span style="float:right;">Deze veiling is gesloten</span>
                 <?php } ?>
             </p>
         </div>
