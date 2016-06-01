@@ -2,8 +2,7 @@
 
 <div class="row">
             <div class="col-md-3">
-                <h3>Groep</h3>
-                                                               
+   
                <?php 
                generateRubriekenSidewayList(get_rubrieken(), -1);
                 ?>    
