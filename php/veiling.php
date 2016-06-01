@@ -68,22 +68,16 @@
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
+        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs, v.veilingGesloten FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE v.veilingGesloten = 0';
 
         if (is_numeric($rubrieknummer))
         {
-            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs, v.veilingGesloten FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE r.rubrieknummer = ? AND v.veilingGesloten = 0';
             $args = [$rubrieknummer];
         }
 
         if (!empty($search_text))
         {
-            if (empty($args))
-            {
-                $args = [];
-                $sql .= ' WHERE 1=1';
-            }
-
             $sql .= ' AND v.titel LIKE ?';
             $args[] = '%' . $search_text . '%';
         }
@@ -200,6 +194,21 @@
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
         if (!isset($row['valide']) || $row['valide'] != 1)
+        {
+            return false;
+        }
+
+        $sql = 'SELECT veilingGesloten FROM voorwerp WHERE voorwerpnummer = ?';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
+        if ($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        if (!isset($row['veilingGesloten']) || $row['veilingGesloten'] == 1)
         {
             return false;
         }
