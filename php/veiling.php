@@ -84,8 +84,7 @@
                 $sql .= ' WHERE 1=1';
             }
 
-            $sql .= ' AND (v.titel LIKE ? OR v.beschrijving LIKE ?)';
-            $args[] = '%' . $search_text . '%';
+            $sql .= ' AND v.titel LIKE ?';
             $args[] = '%' . $search_text . '%';
         }
 
