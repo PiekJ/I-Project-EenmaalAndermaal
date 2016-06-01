@@ -9,6 +9,16 @@
 
     <div class="col-md-9">
         <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nav>
+                        <ul class="pager top-pager">
+                            <li class="previous <?php echo (get_data_view('pagination_current') == 0) ? 'disabled' : ''; ?>"><a href="<?php echo get_data_view('pagination_url') . (get_data_view('pagination_current') - 1); ?>"><span aria-hidden="true">&larr;</span> Nieuwer</a></li>
+                            <li class="next <?php echo (count(get_data_view('veilingen')) < get_data_view('pagination_max')) ? 'disabled' : ''; ?>"><a href="<?php echo get_data_view('pagination_url') . (get_data_view('pagination_current') + 1); ?>">Ouder <span aria-hidden="true">&rarr;</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
             <?php 
                 $veilingen = get_data_view('veilingen');
                 if (!empty($veilingen))
@@ -63,7 +73,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav>
-                        <ul class="pager">
+                        <ul class="pager bottom-pager">
                             <li class="previous <?php echo (get_data_view('pagination_current') == 0) ? 'disabled' : ''; ?>"><a href="<?php echo get_data_view('pagination_url') . (get_data_view('pagination_current') - 1); ?>"><span aria-hidden="true">&larr;</span> Nieuwer</a></li>
                             <li class="next <?php echo (count(get_data_view('veilingen')) < get_data_view('pagination_max')) ? 'disabled' : ''; ?>"><a href="<?php echo get_data_view('pagination_url') . (get_data_view('pagination_current') + 1); ?>">Ouder <span aria-hidden="true">&rarr;</span></a></li>
                         </ul>

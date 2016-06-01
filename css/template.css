@@ -160,6 +160,14 @@ h2, h3, h4, h5, h6{
     background: url(../images/arrow-down.png) right center no-repeat;
 }
 
+.top-pager{
+    margin-top: 0;
+}
+
+.bottom-pager{
+    margin: 0;
+}
+
 .btn-primary{
     background-color: #ffa034;
     border-color: #ffa034;
