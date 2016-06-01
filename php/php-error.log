@@ -42,3 +42,4 @@
 [30-May-2016 10:14:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in D:\projecten\I-Project-EenmaalAndermaal\php\veiling.php on line 201
 [30-May-2016 11:44:35 Europe/Berlin] PHP Notice:  Undefined variable: veiling in D:\projecten\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 58
 [30-May-2016 11:44:37 Europe/Berlin] PHP Notice:  Undefined variable: veiling in D:\projecten\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 58
+[01-Jun-2016 12:45:10 Europe/Berlin] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in D:\projecten\I-Project-EenmaalAndermaal\php\veiling.php on line 111

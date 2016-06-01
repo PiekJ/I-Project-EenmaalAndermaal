@@ -4,7 +4,7 @@
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
 
-        $pagination_current = (!empty($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 0;
+        $pagination_current = (!empty($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0) ? $_GET['page'] : 0;
         $pagination_max = 30;
         $pagination_url = get_url(true) . 'veilingen';
 
@@ -39,7 +39,7 @@
         {
             set_data_view('rubrieken', get_rubrieken());
             $rubrieken = display_view('veilingen_rubrieken');
-            store_cache('veilingen_rubrieken', $rubrieken);
+            store_cache('veilingen_rubrieken', $rubrieken, time() + 3600 * 12);
 
             set_data_view('rubrieken', $rubrieken);
         }
@@ -72,7 +72,7 @@
     add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)', function($voorwerpnummer) {
         if (isset($_POST['bod']) && is_user_logged_in())
         {
-            set_data_view('bod_error', add_veiling_bod($voorwerpnummer, floatval(str_replace(',', '.', $_POST['bod']))));
+            set_data_view('bod_error', add_veiling_bod($voorwerpnummer, round(floatval(str_replace(',', '.', $_POST['bod'])), 2)));
         }
 
         set_data_view('menu', 1);

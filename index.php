@@ -32,7 +32,7 @@
         {
             set_data_view('rubrieken', get_rubrieken());
             $rubrieken = display_view('home_rubrieken');
-            store_cache('home_rubrieken', $rubrieken);
+            store_cache('home_rubrieken', $rubrieken, time() + 3600 * 12);
 
             set_data_view('rubrieken', $rubrieken);
         }

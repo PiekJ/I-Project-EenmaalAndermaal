@@ -18,7 +18,7 @@
                 {
                     $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
 
-                    printf('<li><a href="#%s" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
+                    printf('<li><a href="#%s" class="collapse" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
 
                     generateRubriekenTreeList($rubrieken, $rubriek['rubrieknummer']);
 

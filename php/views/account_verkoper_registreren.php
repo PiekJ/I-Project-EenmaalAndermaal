@@ -6,7 +6,7 @@
         Er is een e-mail met code verstuurd naar uw e-mailadres.
         </div>';
     } 
-    if(!empty(get_data_view('errors'))){
+    if(get_data_view('errors') !== null){
         foreach(get_data_view('errors') as $error){
             echo '<div class="alert alert-danger">' .
             $error .

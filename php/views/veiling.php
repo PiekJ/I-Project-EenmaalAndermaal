@@ -43,7 +43,7 @@
 
     <div class="col-md-6">
         <div class="well">
-            <p class="clear"> <span style="font-weight:bold;">Verkoper</span><span style="float:right;"><?php echo 'Pietje Puk'; ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Verkoper</span><span style="float:right;"><?php echo_data_view('veiling', 'verkoper'); ?></span>
             </p>
             <p class="clear"> <span style="font-weight:bold;">Plaatsnaam</span><span style="float:right;"><?php echo_data_view('veiling', 'plaatsnaam'); ?></span>
             </p>

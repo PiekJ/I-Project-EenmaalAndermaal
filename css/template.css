@@ -141,12 +141,23 @@ h2, h3, h4, h5, h6{
 .veiling-rubrieken > ul ul{
     padding: 0 15px;
 }
+.veiling-rubrieken > ul li{
+    margin: 6px 0;
+}
 .veiling-rubrieken span{
     color: #ffffff;
     font-weight: bold;
 }
 .veiling-rubrieken a{
+    display: inline-block;
+    width: 100%;
     color: #ffffff;
+}
+.veiling-rubrieken a.collapse{
+    background: url(../images/arrow-right.png) right center no-repeat;
+}
+.veiling-rubrieken a[aria-expanded=true]{
+    background: url(../images/arrow-down.png) right center no-repeat;
 }
 
 .btn-primary{

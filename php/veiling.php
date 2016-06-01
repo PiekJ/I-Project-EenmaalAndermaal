@@ -4,7 +4,7 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT * FROM Rubriek';
+        $sql = 'SELECT * FROM Rubriek ORDER BY rubrieknaam ASC';
 
         //$startTime = microtime(true);
         $result = sqlsrv_query($db, $sql);
