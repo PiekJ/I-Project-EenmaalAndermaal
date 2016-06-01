@@ -1,27 +1,21 @@
 <?php echo display_view('template_header'); ?>
 
-<div class="container">
-            <div class="col-md-12">
+<div class="row">
+            <div class="col-md-3">
                 <h3>Groep</h3>
-                <div >
                                                                
-               <?php $setrubrieken=get_rubrieken('rubrieken');
-               generateRubriekenTreeList($setrubrieken, -1);
+               <?php 
+               generateRubriekenSidewayList(get_rubrieken(), -1);
                 ?>    
                     
-
-                </div>
             </div>
         </div>
-        <div class="container">
-            <div>
+        <div class="row">
                 <h4>Gekozen rubriek</h4>
-                <p><?php echo $rubrieknamen ?></p>
-                <p>
-                    <a href="#" class="btn btn-warning btn-md" role="button">Verder </a>  
-                </p>
-            </div>
-
+                <form method="post" class="col-md-3" action="">
+                    <p><?=((isset($_GET['rubriek']) ? get_rubriek_by_id($_GET['rubriek']) : "Kies een rubriek."))?></p>
+                    <button type="submit" class="btn btn-primary">Verder</button> 
+                </form>
         </div>
 
 <?php echo display_view('template_footer'); ?>
