@@ -13,7 +13,7 @@
                 <?php 
                     $active = true;
                     foreach (get_data_view('bestanden') as $bestand) {
-                        printf('<div class="item %s"><img  src="%spics/%s" alt="%s" class="img-responsive"></div>', ($active) ? 'active' : '', get_url(), $bestand['filenaam'], null);
+                        printf('<div class="item %s"><img  src="%s%s" alt="%s" class="img-responsive"></div>', ($active) ? 'active' : '', get_url(), $bestand['filenaam'], null);
                         $active = false;
                     }
                 ?>
@@ -30,7 +30,7 @@
         <div style="padding-top:10px;">
             <?php 
                 foreach (get_data_view('bestanden') as $bestand) {
-                    printf('<img src="%spics/%s" alt="%s" style="width: 100px; height: 100px" class="img-thumbnail">', get_url(), $bestand['filenaam'], null);
+                    printf('<img src="%s%s" alt="%s" style="width: 100px; height: 100px" class="img-thumbnail">', get_url(), $bestand['filenaam'], null);
                 }
             ?>
             
