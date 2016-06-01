@@ -11,11 +11,33 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-6">
                 <h4>Gekozen rubriek</h4>
-                <form method="post" class="col-md-3" action="">
-                    <p><?=((isset($_GET['rubriek']) ? get_rubriek_by_id($_GET['rubriek']) : "Kies een rubriek."))?></p>
-                    <button type="submit" class="btn btn-primary">Verder</button> 
-                </form>
+                    <form method="post" action="">
+                        <p>
+                            <?php
+                                if(isset($_GET['rubriek']) && rubriek_valid($_GET['rubriek'])){
+                                    $reeks = get_rubriek_reeks($_GET['rubriek'], -1);
+                                    $i = 0;
+                                    $length = count($reeks);
+                                    foreach(array_reverse($reeks) as $rubriek){
+                                        if ($i != $length - 1) {
+                                            echo $rubriek['rubrieknaam'] . " > ";   
+                                        }
+                                        else{
+                                            echo "<strong>" . $rubriek['rubrieknaam'] . "</strong>";
+                                        }
+                                        $i++;
+                                    }  
+                                }
+                                else{
+                                    echo "Kies een rubriek.";
+                                } 
+                            ?>
+                        </p>
+                        <button type="submit" class="btn btn-primary">Verder</button> 
+                    </form>
         </div>
+</div>
 
 <?php echo display_view('template_footer'); ?>

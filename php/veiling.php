@@ -26,15 +26,15 @@
         return $results;
     }
 
-    function get_hoofdrubrieken()
+    function get_hoofdrubriek($subrubriek)
     {
         $db = get_db();
 
-        $sql = "SELECT * FROM Rubriek
-                WHERE hoofdrubriek = '-1'";
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
 
         //$startTime = microtime(true);
-        $result = sqlsrv_query($db, $sql);
+        $result = sqlsrv_query($db, $sql, [$subrubriek]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
@@ -57,11 +57,11 @@
     {
         $db = get_db();
 
-        $sql = "SELECT * FROM Rubriek
-                WHERE hoofdrubriek = '" . $hoofdrubriek . "'";
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
 
         //$startTime = microtime(true);
-        $result = sqlsrv_query($db, $sql);
+        $result = sqlsrv_query($db, $sql, [$hoofdrubriek]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
@@ -120,27 +120,66 @@
     function get_rubriek_by_id($id){
         $db = get_db();
 
-        $sql = "SELECT rubrieknaam FROM Rubriek
-                WHERE hoofdrubriek = '" . $id . "'";
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
 
         //$startTime = microtime(true);
-        $result = sqlsrv_query($db, $sql);
+        $result = sqlsrv_query($db, $sql, [$id]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
         }
         //$fetchTime = microtime(true);
         //echo ($fetchTime - $startTime) . '<br>';
-
-        $results = [];
-        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
-        {
-            $results[] = $row;
-        }
+        
+        $results = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
         //echo (microtime(true) - $fetchTime) . '<br>';
+        $rubriekPath = 0;
 
-        return $results;
+        return $results['rubrieknaam'];
+    }
+    
+    function rubriek_valid($id){
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$id]);
+        if($result === false)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }  
+    }
+
+    function get_rubriek_reeks($id, $to_id) // returns array met rubrieken reeks
+    {
+        $db = get_db();
+
+        $rubriek_reeks = [];
+
+        $sql = 'SELECT * FROM Rubriek WHERE rubrieknummer = ?';
+        $result = sqlsrv_query($db, $sql, [$id]);
+
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $rubriek = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $rubriek_reeks[] = $rubriek;
+
+        if ($rubriek['hoofdrubriek'] != $to_id)
+        {   
+            $rubriek_reeks = array_merge($rubriek_reeks, get_rubriek_reeks($rubriek['hoofdrubriek'], $to_id));
+        }
+
+        return $rubriek_reeks;
     }
 
     function get_veilingen($rubrieknummer = null, $search_text = null, $pagination = null, $pagination_max = null, $order_by = null, $order_by_asc = null)
