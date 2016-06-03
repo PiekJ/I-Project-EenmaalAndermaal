@@ -4,10 +4,7 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT * FROM Rubriek
-                WHERE rubrieknummer IN (
-                    SELECT DISTINCT rubrieknummer
-                    FROM VoorwerpRubriek)';
+        $sql = 'SELECT * FROM Rubriek';
 
         //$startTime = microtime(true);
         $result = sqlsrv_query($db, $sql);
@@ -263,6 +260,7 @@
         }
 
         return $results;
+    }
 
     function add_veiling_bod($veilingnummer, $bod)
     {

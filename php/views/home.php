@@ -27,8 +27,9 @@
             <?php 
                 $i = 0;
                 if(isset($_COOKIE['zoekterm']) || isset($_COOKIE['zoekrubriek'])){
-                    if(!empty(get_data_view('aanbevolen_veilingen'))){
-                        foreach (get_data_view('aanbevolen_veilingen') as $veiling) { 
+                    $aanbevolen_veilingen = get_data_view('aanbevolen_veilingen');
+                    if(!empty($aanbevolen_veilingen)){
+                        foreach ($aanbevolen_veilingen as $veiling) { 
                             if ($i++ % 4 == 0)
                             {
                                 echo '<div class="row">';
@@ -37,7 +38,7 @@
                                 <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
                                     <div class="veiling-card">
                                         <div class="veiling-card-img">
-                                            <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                            <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
                                         </div>
 
                                         <div class="veiling-card-content">
@@ -87,7 +88,7 @@
                         <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
                             <div class="veiling-card">
                                 <div class="veiling-card-img">
-                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
                                 </div>
 
                                 <div class="veiling-card-content">
