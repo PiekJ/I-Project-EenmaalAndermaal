@@ -25,16 +25,16 @@
         set_data_view('menu', 0);
         set_data_view('title', 'Home');
         
-        set_data_view('aflopende_veilingen', get_aflopende_veilingen());
-        
-        if(isset($_COOKIE['zoekterm'])){
-            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekterm']));
+        set_data_view('aflopende_veilingen', get_veilingen(null, null, 0, 4, 'looptijdEind'));
+                
+        if(isset($_COOKIE['zoekterm']) && !isset($_COOKIE['zoekrubriek'])){
+            set_data_view('aanbevolen_veilingen', get_veilingen(null, $_COOKIE['zoekterm'], 0, 4, 'NEWID()'));
         } 
-        if(isset($_COOKIE['zoekrubriek'])){
-            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekrubriek']));
+        else if(isset($_COOKIE['zoekrubriek']) && !isset($_COOKIE['zoekterm'])){
+            set_data_view('aanbevolen_veilingen', get_veilingen($_COOKIE['zoekrubriek'], null, 0, 4, 'NEWID()'));
         } 
-        if(isset($_COOKIE['zoekterm'], $_COOKIE['zoekrubriek'])){
-            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekterm'], $_COOKIE['zoekrubriek']));
+        else if(isset($_COOKIE['zoekrubriek'], $_COOKIE['zoekterm'])){
+            set_data_view('aanbevolen_veilingen', get_veilingen($_COOKIE['zoekrubriek'], $_COOKIE['zoekterm']), 0, 4, 'NEWID()');
         }
         
         set_data_view('rubrieken', get_rubrieken());
