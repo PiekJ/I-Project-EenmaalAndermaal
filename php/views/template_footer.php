@@ -7,6 +7,7 @@
 
         <script src="<?php echo get_url(); ?>js/jquery-1.12.3.min.js"></script>
         <script src="<?php echo get_url(); ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo get_url(); ?>/js/jQuery.MultiFile.min.js"></script>
 
         <script>
             function doCountdown() {

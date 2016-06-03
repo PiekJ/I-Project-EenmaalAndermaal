@@ -141,45 +141,57 @@
     function add_veiling($titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, 
         $verzendkosten, $verzendinstructies, $verkoper, $looptijdEindDag, $rubrieknummer, $filenaam)
     {
+
+        //VOORWERP
         $db = get_db();
 
         $sql = 'INSERT INTO Voorwerp (titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, plaatsnaam, landnaam, looptijdBeginDag, looptijdBeginTijd, verzendkosten, verzendinstructies, verkoper, looptijdEindDag) VALUES (?, ?, ?, ?, ? ,?, ?, ?, ?, ? ,?, ?, ?)';
 
-        $result= sqlsrv_query($db, $sql, [$titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, $verzendkosten, 
-            $verzendinstructies, 
-            $verkoper, $looptijdEindDag]);
+        $result= sqlsrv_query($db, $sql, [$titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, 
+        $verzendkosten, $verzendinstructies, $verkoper, $looptijdEindDag]);
 
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
         }
 
-        //$voorwerpnummer ='SELECT voorwerpnummer FROM Voorwerp WHERE titel = $titel, $beschrijving, $startprijs, $'
 
-        $voorwerpnummersql='SELECT SCOPE_IDENTITY() AS [SCOPE IDENTITY]';
+        //VOORWERPNUMMER
+        $sqlscope = 'SELECT @@IDENTITY as id';
+        $id = sqlsrv_query($db, $sqlscope);
+
+
+        if($id === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $arrayID = sqlsrv_fetch_array($id, SQLSRV_FETCH_ASSOC);
+
+
 
         //RUBRIEK
         $rubrieksql = 'INSERT INTO VoorwerpRubriek (rubrieknummer, voorwerpnummer) VALUES (?, ?)';
 
-        $rubriekresult= sqlsrv_query($db, $rubrieksql, [$rubrieknummer, $voorwerpnummersql]);
+        $rubriekresult= sqlsrv_query($db, $rubrieksql, [32, $arrayID['id']]);
 
         if($rubriekresult === false)
         {
             die(var_export(sqlsrv_errors(), true));
         }
 
+
         //BESTAND
         $bestandsql = 'INSERT INTO  Bestand (filenaam, voorwerpnummer) VALUES (?, ?)';
 
-        foreach ($filenaam as $bestand){
-        $bestandresult= sqlsrv_query($db, $bestandsql, [$bestand, $voorwerpnummersql]);
-        }
-
-        if($bestandsql === false)
+        for($i = 0; $i < count($_FILES['filenaam']['tmp_name']); $i++)
         {
-            die(var_export(sqlsrv_errors(), true));
-        }
 
+            $destination=SYSTEM_FOLDER . '../upload/' . $_FILES['filenaam']['name'][$i];
+            move_uploaded_file (($_FILES['filenaam']['tmp_name'][$i]), $destination );
+
+            $bestandresult= sqlsrv_query($db, $bestandsql, [$verkoper.'_'. uniqid() .'_upload/' . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
+        }
 
     }
 

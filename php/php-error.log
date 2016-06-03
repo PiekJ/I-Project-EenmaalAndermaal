@@ -59,3 +59,155 @@
 [30-May-2016 11:11:44 Europe/Berlin] PHP Notice:  Undefined index: betalingsintructies in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 167
 [30-May-2016 11:12:59 Europe/Berlin] PHP Notice:  Undefined index: betalingsinstructie in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 134
 [30-May-2016 11:13:57 Europe/Berlin] PHP Notice:  Undefined index: betalingsinstructie in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 134
+[30-May-2016 13:00:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 148
+[30-May-2016 13:01:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected ':', expecting ']' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 153
+[30-May-2016 13:46:19 Europe/Berlin] PHP Notice:  Use of undefined constant username - assumed 'username' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 154
+[30-May-2016 13:46:19 Europe/Berlin] PHP Notice:  Undefined variable: _cookie in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 154
+[30-May-2016 13:50:20 Europe/Berlin] PHP Notice:  Use of undefined constant username - assumed 'username' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 154
+[30-May-2016 13:50:20 Europe/Berlin] PHP Notice:  Undefined variable: _cookie in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 154
+[30-May-2016 13:50:32 Europe/Berlin] PHP Notice:  Use of undefined constant username - assumed 'username' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 13:50:32 Europe/Berlin] PHP Notice:  Undefined index: username in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 13:51:08 Europe/Berlin] PHP Notice:  Undefined index: username in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 13:55:20 Europe/Berlin] PHP Notice:  Use of undefined constant username - assumed 'username' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 13:55:20 Europe/Berlin] PHP Notice:  Undefined index: username in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 13:55:25 Europe/Berlin] PHP Notice:  Undefined index: username in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[30-May-2016 14:02:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 171
+[30-May-2016 14:07:30 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 167
+[30-May-2016 14:07:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 167
+[30-May-2016 14:08:03 Europe/Berlin] PHP Fatal error:  Call to undefined function get_user_date() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 167
+[30-May-2016 14:27:41 Europe/Berlin] PHP Fatal error:  Call to undefined function int() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 163
+[30-May-2016 14:28:37 Europe/Berlin] PHP Fatal error:  Call to undefined function int() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 159
+[30-May-2016 15:16:01 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'SELECT' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 162
+[30-May-2016 15:22:16 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$rubrieksql' (T_VARIABLE) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 162
+[30-May-2016 15:27:47 Europe/Berlin] PHP Warning:  sqlsrv_query(): supplied resource is not a valid stream resource in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 164
+[30-May-2016 15:44:04 Europe/Berlin] PHP Warning:  sqlsrv_fetch_array() expects parameter 1 to be resource, string given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 163
+[30-May-2016 15:46:26 Europe/Berlin] PHP Warning:  sqlsrv_fetch_array() expects parameter 1 to be resource, string given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 163
+[30-May-2016 15:46:46 Europe/Berlin] PHP Warning:  sqlsrv_fetch_array() expects parameter 1 to be resource, string given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 163
+[30-May-2016 15:49:32 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$rubrieksql' (T_VARIABLE) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 172
+[31-May-2016 09:47:52 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:48:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:48:32 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:48:55 Europe/Berlin] PHP Warning:  Unterminated comment starting line 214 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 214
+[31-May-2016 09:48:55 Europe/Berlin] PHP Fatal error:  Call to undefined function get_voorwerpnummer() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 166
+[31-May-2016 09:49:05 Europe/Berlin] PHP Fatal error:  Call to undefined function get_voorwerpnummer() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 166
+[31-May-2016 09:50:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:53:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'Schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:54:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected '"Schilderij"' (T_CONSTANT_ENCAPSED_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 09:55:22 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$naam' (T_VARIABLE) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 219
+[31-May-2016 10:21:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'Schilderij' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 222
+[31-May-2016 10:30:59 Europe/Berlin] PHP Fatal error:  Call to undefined function get_voorwerpnummer() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 166
+[31-May-2016 10:32:05 Europe/Berlin] PHP Notice:  Use of undefined constant Schilderij - assumed 'Schilderij' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 170
+[31-May-2016 10:32:05 Europe/Berlin] PHP Notice:  Use of undefined constant hoang - assumed 'hoang' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 170
+[31-May-2016 12:50:21 Europe/Berlin] PHP Notice:  Undefined variable: titel in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 238
+[31-May-2016 13:03:07 Europe/Berlin] PHP Fatal error:  Cannot redeclare get_telefoon() (previously declared in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\user.php:262) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 240
+[31-May-2016 13:07:57 Europe/Berlin] PHP Fatal error:  Cannot redeclare get_telefoon() (previously declared in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\user.php:262) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 241
+[31-May-2016 13:53:00 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting ']' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 175
+[31-May-2016 14:26:20 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 14:27:56 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 14:38:17 Europe/Berlin] PHP Parse error:  syntax error, unexpected '[', expecting ')' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 142
+[31-May-2016 14:38:44 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 14:40:10 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:00:14 Europe/Berlin] PHP Notice:  Use of undefined constant filenaam - assumed 'filenaam' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 193
+[31-May-2016 15:02:51 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:04:07 Europe/Berlin] PHP Notice:  Undefined variable: FILES in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 167
+[31-May-2016 15:04:07 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:05:18 Europe/Berlin] PHP Notice:  Undefined index: filenaam in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[31-May-2016 15:05:18 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:05:45 Europe/Berlin] PHP Notice:  Undefined index: filenaam in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[31-May-2016 15:05:45 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:07:49 Europe/Berlin] PHP Notice:  Undefined index: filenaam in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 169
+[31-May-2016 15:07:49 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[31-May-2016 15:51:13 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 176
+[31-May-2016 15:51:35 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 176
+[31-May-2016 15:51:53 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 176
+[31-May-2016 15:54:42 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 176
+[31-May-2016 15:56:16 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 176
+[01-Jun-2016 10:31:21 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:40 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:50 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:31:55 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:05 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:06 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:57 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:34:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:35:10 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:35:18 Europe/Berlin] PHP Parse error:  syntax error, unexpected '=', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:35:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:34 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:35 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:42 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:37:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:38:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:38:11 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:38:11 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:38:11 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:39:01 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:39:20 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:39:49 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:55:46 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:56:21 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 166
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:56:29 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:56:52 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:56:52 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:57:19 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:57:19 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 10:57:35 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 168
+[01-Jun-2016 10:57:35 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 173
+[01-Jun-2016 11:16:52 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 195
+[01-Jun-2016 11:37:29 Europe/Berlin] PHP Warning:  addslashes() expects parameter 1 to be string, array given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 11:37:29 Europe/Berlin] PHP Warning:  addslashes() expects parameter 1 to be string, array given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
+[01-Jun-2016 11:37:29 Europe/Berlin] PHP Warning:  file_get_contents(): Filename cannot be empty in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 186
+[01-Jun-2016 11:50:26 Europe/Berlin] PHP Warning:  file_get_contents(): Filename cannot be empty in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 186
+[01-Jun-2016 11:58:00 Europe/Berlin] PHP Warning:  file_get_contents(): Filename cannot be empty in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 186
+[01-Jun-2016 11:58:21 Europe/Berlin] PHP Warning:  file_get_contents(): Filename cannot be empty in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 186
+[01-Jun-2016 12:34:25 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 12:36:05 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 180
+[01-Jun-2016 12:36:09 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 180
+[01-Jun-2016 13:11:52 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 13:11:52 Europe/Berlin] PHP Notice:  Undefined variable: Array in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 13:11:52 Europe/Berlin] PHP Fatal error:  Function name must be a string in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 13:18:43 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 13:19:33 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 13:20:48 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 187
+[01-Jun-2016 14:46:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$destination' (T_VARIABLE) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:47:17 Europe/Berlin] PHP Warning:  move_uploaded_file() expects parameter 1 to be string, array given in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:48:26 Europe/Berlin] PHP Warning:  move_uploaded_file(): The second argument to copy() function cannot be a directory in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:48:26 Europe/Berlin] PHP Warning:  move_uploaded_file(): Unable to move 'C:\xampp\tmp\phpC11A.tmp' to 'C:\Users\rMBP-HHNguyen\Desktop\bestanden' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:50:36 Europe/Berlin] PHP Warning:  move_uploaded_file(/bestanden): failed to open stream: Permission denied in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:50:36 Europe/Berlin] PHP Warning:  move_uploaded_file(): Unable to move 'C:\xampp\tmp\phpBB16.tmp' to '/bestanden' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:55:46 Europe/Berlin] PHP Warning:  move_uploaded_file(): The second argument to copy() function cannot be a directory in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 14:55:46 Europe/Berlin] PHP Warning:  move_uploaded_file(): Unable to move 'C:\xampp\tmp\php7750.tmp' to 'C:/Users/rMBP-HHNguyen/Desktop/bestandens' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 181
+[01-Jun-2016 15:05:37 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'set_data_view' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 199
+[01-Jun-2016 15:06:33 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'set_data_view' (T_STRING) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 200
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 184
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
+[01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
+[03-Jun-2016 09:49:10 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 93

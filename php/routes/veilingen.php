@@ -88,7 +88,8 @@
     add_route('POST', 'veiling\/create', function(){
 
         $errors=[];
-
+        
+        
         if(strlen($_POST['titel']) < 3)
         {
             $errors[] ='Titel is te kort';
@@ -103,7 +104,7 @@
         {
             $errors[] = 'U heeft geen land opgegeven';
         }
-        elseif(strlen($_POST['land']) > 90)
+        else if(strlen($_POST['land']) > 90)
         {
             $errors[] = 'Landnaam te lang, deze kan maximaal 90 tekens lang zijn';
         }
@@ -153,20 +154,48 @@
 
         if (empty($_POST['starttijd'])) 
         {
-            $errors[] ='U heeft geen starttijd opgegeven';
+            $errors[] ='U heeft geen start tijd opgegeven';
         }
 
         if (empty($_POST['einddatum'])) 
         {
-            $errors[] ='U heeft geen einddatum opgegeven';
+            $errors[] ='U heeft geen eind datum opgegeven';
+        }
+        if(isset($_FILES['filenaam']))
+        {
+            echo "<h1>ISSET</h1>";
+ 
+            for($i = 0; $i < count($_FILES['filenaam']['error']); $i++)
+            {
+                if($_FILES['filenaam']['error'][$i] === 1)
+                    {
+                        $errors[] ='file img error';
+                        echo "<h1>ERROR</h1>";
+                    }    
+
+                if($_FILES['filenaam']['size'][$i] >= 1048576)
+                    {
+                        $errors[] ='bestand te groot';
+                        echo "<h1>size</h1>";
+                    }  
+
+            }
+/* */            
         }
 
+ 
 
         if(empty($errors))
         {
-            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], 'henk', $_POST['einddatum'], '1', 'filenaam' );
-            echo '<h1>FOUT</h1>';
+
+            var_dump($_FILES);
+
+            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], 1, $_FILES['filenaam'] );
+            echo '<h1>GOED</h1>';
+
+
         }
+
         set_data_view('gegevens', $_POST);
         set_data_view('errors', $errors);
         set_data_view('title', 'Veiling maken');
