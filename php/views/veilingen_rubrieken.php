@@ -1,6 +1,6 @@
 <ul>
     <?php
-        function generateRubriekenTreeList(&$rubrieken, $hoofdrubriek)
+        function generateVeilingenRubriekenTreeList(&$rubrieken, $hoofdrubriek)
         {
             $filterRubrieken = array_filter($rubrieken, function($rubriek) use ($hoofdrubriek){
                 return $rubriek['hoofdrubriek'] == $hoofdrubriek;
@@ -18,9 +18,9 @@
                 {
                     $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
 
-                    printf('<li><a href="#%s" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
+                    printf('<li><a href="#%s" class="collapse" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
 
-                    generateRubriekenTreeList($rubrieken, $rubriek['rubrieknummer']);
+                    generateVeilingenRubriekenTreeList($rubrieken, $rubriek['rubrieknummer']);
 
                     echo '</ul></li>';
                 }
@@ -32,6 +32,6 @@
         }
 
         $rubrieken = get_data_view('rubrieken');
-        generateRubriekenTreeList($rubrieken, -1);
+        generateVeilingenRubriekenTreeList($rubrieken, -1);
     ?>
 </ul>

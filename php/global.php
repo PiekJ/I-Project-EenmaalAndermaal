@@ -5,11 +5,15 @@
 	define('VIEWS_FOLDER', SYSTEM_FOLDER . 'views' . DS);
 	define('ROUTES_FOLDER', SYSTEM_FOLDER . 'routes' . DS);
 	define('CACHE_FOLDER', SYSTEM_FOLDER . 'cache' . DS);
+	define('CRONJOBS_FOLDER', SYSTEM_FOLDER . 'cronjobs' . DS);
 
 	ini_set('log_errors', '1');
     ini_set("error_log", SYSTEM_FOLDER . 'php-error.log');
+    ini_set('mssql.charset', 'ANSI');
 
 	session_start();
+
+	header('Content-Type: text/html; charset=ANSI');
 
 	// initializeert de database connectie als deze niet bestaad en geeft deze terug.
 	function get_db()
@@ -68,6 +72,7 @@
 	require_once SYSTEM_FOLDER . 'view.php';
 	require_once SYSTEM_FOLDER . 'router.php';
 	require_once SYSTEM_FOLDER . 'cache.php';
+	require_once SYSTEM_FOLDER . 'cronjob.php';
 
 	require_once SYSTEM_FOLDER . 'user.php';
 	require_once SYSTEM_FOLDER . 'veiling.php';

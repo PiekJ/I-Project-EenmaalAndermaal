@@ -6,6 +6,7 @@
         Er is een e-mail met code verstuurd naar uw e-mailadres.
         </div>';
     } 
+
     if(check_verkoopaccount($_SESSION['user_data']['gebruikersnaam'])){
         echo '<div class="alert alert-warning">
         U heeft al een verkoopaccount.

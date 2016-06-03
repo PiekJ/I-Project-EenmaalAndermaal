@@ -16,7 +16,7 @@
 
                 <fieldset class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" value=" <?= htmlspecialchars($_SESSION['email']) ?>" placeholder="" disabled>
+                    <input type="email" class="form-control" name="email" value=" <?=$_SESSION['email'] ?>" placeholder="" disabled>
                 </fieldset>
 
                 <fieldset class="form-group">

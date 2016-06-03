@@ -6,7 +6,7 @@
         </div>
 
         <script src="<?php echo get_url(); ?>js/jquery-1.12.3.min.js"></script>
-        <script src="<?php echo get_url(); ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo get_url(); ?>js/bootstrap.min.js"></script>
 
         <script>
             function doCountdown() {
@@ -17,6 +17,12 @@
                         m = Math.floor(timestamp / 60),
                         timestamp = timestamp % 60,
                         s = timestamp;
+
+                    if (countdown < 0) {
+                        h = 0;
+                        m = 0;
+                        s = 0;
+                    }
 
                     $(this).data('countdown', countdown).text(h + ':' + m + ':' + s);
                 });

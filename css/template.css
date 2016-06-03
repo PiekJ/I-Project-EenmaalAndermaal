@@ -95,8 +95,9 @@ h2, h3, h4, h5, h6{
     border-bottom: 2px solid #ffa034;
 }
 .veiling-card-img img{
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     margin: 0 auto;
 }
 .veiling-card-content{
@@ -141,12 +142,31 @@ h2, h3, h4, h5, h6{
 .veiling-rubrieken > ul ul{
     padding: 0 15px;
 }
+.veiling-rubrieken > ul li{
+    margin: 6px 0;
+}
 .veiling-rubrieken span{
     color: #ffffff;
     font-weight: bold;
 }
 .veiling-rubrieken a{
+    display: inline-block;
+    width: 100%;
     color: #ffffff;
+}
+.veiling-rubrieken a.collapse{
+    background: url(../images/arrow-right.png) right center no-repeat;
+}
+.veiling-rubrieken a[aria-expanded=true]{
+    background: url(../images/arrow-down.png) right center no-repeat;
+}
+
+.top-pager{
+    margin-top: 0;
+}
+
+.bottom-pager{
+    margin: 0;
 }
 
 .btn-primary{
@@ -156,19 +176,6 @@ h2, h3, h4, h5, h6{
 
 .carousel-inner > .item > img {
     margin: 0 auto;
-}
-
-.carousel{
-	min-height: 200px;
-    max-height: 200px;
-}
-
-.carousel-control.right {
-  background-color:#ffa034; 
-}
-
-.carousel-control.left {
-  background-color:#ffa034; 
 }
 
 .well{

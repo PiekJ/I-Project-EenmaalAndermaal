@@ -16,6 +16,8 @@
         }
     }
 
+    require_once CRONJOBS_FOLDER . 'veilingen.php';
+
     require_once ROUTES_FOLDER . 'account.php';
     require_once ROUTES_FOLDER . 'veilingen.php';
 
@@ -44,12 +46,14 @@
         {
             set_data_view('rubrieken', get_rubrieken());
             $rubrieken = display_view('home_rubrieken');
-            store_cache('home_rubrieken', $rubrieken);
+            store_cache('home_rubrieken', $rubrieken, time() + 3600 * 12);
 
             set_data_view('rubrieken', $rubrieken);
         }
 
         return display_view('home');
     });
+
+    execute_cronjobs();
 
     exit(execute_route(get_request_method(), get_request_uri()));
