@@ -51,7 +51,7 @@
                                             <div class="clear">
                                                 <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
 
-                                                <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
+                                                <a href="<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                     <div class="clear">
                                         <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
 
-                                        <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
+                                        <a href="<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
                                     </div>
                                 </div>
                             </div>
