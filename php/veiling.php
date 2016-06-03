@@ -168,18 +168,33 @@
         return $result;
     }
 
-    function get_aanbevolen_veilingen($zoekopdracht = null)
+    function get_aanbevolen_veilingen($zoekterm = null, $zoekrubriek = null)
     {
         $db = get_db();
 
         $args = null;
+
         $sql = 'SELECT TOP 4 v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam
         FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer
         WHERE v.voorwerpnummer IN
             (SELECT voorwerpnummer
              FROM VoorwerpRubriek
-             WHERE rubrieknummer = ?)
-        ORDER BY NEWID()';
+             WHERE rubrieknummer = ?)';
+        
+        if (!empty($zoekterm))
+        {
+            if (empty($args))
+            {
+                $args = [];
+                $sql .= ' AND 1=1';
+            }
+
+            $sql .= ' OR (v.titel LIKE ? OR v.beschrijving LIKE ?)';
+            $args[] = '%' . $zoekterm . '%';
+            $args[] = '%' . $zoekterm . '%';
+        }
+        
+        $sql .= ' ORDER BY NEWID()';
         
         /*
         if (!empty($order_by))
@@ -189,7 +204,7 @@
         */
 
 
-        $result = sqlsrv_query($db, $sql, [$zoekopdracht]);
+        $result = sqlsrv_query($db, $sql, [$zoekrubriek, $zoekterm, $zoekrubriek, $zoekterm, $args[0], $args[1]]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));

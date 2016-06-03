@@ -25,12 +25,10 @@
         
         set_data_view('aflopende_veilingen', get_aflopende_veilingen());
         
-        if(isset($_COOKIE['zoekopdracht'])){
-            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekopdracht']));
+        if(isset($_COOKIE['zoekterm']) || isset($_COOKIE['zoekrubriek'])){
+            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekterm'], $_COOKIE['zoekrubriek']));
         }
-        else{
-            set_data_view('aanbevolen_veilingen', get_veilingen());
-        }
+        
         set_data_view('rubrieken', get_rubrieken());
         $rubrieken = display_view('veilingen_rubrieken');
         store_cache('veilingen_rubrieken', $rubrieken);

@@ -26,34 +26,44 @@
         <div>
             <?php 
                 $i = 0;
-                foreach (get_data_view('aanbevolen_veilingen') as $veiling) { 
-                    if ($i++ % 4 == 0)
-                    {
-                        echo '<div class="row">';
-                    }
-                        ?>
-                        <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
-                            <div class="veiling-card">
-                                <div class="veiling-card-img">
-                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
-                                </div>
+                if(isset($_COOKIE['zoekterm']) || isset($_COOKIE['zoekrubriek'])){
+                    if(!empty(get_data_view('aanbevolen_veilingen'))){
+                        foreach (get_data_view('aanbevolen_veilingen') as $veiling) { 
+                            if ($i++ % 4 == 0)
+                            {
+                                echo '<div class="row">';
+                            }
+                                ?>
+                                <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
+                                    <div class="veiling-card">
+                                        <div class="veiling-card-img">
+                                            <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . 'pics/' . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                        </div>
 
-                                <div class="veiling-card-content">
-                                    <div class="clear">
-                                        <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
+                                        <div class="veiling-card-content">
+                                            <div class="clear">
+                                                <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
 
-                                        <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
+                                                <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
+                                            </div>
+
+                                            <div class="clear">
+                                                <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
+
+                                                <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="clear">
-                                        <p class="veiling-card-price">&euro; <?php echo (!empty($veiling['verkoopPrijs'])) ? $veiling['verkoopPrijs'] : $veiling['startprijs']; ?></p>
-
-                                        <a href="<?php echo $veiling_url; ?>" class="btn btn-primary veiling-card-button">Bieden</a>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <?php } ?>
+                            <?php }
+                            }
+                            else{
+                                echo '<p>Geen aanbevolen veilingen.</p>';
+                            }   
+                        }
+                        else{
+                            echo '<p>Geen aanbevolen veilingen.</p>';
+                        }?>
         </div>
     </div>
 </div>
