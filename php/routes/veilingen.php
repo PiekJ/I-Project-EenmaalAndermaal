@@ -24,6 +24,12 @@
         }
         else
         {
+            //slaat gegeven rubriek op voor aanbevolen veilingen op de homepage
+            setcookie('zoekterm', $_GET['search'], PHP_INT_MAX, '/');
+            setcookie('zoekrubriek', $_GET['rubriek'], PHP_INT_MAX, '/'); 
+            
+            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']), 0);
+
             $rubriek = (!empty($_GET['rubriek'])) ? $_GET['rubriek'] : null;
 
             set_data_view('veilingen', get_veilingen($rubriek, $_GET['search'], $pagination_current, $pagination_max, 'looptijdEindDag, looptijdEindTijd', 'DESC'));

@@ -50,7 +50,6 @@
             <button type="submit" class="btn btn-primary">Vraag aan</button>
 
             </form>
-
         </div>
         </div>
     </div>

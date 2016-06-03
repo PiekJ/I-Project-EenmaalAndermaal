@@ -32,11 +32,16 @@
                     <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="<?php echo (get_data_view('menu') == 0) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>">Home</a></li>
+                            
                             <li class="<?php echo (get_data_view('menu') == 1) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>veilingen">Veilingen</a></li>
+                            
                             <?php if (is_user_logged_in()) { // if user is logged in ?>
-                            <li class="<?php echo (get_data_view('menu') == 2) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>veiling/create">Start nieuwe vieling</a></li>
-                            <li class="<?php echo (get_data_view('menu') == 3) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>account/verkoper/registreren">Aanmaken verkoopaccount</a></li>
-                            <?php } ?>
+                            <li class="<?php echo (get_data_view('menu') == 2) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>account/verkoper/registreren">Aanvragen verkoopaccount</a></li>
+                            
+                            <?php if (check_verkoopaccount($_SESSION['user_data']['gebruikersnaam'])) { ?>
+                            <li class="<?php echo (get_data_view('menu') == 3) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>veiling/create">Start nieuwe vieling</a></li>
+                            
+                            <?php }} ?>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
