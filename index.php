@@ -27,7 +27,13 @@
         
         set_data_view('aflopende_veilingen', get_aflopende_veilingen());
         
-        if(isset($_COOKIE['zoekterm']) || isset($_COOKIE['zoekrubriek'])){
+        if(isset($_COOKIE['zoekterm'])){
+            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekterm']));
+        } 
+        if(isset($_COOKIE['zoekrubriek'])){
+            set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekrubriek']));
+        } 
+        if(isset($_COOKIE['zoekterm'], $_COOKIE['zoekrubriek'])){
             set_data_view('aanbevolen_veilingen', get_aanbevolen_veilingen($_COOKIE['zoekterm'], $_COOKIE['zoekrubriek']));
         }
         

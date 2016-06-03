@@ -215,7 +215,7 @@
         */
 
 
-        $result = sqlsrv_query($db, $sql, [$zoekrubriek, $zoekterm, $zoekrubriek, $zoekterm, $args[0], $args[1]]);
+        $result = sqlsrv_query($db, $sql, [$zoekrubriek, $zoekterm, $args[0], $args[1]]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
