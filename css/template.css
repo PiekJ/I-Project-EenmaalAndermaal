@@ -95,8 +95,9 @@ h2, h3, h4, h5, h6{
     border-bottom: 2px solid #ffa034;
 }
 .veiling-card-img img{
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     margin: 0 auto;
 }
 .veiling-card-content{

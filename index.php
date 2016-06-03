@@ -16,6 +16,8 @@
         }
     }
 
+    require_once CRONJOBS_FOLDER . 'veilingen.php';
+
     require_once ROUTES_FOLDER . 'account.php';
     require_once ROUTES_FOLDER . 'veilingen.php';
 
@@ -39,5 +41,7 @@
 
         return display_view('home');
     });
+
+    execute_cronjobs();
 
     exit(execute_route(get_request_method(), get_request_uri()));
