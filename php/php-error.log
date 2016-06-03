@@ -211,3 +211,25 @@
 [01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Use of undefined constant i - assumed 'i' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
 [01-Jun-2016 15:20:11 Europe/Berlin] PHP Notice:  Undefined index: i in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\veiling.php on line 185
 [03-Jun-2016 09:49:10 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 93
+[03-Jun-2016 15:15:21 Europe/Berlin] PHP Notice:  Undefined index: titel in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 105
+[03-Jun-2016 15:15:21 Europe/Berlin] PHP Notice:  Undefined index: betalingsinstructie in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 147
+[03-Jun-2016 15:15:21 Europe/Berlin] PHP Notice:  Undefined index: verzendinstructies in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 157
+[03-Jun-2016 15:24:30 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:32:04 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:33:07 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:33:18 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:33:45 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:43:48 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:51:05 Europe/Berlin] PHP Notice:  Undefined variable: veilingstart in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 216
+[03-Jun-2016 15:51:33 Europe/Berlin] PHP Notice:  Undefined variable: veilingstart in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 216
+[03-Jun-2016 15:51:56 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:53:20 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 208
+[03-Jun-2016 15:53:51 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 15:55:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 215
+[03-Jun-2016 15:55:33 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 16:08:59 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 16:09:40 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 16:16:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 208
+[03-Jun-2016 16:16:46 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 16:17:49 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33
+[03-Jun-2016 16:24:12 Europe/Berlin] PHP Notice:  Undefined index: rubrieknummer in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\views\veiling_formulier.php on line 33

@@ -13,6 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Gekozen rubriek</h4>
+                    <form action="<?php echo get_url(true); ?>veiling/create/formulier" method="POST" >
                         <p>
                             <?php
                                 if(isset($_GET['rubriek']) && rubriek_valid($_GET['rubriek'])){
@@ -34,10 +35,15 @@
                                 } 
                             ?>
                         </p>
-                        <form method="post" action="<?php echo get_url(true); ?>veiling/create/formulier">
-                            <button type="submit" class="btn btn-primary">Verder</button>
+                        
+
+                            
                             <input type="hidden" value="<?=(isset($_GET['rubriek']) ? $_GET['rubriek'] : "")?>" name="rubrieknummer">
+                            <button type="submit" naam="rubriek" class="btn btn-primary">Verder</button>
+                            
+
                         </form>
+                    
         </div>
 </div>
 

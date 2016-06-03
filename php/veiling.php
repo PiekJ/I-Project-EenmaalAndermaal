@@ -306,7 +306,7 @@
         //RUBRIEK
         $rubrieksql = 'INSERT INTO VoorwerpRubriek (rubrieknummer, voorwerpnummer) VALUES (?, ?)';
 
-        $rubriekresult= sqlsrv_query($db, $rubrieksql, [32, $arrayID['id']]);
+        $rubriekresult= sqlsrv_query($db, $rubrieksql, [$rubrieknummer, $arrayID['id']]);
 
         if($rubriekresult === false)
         {
@@ -320,12 +320,13 @@
         for($i = 0; $i < count($_FILES['filenaam']['tmp_name']); $i++)
         {
 
-            $destination=SYSTEM_FOLDER . '../upload/' . $_FILES['filenaam']['name'][$i];
+            $destination=dirname(SYSTEM_FOLDER) . '/upload/'. $verkoper.'_'. uniqid(). "_" . $_FILES['filenaam']['name'][$i];
             move_uploaded_file (($_FILES['filenaam']['tmp_name'][$i]), $destination );
 
-            $bestandresult= sqlsrv_query($db, $bestandsql, [$verkoper.'_'. uniqid() .'_upload/' . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
+            $bestandresult= sqlsrv_query($db, $bestandsql, ['upload/'. $verkoper.'_'. uniqid(). "_" . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
         }
 
+        return $arrayID['id'];
     }
 
     function get_veiling($veilingnummer)

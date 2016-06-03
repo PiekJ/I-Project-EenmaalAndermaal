@@ -1,13 +1,38 @@
 <?php echo display_view('template_header'); ?>
 
+
             <div class="col-md-12">
                 <h3 > 1. Gekozen rubriek</h3>
                 <div class="col-md-12">
-                    <p> Fietsen > Mountainbike <a href="#" style="color:#ffa034;">wijzigen</a></p>
+
+                    <p>                            <?php
+                                if(isset($_POST['rubrieknummer']) && rubriek_valid($_POST['rubrieknummer'])){
+                                    $reeks = get_rubriek_reeks($_POST['rubrieknummer'], -1);
+                                    $i = 0;
+                                    $length = count($reeks);
+                                    foreach(array_reverse($reeks) as $rubriek){
+                                        if ($i != $length - 1) {
+                                            echo $rubriek['rubrieknaam'] . " > ";   
+                                        }
+                                        else{
+                                            echo "<strong>" . $rubriek['rubrieknaam'] . "</strong>";
+                                        }
+                                        $i++;
+                                    }  
+                                }
+                                else{
+                                    echo "Geen rubriek gekozen.";
+                                } 
+                            ?></p>
                 </div>
             </div>
 
             <form method="post" enctype="multipart/form-data">
+
+                <div class="input-group">
+                    <input type="hidden" class="form-control" value="<?php echo $_POST['rubrieknummer'] ?>" name="rubriekid">
+                </div>
+                
                 <div class="col-md-12">
                     <h3> 2. Titel en beschrijving</h3>
                     
@@ -32,10 +57,10 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <p> plaatsnaam* </p>
+                        <p> plaatsnaam </p>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Plaatsnam" name="plaatsnaam" required>
+                            <input type="text" class="form-control" placeholder="Plaatsnam" name="plaatsnaam">
                         </div>
                     </div>
                 </div>
@@ -46,6 +71,7 @@
                             <input type="file" class="multi with-preview" maxlength="4" accept="png|jpg|jpeg|gif" data-maxfile="1024" name="filenaam[]"/>
                             <span class="file-custom"></span>
                         </label>
+                    </div>
                     <div class="col-md-12">
 
                     <h3> 4. Startprijs, betaling en verzending</h3>
@@ -103,7 +129,7 @@
 
                     <div class="col-md-12">
                         <br>
-                        <input type="submit" class="btn btn-primary btn-sm">
+                        <input type="submit" name="formulier" class="btn btn-primary btn-sm">
                     </div>
                 </div>
             </form>
