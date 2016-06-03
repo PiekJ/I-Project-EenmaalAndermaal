@@ -117,6 +117,33 @@
             return false;
         }
     }
+    function check_verkoopaccount($gebruikersnaam)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT Verkoper 
+        FROM Gebruiker 
+        WHERE gebruikersnaam = ?';
+
+        $result = sqlsrv_query($db, $sql, [$gebruikersnaam]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        
+        $heeft_verkoopaccount = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        
+        if ($heeft_verkoopaccount['Verkoper'] == '1')
+        {
+                return true;
+        }
+        else
+        {   
+                //echo "false";
+                return false;
+        }
+        
+    }
 
     function send_activation_code_user($email)
     {

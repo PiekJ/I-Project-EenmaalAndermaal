@@ -187,24 +187,17 @@
         $db = get_db();
 
         $args = null;
-        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer';
+        $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs, v.veilingGesloten FROM Voorwerp v LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE v.veilingGesloten = 0';
 
         if (is_numeric($rubrieknummer))
         {
-            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE r.rubrieknummer = ?';
+            $sql = 'SELECT v.voorwerpnummer, v.titel, v.startprijs, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, b.filenaam, v.verkoopPrijs, v.veilingGesloten FROM VoorwerpRubriek r INNER JOIN Voorwerp v ON v.voorwerpnummer = r.voorwerpnummer LEFT JOIN Bestand b ON b.voorwerpnummer = v.voorwerpnummer WHERE r.rubrieknummer = ? AND v.veilingGesloten = 0';
             $args = [$rubrieknummer];
         }
 
         if (!empty($search_text))
         {
-            if (empty($args))
-            {
-                $args = [];
-                $sql .= ' WHERE 1=1';
-            }
-
-            $sql .= ' AND (v.titel LIKE ? OR v.beschrijving LIKE ?)';
-            $args[] = '%' . $search_text . '%';
+            $sql .= ' AND v.titel LIKE ?';
             $args[] = '%' . $search_text . '%';
         }
 
@@ -228,6 +221,27 @@
         }
 
         $result = sqlsrv_query($db, $sql, $args);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        return $results;
+    }
+
+    function get_bestanden($veilingnummer)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Bestand WHERE voorwerpnummer = ?';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
         if($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
@@ -318,7 +332,7 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT v.*, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind FROM Voorwerp v WHERE v.voorwerpnummer = ?';
+        $sql = 'SELECT v.*, CAST(v.looptijdBeginDag AS DATETIME) + CAST(v.looptijdBeginTijd AS DATETIME) AS looptijdBegin, CAST(v.looptijdEindDag AS DATETIME) + CAST(v.looptijdEindTijd AS DATETIME) AS looptijdEind, dbo.berekenMinimalBod(ISNULL(v.verkoopPrijs, v.startprijs)) AS minimalBod FROM Voorwerp v WHERE v.voorwerpnummer = ?';
 
         $result = sqlsrv_query($db, $sql, [$veilingnummer]);
         if($result === false)
@@ -335,21 +349,6 @@
 
         return $result;
     }
-
-    function generateRubriekenList($rubrieken)
-        {
-        echo '<ul>';
-            foreach ($rubrieken as $rubriek)
-            {
-
-                    echo '<a <li class="list-group-item" id="' . $rubriek['rubrieknummer'] . '">';
-                    echo $rubriek['rubrieknaam'];
-
-                    echo '</li></a>';
-            
-            }
-        echo '</ul>';
-        }
         
     function generateRubriekenSidewayList($rubrieken, $hoofdrubriek)
         {
@@ -386,30 +385,47 @@
             }
         }     
 
-    function generateRubriekenTreeList($rubrieken, $hoofdrubriek)
+    function add_veiling_bod($veilingnummer, $bod)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT dbo.checkBodBedrag(?, ?, CONVERT(date, getdate()), CONVERT(time, getdate())) AS valide';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod]);
+        if ($result === false)
         {
-            $filterRubrieken = array_filter($rubrieken, function($rubriek) use ($hoofdrubriek){
-                return $rubriek['hoofdrubriek'] == $hoofdrubriek;
-            });
-
-            usort($filterRubrieken, function($a, $b) {
-                return $a['volgnr'] - $b['volgnr'];
-            });
-
-            foreach ($filterRubrieken as $rubriek)
-            {
-                $rubrieknaam = str_replace('  ', '', $rubriek['rubrieknaam']);
-
-                if ($rubriek['heeftSubrubriek'])
-                {
-                    $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
-
-                    printf('<li><a href="#%s" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
-
-                    generateRubriekenTreeList($rubrieken, $rubriek['rubrieknummer']);
-
-                    echo '</ul></li>';
-                }
-            
-            }
+            die(var_export(sqlsrv_errors(), true));
         }
+
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        if (!isset($row['valide']) || $row['valide'] != 1)
+        {
+            return false;
+        }
+
+        $sql = 'SELECT veilingGesloten FROM voorwerp WHERE voorwerpnummer = ?';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
+        if ($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        if (!isset($row['veilingGesloten']) || $row['veilingGesloten'] == 1)
+        {
+            return false;
+        }
+
+        $sql = 'INSERT INTO Bod (voorwerp, bodBedrag, gebruiker, bodDag, bodTijd) VALUES (?, ?, ?, CONVERT(date, getdate()), CONVERT(time, getdate()))';
+
+        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod, get_user_data('gebruikersnaam')]);
+        if ($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        return $result;
+    }

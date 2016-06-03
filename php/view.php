@@ -58,7 +58,7 @@
 	{
 		$result = call_user_func_array('get_data_view', func_get_args());
 
-		echo htmlspecialchars($result);
+		echo htmlspecialchars($result, ENT_HTML5, 'ISO-8859-15');
 	}
 
 	// returnt een view

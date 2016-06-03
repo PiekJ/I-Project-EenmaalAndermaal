@@ -211,9 +211,9 @@
             location();
             return;
         }
-        
+    
         set_data_view('title', 'Aanvragen verkoopaccount');
-        set_data_view('menu', 3);
+        set_data_view('menu', 2);
 
         return display_view('account_verkoper_registreren');
 
@@ -257,7 +257,7 @@
         set_data_view('gegevens', $_POST);
         
         set_data_view('title', 'Aanvragen verkoopaccount');
-        set_data_view('menu', 3);
+        set_data_view('menu', 2);
 
         return display_view('account_verkoper_registreren');
         
@@ -324,6 +324,7 @@
             if(md5($_POST['code']) == $_COOKIE['activering_code_verkoper']){
                 activate_verkoper($_SESSION['user_data']['gebruikersnaam']);
                 set_data_view('code_correct', true);
+                setcookie("activering_code_verkoper", "",  0 , "/");
             }
             else{
                 set_data_view('code_correct', false);

@@ -4,7 +4,7 @@
         set_data_view('menu', 1);
         set_data_view('title', 'Veilingen');
 
-        $pagination_current = (!empty($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 0;
+        $pagination_current = (!empty($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0) ? $_GET['page'] : 0;
         $pagination_max = 30;
         $pagination_url = get_url(true) . 'veilingen';
 
@@ -24,6 +24,12 @@
         }
         else
         {
+            //slaat gegeven rubriek op voor aanbevolen veilingen op de homepage
+            setcookie('zoekterm', $_GET['search'], PHP_INT_MAX, '/');
+            setcookie('zoekrubriek', $_GET['rubriek'], PHP_INT_MAX, '/'); 
+            
+            set_data_view('veilingen', get_veilingen($_GET['rubriek'], $_GET['search']), 0);
+
             $rubriek = (!empty($_GET['rubriek'])) ? $_GET['rubriek'] : null;
 
             set_data_view('veilingen', get_veilingen($rubriek, $_GET['search'], $pagination_current, $pagination_max, 'looptijdEindDag, looptijdEindTijd', 'DESC'));
@@ -39,7 +45,7 @@
         {
             set_data_view('rubrieken', get_rubrieken());
             $rubrieken = display_view('veilingen_rubrieken');
-            store_cache('veilingen_rubrieken', $rubrieken);
+            store_cache('veilingen_rubrieken', $rubrieken, time() + 3600 * 12);
 
             set_data_view('rubrieken', $rubrieken);
         }
@@ -64,16 +70,21 @@
         }
 
         set_data_view('veiling', $veiling);
+        set_data_view('bestanden', get_bestanden($veiling['voorwerpnummer']));
 
         return display_view('veiling');
     });
 
-    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/bod', function($voorwerpnummer) {
-        
-    });
+    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)', function($voorwerpnummer) {
+        if (isset($_POST['bod']) && is_user_logged_in())
+        {
+            set_data_view('bod_error', add_veiling_bod($voorwerpnummer, round(floatval(str_replace(',', '.', $_POST['bod'])), 2)));
+        }
 
-    add_route('POST', 'veiling\/(?<voorwerpnummer>[0-9]+)\/email', function($voorwerpnummer) {
+        set_data_view('menu', 1);
+        set_data_view('title', 'Veiling');
 
+        $veiling = get_veiling($voorwerpnummer);
     });
 
 
@@ -206,6 +217,12 @@
 
     add_route('GET', 'veiling\/create', function() {
         if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+
+        if (empty($veiling))
         {
             location();
             return;
