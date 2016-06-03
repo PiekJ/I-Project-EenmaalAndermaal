@@ -221,12 +221,6 @@
             location();
             return;
         }
-
-        if (empty($veiling))
-        {
-            location();
-            return;
-        }
         
         set_data_view('menu', 2);
         set_data_view('title', 'Veiling rubriek kiezen');

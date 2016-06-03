@@ -13,7 +13,6 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Gekozen rubriek</h4>
-                    <form method="post" action="">
                         <p>
                             <?php
                                 if(isset($_GET['rubriek']) && rubriek_valid($_GET['rubriek'])){
@@ -39,7 +38,6 @@
                             <button type="submit" class="btn btn-primary">Verder</button>
                             <input type="hidden" value="<?=(isset($_GET['rubriek']) ? $_GET['rubriek'] : "")?>" name="rubrieknummer">
                         </form>
-                    </form>
         </div>
 </div>
 
