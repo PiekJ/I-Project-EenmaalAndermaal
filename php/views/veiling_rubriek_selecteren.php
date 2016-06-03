@@ -34,7 +34,7 @@
                                 } 
                             ?>
                         </p>
-                        <form method="post" action="<?php echo get_url(true); ?>veiling/create/formulier">
+                        <form method="post" action="<?php echo get_url(true); ?>veiling/create/">
                             <button type="submit" class="btn btn-primary">Verder</button>
                             <input type="text" value="<?=(isset($_GET['rubriek']) ? $_GET['rubriek'] : "")?>" name="rubrieknummer" disabled hidden>
                         </form>
