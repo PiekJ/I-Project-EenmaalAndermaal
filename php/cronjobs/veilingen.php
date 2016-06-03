@@ -24,7 +24,7 @@
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-                @mail($row['email'], "EenmaalAndermaal veiling gesloten", $message, $headers);
+                @mail($row['emailadres'], "EenmaalAndermaal veiling gesloten", $message, $headers);
             }
         }
 
