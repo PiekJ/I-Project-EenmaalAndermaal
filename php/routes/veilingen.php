@@ -76,7 +76,8 @@
 
     });
 
-    add_route('GET','veiling\/create', function(){
+
+    add_route('GET','veiling\/create\/formulier', function(){
         set_data_view('menu', 2);
         set_data_view('title', 'Veiling maken');
 
@@ -85,7 +86,7 @@
     });
 
 
-    add_route('POST', 'veiling\/create', function(){
+    add_route('POST', 'veiling\/create\/formulier', function(){
 
         $errors=[];
         
@@ -203,3 +204,15 @@
         return display_view('veiling_formulier');
     });
 
+    add_route('GET', 'veiling\/create', function() {
+        if (!is_user_logged_in())
+        {
+            location();
+            return;
+        }
+        
+        set_data_view('menu', 2);
+        set_data_view('title', 'Veiling rubriek kiezen');
+
+        return display_view('veiling_rubriek_selecteren');
+    });

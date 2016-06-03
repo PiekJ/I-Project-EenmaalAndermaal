@@ -26,6 +26,60 @@
         return $results;
     }
 
+    function get_hoofdrubriek($subrubriek)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$subrubriek]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+
+        return $results;
+    }
+    
+    function get_subrubrieken($hoofdrubriek)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$hoofdrubriek]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+
+        return $results;
+    }
+
     /*function get_rubrieken_old($sorted = null)
     {
         $sorted = (is_bool($sorted)) ? $sorted : false;
@@ -62,6 +116,71 @@
 
         return $results;
     }*/
+
+    function get_rubriek_by_id($id){
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$id]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+        
+        $results = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+        $rubriekPath = 0;
+
+        return $results['rubrieknaam'];
+    }
+    
+    function rubriek_valid($id){
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$id]);
+        if($result === false)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }  
+    }
+
+    function get_rubriek_reeks($id, $to_id) // returns array met rubrieken reeks
+    {
+        $db = get_db();
+
+        $rubriek_reeks = [];
+
+        $sql = 'SELECT * FROM Rubriek WHERE rubrieknummer = ?';
+        $result = sqlsrv_query($db, $sql, [$id]);
+
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $rubriek = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $rubriek_reeks[] = $rubriek;
+
+        if ($rubriek['hoofdrubriek'] != $to_id)
+        {   
+            $rubriek_reeks = array_merge($rubriek_reeks, get_rubriek_reeks($rubriek['hoofdrubriek'], $to_id));
+        }
+
+        return $rubriek_reeks;
+    }
 
     function get_veilingen($rubrieknummer = null, $search_text = null, $pagination = null, $pagination_max = null, $order_by = null, $order_by_asc = null)
     {
@@ -216,3 +335,81 @@
 
         return $result;
     }
+
+    function generateRubriekenList($rubrieken)
+        {
+        echo '<ul>';
+            foreach ($rubrieken as $rubriek)
+            {
+
+                    echo '<a <li class="list-group-item" id="' . $rubriek['rubrieknummer'] . '">';
+                    echo $rubriek['rubrieknaam'];
+
+                    echo '</li></a>';
+            
+            }
+        echo '</ul>';
+        }
+        
+    function generateRubriekenSidewayList($rubrieken, $hoofdrubriek)
+        {
+            $filterRubrieken = array_filter($rubrieken, function($rubriek) use ($hoofdrubriek){
+                return $rubriek['hoofdrubriek'] == $hoofdrubriek;
+            });
+
+            usort($filterRubrieken, function($a, $b) {
+                return $a['volgnr'] - $b['volgnr'];
+            });
+
+            foreach ($filterRubrieken as $rubriek)
+            {
+                if ($rubriek['heeftSubrubriek'])
+                {
+                    $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
+
+                    printf('<div style="btn-group"><li class="list-group-item"><a href="#%s" data-toggle="collapse" class="dropdown-toggle">%s</a><ul class="collapse dropdown-menu dropdown-menu-right" id="%s">', $id, $rubriek['rubrieknaam'], $id);
+
+                    generateRubriekenSidewayList($rubrieken, $rubriek['rubrieknummer']);
+                    
+                    echo '</ul></li></div>';
+                }
+                
+                else{
+                    $id = $rubriek['rubrieknummer'];
+                    
+                    printf('<div style="btn-group"><li class="list-group-item"><a href="' . get_url(true) . 'veiling/create?rubriek=%s">%s</a>', $id, $rubriek['rubrieknaam']); 
+                    
+                    echo '</li></div>';
+                }
+                
+                
+            }
+        }     
+
+    function generateRubriekenTreeList($rubrieken, $hoofdrubriek)
+        {
+            $filterRubrieken = array_filter($rubrieken, function($rubriek) use ($hoofdrubriek){
+                return $rubriek['hoofdrubriek'] == $hoofdrubriek;
+            });
+
+            usort($filterRubrieken, function($a, $b) {
+                return $a['volgnr'] - $b['volgnr'];
+            });
+
+            foreach ($filterRubrieken as $rubriek)
+            {
+                $rubrieknaam = str_replace('  ', '', $rubriek['rubrieknaam']);
+
+                if ($rubriek['heeftSubrubriek'])
+                {
+                    $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
+
+                    printf('<li><a href="#%s" data-toggle="collapse">%s</a><ul class="collapse" id="%s">', $id, $rubrieknaam, $id);
+
+                    generateRubriekenTreeList($rubrieken, $rubriek['rubrieknummer']);
+
+                    echo '</ul></li>';
+                }
+            
+            }
+        }

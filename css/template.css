@@ -213,3 +213,8 @@ hr {
         margin-right: 0;
     }
 }
+
+.dropdown-menu {
+  top: 0;
+  left: 100%;
+}
