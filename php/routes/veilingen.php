@@ -98,6 +98,10 @@
 
 
     add_route('POST', 'veiling\/create\/formulier', function(){
+                var_dump($_SERVER['HTTP_REFERER']);
+        var_dump(get_url(true) .  'veiling\/create\/formulier');
+
+        if($_SERVER['HTTP_REFERER'] == get_url(true) .  'veiling/create/formulier'){ 
 
         $errors=[];
         
@@ -196,7 +200,7 @@
         {
             if(strtotime($_POST['startdatum']) > strtotime($_POST['einddatum']) )
             {
-                $errors = 'Begindatum en einddatum incorrect';
+                $errors[] = 'Begindatum en einddatum incorrect';
             }
         }
 
@@ -218,21 +222,22 @@
                 }
         }
         else{
-            $errors = 'U moet minimaal 1 bestand uploaden';
+            $errors[] = 'U moet minimaal 1 bestand uploaden';
         }
 
 
         if(empty($errors))
         {
-            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubriekid'], $_FILES['filenaam'] );
+            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubrieknummer'], $_FILES['filenaam'] );
             header("Location: http://localhost/GitHub/I-Project-EenmaalAndermaal/veiling/" . $veilingstart);
         }
 
+        set_data_view('errors', $errors);
+    }
 
         set_data_view('gegevens', $_POST);
-        set_data_view('errors', $errors);
-        set_data_view('title', 'Veiling maken');
 
+        set_data_view('title', 'Veiling maken');
         return display_view('veiling_formulier');
 
     });
