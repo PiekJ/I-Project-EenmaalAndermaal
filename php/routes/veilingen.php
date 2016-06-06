@@ -98,8 +98,7 @@
 
 
     add_route('POST', 'veiling\/create\/formulier', function(){
-                var_dump($_SERVER['HTTP_REFERER']);
-        var_dump(get_url(true) .  'veiling\/create\/formulier');
+
 
         if($_SERVER['HTTP_REFERER'] == get_url(true) .  'veiling/create/formulier'){ 
 

@@ -78,10 +78,9 @@
 
                 <div class="col-md-12">
                     <h3 > 3. Foto(s)</h3>
-                        <label class="file">
-                            <input type="file" class="multi with-preview" maxlength="4" accept="png|jpg|jpeg|gif" data-maxfile="1024" name="filenaam[]"/>
-                            <span class="file-custom"></span>
-                        </label>
+
+                            <input type="file" class="multi with-preview" multiple maxlength="4" accept="png|jpg|jpeg|gif" data-maxfile="1024" name="filenaam[]"/>
+
                     </div>
                     <div class="col-md-12">
 
