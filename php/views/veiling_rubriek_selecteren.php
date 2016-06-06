@@ -2,7 +2,7 @@
 
 <div class="row">
             <div class="col-md-12">
-                <h3>gekozen rubriek</h3>
+                <h3>Gekozen rubriek</h3>
                     <form action="<?php echo get_url(true); ?>veiling/create/formulier" method="POST" >
                         <p>
                             <?php

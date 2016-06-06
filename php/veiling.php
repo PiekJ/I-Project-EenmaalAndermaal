@@ -143,18 +143,18 @@
     function rubriek_valid($id){
         $db = get_db();
 
-        $sql = 'SELECT * FROM Rubriek
+        $sql = 'SELECT COUNT(*) AS count FROM Rubriek
                 WHERE rubrieknummer = ?';
 
         //$startTime = microtime(true);
         $result = sqlsrv_query($db, $sql, [$id]);
         if($result === false)
         {
-            return false;
+            die(var_export(sqlsrv_errors(), true));
         }
-        else{
-            return true;
-        }  
+
+        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        return !isset($row['count']) || $row['count'] < 1;
     }
 
     function get_rubriek_reeks($id, $to_id) // returns array met rubrieken reeks
@@ -355,24 +355,9 @@
     {
         $db = get_db();
 
-        $sql = 'SELECT dbo.checkBodBedrag(?, ?, CONVERT(date, getdate()), CONVERT(time, getdate())) AS valide';
+        $sql = 'SELECT verkoper, veilingGesloten, dbo.checkBodBedrag(?, ?, CONVERT(date, getdate()), CONVERT(time, getdate())) AS valide FROM Voorwerp WHERE voorwerpnummer = ?';
 
-        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod]);
-        if ($result === false)
-        {
-            die(var_export(sqlsrv_errors(), true));
-        }
-
-        $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-
-        if (!isset($row['valide']) || $row['valide'] != 1)
-        {
-            return false;
-        }
-
-        $sql = 'SELECT veilingGesloten FROM voorwerp WHERE voorwerpnummer = ?';
-
-        $result = sqlsrv_query($db, $sql, [$veilingnummer]);
+        $result = sqlsrv_query($db, $sql, [$veilingnummer, $bod, $veilingnummer]);
         if ($result === false)
         {
             die(var_export(sqlsrv_errors(), true));
@@ -381,6 +366,16 @@
         $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
         if (!isset($row['veilingGesloten']) || $row['veilingGesloten'] == 1)
+        {
+            return false;
+        }
+
+        if (!isset($row['valide']) || $row['valide'] != 1)
+        {
+            return false;
+        }
+
+        if (!isset($row['verkoper']) || $row['verkoper'] == get_user_data('gebruikersnaam'))
         {
             return false;
         }
