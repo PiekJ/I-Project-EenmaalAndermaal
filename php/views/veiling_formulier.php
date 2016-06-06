@@ -64,7 +64,7 @@
 
                     <div class="col-md-6">
                         <p> Beschrijving* </p>
-                        <textarea class="form-control" rows="3" name ="beschrijving" value="<?=get_data_view('gegevens','beschrijving')?>" required></textarea>
+                        <textarea class="form-control" rows="3" name ="beschrijving" required> <?=get_data_view('gegevens','beschrijving')?> </textarea>
                     </div>
                     
                     <div class="col-md-6">
@@ -98,7 +98,7 @@
 
                         <div class="col-md-3">
                             <p> Betalingsinstructie </p>
-                            <textarea class="form-control" rows="4" name="betalingsinstructie" value="<?=get_data_view('gegevens','betalingsinstructie')?>" ></textarea>
+                            <textarea class="form-control" rows="4" name="betalingsinstructie"><?=get_data_view('gegevens','betalingsinstructie')?></textarea>
                         </div>
 
                         <div class="col-md-3">
@@ -110,7 +110,7 @@
 
                         <div class="col-md-3">
                             <p> verzendinstructies </p>
-                            <textarea class="form-control" rows="4" name="verzendinstructies" value="<?=get_data_view('gegevens','verzendinstructies')?>" ></textarea>
+                            <textarea class="form-control" rows="4" name="verzendinstructies"><?=get_data_view('gegevens','verzendinstructies')?></textarea>
                         </div>
                     </div>
 

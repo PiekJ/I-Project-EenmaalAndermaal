@@ -174,7 +174,7 @@
 
             if(time() > strtotime($_POST['startdatum']) )
             {
-                $errors[] = 'Datum incorrect';
+                $errors[] = 'Begindatum incorrect';
             }
 
         }
@@ -199,7 +199,7 @@
         {
             if(strtotime($_POST['startdatum']) > strtotime($_POST['einddatum']) )
             {
-                $errors[] = 'Begindatum en einddatum incorrect';
+                $errors[] = 'Einddatum is eerder dan begindatum';
             }
         }
 
