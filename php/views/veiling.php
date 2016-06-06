@@ -58,9 +58,9 @@
         </div>
 
         <div class="well">
-            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdBeginDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdBeginTijd')->format('h:i:s'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Begin veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdBeginDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdBeginTijd')->format('H:i:s'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdEindDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdEindTijd')->format('h:i:s'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Eind veiling</span><span style="float:right;"><?php echo get_data_view('veiling', 'looptijdEindDag')->format('m-d-Y'); ?> <?php echo get_data_view('veiling', 'looptijdEindTijd')->format('H:i:s'); ?></span>
             </p>
             <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>

@@ -1,5 +1,7 @@
 <?php echo display_view('template_header'); ?>
 
+<div class="row">
+    <div class="col-md-12">
     <?php
     
         if(get_data_view('errors') !== null){
@@ -9,13 +11,13 @@
                 '</div>';
             }
         }
-    
     ?>
+    </div>
+</div>
 
+<div class="row">
             <div class="col-md-12">
                 <h3 > 1. Gekozen rubriek</h3>
-                <div class="col-md-12">
-
                     <p>                            <?php
                                 if(isset($_POST['rubrieknummer']) && rubriek_valid($_POST['rubrieknummer'])){
                                     $reeks = get_rubriek_reeks($_POST['rubrieknummer'], -1);
@@ -35,18 +37,21 @@
                                     echo "Geen rubriek gekozen.";
                                 } 
                             ?></p>
-                </div>
             </div>
+</div>
 
-            <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 
+<div class="row">
+    <div class="col-md-12">
+            
                 <div class="input-group">
                     <input type="hidden" class="form-control" value="<?php echo $_POST['rubrieknummer'] ?>" name="rubrieknummer">
                 </div>
-                
-                <div class="col-md-12">
+
                     <h3> 2. Titel en beschrijving</h3>
-                    
+                
+                <div class="row">
                     <div class="col-md-6">
                         <p> Titel* </p>
 
@@ -75,16 +80,22 @@
                         </div>
                     </div>
                 </div>
+    </div>
+</div>
 
-                <div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
                     <h3 > 3. Foto(s)</h3>
 
                             <input type="file" class="multi with-preview" multiple maxlength="4" accept="png|jpg|jpeg|gif" data-maxfile="1024" name="filenaam[]"/>
 
-                    </div>
-                    <div class="col-md-12">
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-12">
                     <h3> 4. Startprijs, betaling en verzending</h3>
+                    <div class="row">
                         <div class="col-md-3">
                             <p> Startprijs* </p>
                             <div class="input-group">
@@ -113,35 +124,43 @@
                             <textarea class="form-control" rows="4" name="verzendinstructies"><?=get_data_view('gegevens','verzendinstructies')?></textarea>
                         </div>
                     </div>
+    </div>
+</div>
 
-                    <div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
                         <h3> 5. Looptijd</h3>
 
-                        <div class="col-md-6">
-                            <p> Veiling start dag* </p>
-                            <div class="input-group">
-                                <input type="date" class="form-control"  name="startdatum" value="<?=get_data_view('gegevens','startdatum')?>" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p> Veiling start dag* </p>
+                                <div class="input-group">
+                                    <input type="date" class="form-control"  name="startdatum" value="<?=get_data_view('gegevens','startdatum')?>" required>
+                                </div>
+                                <p>Veiling Start tijd* </p>
+                                <div class="input-group">
+                                    <input type="time" class="form-control"  name="starttijd" value="<?=get_data_view('gegevens','starttijd')?>" required>
+                                </div>
                             </div>
-                            <p>Veiling Start tijd* </p>
-                            <div class="input-group">
-                                <input type="time" class="form-control"  name="starttijd" value="<?=get_data_view('gegevens','starttijd')?>" required>
+
+                            <div class="col-md-6">
+                                <p> Veiling eind dag* </p>
+                                <div class="input-group">
+                                    <input type="date" class="form-control"  name="einddatum" value="<?=get_data_view('gegevens','einddatum')?>" required>
+                                </div>
+     
                             </div>
                         </div>
+    </div>
+</div>
 
-                        <div class="col-md-6">
-                            <p> Veiling eind dag* </p>
-                            <div class="input-group">
-                                <input type="date" class="form-control"  name="einddatum" value="<?=get_data_view('gegevens','einddatum')?>" required>
-                            </div>
- 
-                        </div>
-                    </div>
-
+<div class="row">
                     <div class="col-md-12">
                         <br>
                         <input type="submit" name="formulier" class="btn btn-primary btn-sm">
                     </div>
-                </div>
-            </form>
+</div>
+
+</form>
 
 <?php echo display_view('template_footer'); ?>
