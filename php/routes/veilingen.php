@@ -248,8 +248,22 @@
             return;
         }
         
-        set_data_view('menu', 2);
+        set_data_view('menu', 3);
         set_data_view('title', 'Veiling rubriek kiezen');
+
+        if ($rubrieken_cache = fetch_cache('veiling_rubriek_selecteren_rubrieken'))
+        {
+            set_data_view('rubrieken', $rubrieken_cache);
+
+        }
+        else
+        {
+            set_data_view('rubrieken', get_rubrieken());
+            $rubrieken = display_view('veiling_rubriek_selecteren_rubrieken');
+            store_cache('veiling_rubriek_selecteren_rubrieken', $rubrieken, time() + 3600 * 12);
+
+            set_data_view('rubrieken', $rubrieken);
+        }
 
         return display_view('veiling_rubriek_selecteren');
     });

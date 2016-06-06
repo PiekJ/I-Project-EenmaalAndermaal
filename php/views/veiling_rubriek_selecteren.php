@@ -1,18 +1,8 @@
 <?php echo display_view('template_header'); ?>
 
 <div class="row">
-            <div class="col-md-3">
-                <h3>Groep</h3>
-                                                               
-               <?php 
-               generateRubriekenSidewayList(get_rubrieken(), -1);
-                ?>    
-                    
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Gekozen rubriek</h4>
+            <div class="col-md-12">
+                <h3>gekozen rubriek</h3>
                     <form action="<?php echo get_url(true); ?>veiling/create/formulier" method="POST" >
                         <p>
                             <?php
@@ -46,5 +36,14 @@
                     
         </div>
 </div>
+
+<div class="row">
+            <div class="col-md-3">
+                <h4>Rubrieken</h4>
+
+                <?php echo get_data_view('rubrieken'); ?>
+            </div>
+        </div>
+        
 
 <?php echo display_view('template_footer'); ?>

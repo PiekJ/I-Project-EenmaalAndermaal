@@ -350,41 +350,6 @@
 
         return $result;
     }
-        
-    function generateRubriekenSidewayList($rubrieken, $hoofdrubriek)
-        {
-            $filterRubrieken = array_filter($rubrieken, function($rubriek) use ($hoofdrubriek){
-                return $rubriek['hoofdrubriek'] == $hoofdrubriek;
-            });
-
-            usort($filterRubrieken, function($a, $b) {
-                return $a['volgnr'] - $b['volgnr'];
-            });
-
-            foreach ($filterRubrieken as $rubriek)
-            {
-                if ($rubriek['heeftSubrubriek'])
-                {
-                    $id = 'rubriek-collapse-' . $rubriek['rubrieknummer'];
-
-                    printf('<div style="btn-group"><li class="list-group-item"><a href="#%s" data-toggle="collapse" class="dropdown-toggle">%s</a><ul class="collapse dropdown-menu dropdown-menu-right" id="%s">', $id, $rubriek['rubrieknaam'], $id);
-
-                    generateRubriekenSidewayList($rubrieken, $rubriek['rubrieknummer']);
-                    
-                    echo '</ul></li></div>';
-                }
-                
-                else{
-                    $id = $rubriek['rubrieknummer'];
-                    
-                    printf('<div style="btn-group"><li class="list-group-item"><a href="' . get_url(true) . 'veiling/create?rubriek=%s">%s</a>', $id, $rubriek['rubrieknaam']); 
-                    
-                    echo '</li></div>';
-                }
-                
-                
-            }
-        }     
 
     function add_veiling_bod($veilingnummer, $bod)
     {
