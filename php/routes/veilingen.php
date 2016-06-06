@@ -233,7 +233,7 @@
         if(empty($errors))
         {
             $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubrieknummer'], $_FILES['filenaam'] );
-            header("Location: http://localhost/GitHub/I-Project-EenmaalAndermaal/veiling/" . $veilingstart);
+            location('veiling/' . $veilingstart);
         }
 
         set_data_view('errors', $errors);
