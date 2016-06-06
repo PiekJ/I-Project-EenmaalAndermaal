@@ -219,6 +219,13 @@
         {
             die(var_export(sqlsrv_errors(), true));
         }
+
+        $message = 'Bedankt voor het succesvol registreren op de veilingwebsite EenmaalAndermaal!<br>';
+        
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        @mail($email, "EenmaalAndermaal registratie afgerond", $message, $headers)
         
         return true;
     }
@@ -236,7 +243,7 @@
         {
             die(var_export(sqlsrv_errors(), true));
         }
-                
+
         return true;
     }
 
