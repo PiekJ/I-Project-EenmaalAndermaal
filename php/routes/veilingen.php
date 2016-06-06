@@ -99,7 +99,10 @@
 
     add_route('POST', 'veiling\/create\/formulier', function(){
 
-
+        echo strtotime($_POST['starttijd']) - strtotime('today') . '<br>';
+        echo strtotime($_POST['einddatum']) . '<br>';
+        echo strtotime($_POST['startdatum']) . '<br>';
+        echo strtotime('1 day') . '<br>';
         if($_SERVER['HTTP_REFERER'] == get_url(true) .  'veiling/create/formulier'){ 
 
         $errors=[];
@@ -172,9 +175,9 @@
         if (!empty($_POST['startdatum'])) 
         {   
 
-            if(time() > strtotime($_POST['startdatum']) )
+            if(time() >= (strtotime($_POST['startdatum'])) + (strtotime($_POST['starttijd']) - strtotime('today')) )
             {
-                $errors[] = 'Begindatum incorrect';
+                $errors[] = 'U kunt geen veiling starten in het verleden';
             }
 
         }
@@ -201,6 +204,12 @@
             {
                 $errors[] = 'Einddatum is eerder dan begindatum';
             }
+
+            if(strtotime($_POST['einddatum']) < (strtotime($_POST['startdatum']) + strtotime('1 day', 0)))
+            {
+                $errors[] = 'De veiling moet minimaal 1 dag duren';
+            }
+            
         }
 
         if(!empty($_FILES['filenaam']['name'][0])){
