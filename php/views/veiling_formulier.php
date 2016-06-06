@@ -64,7 +64,7 @@
 
                     <div class="col-md-6">
                         <p> Beschrijving* </p>
-                        <textarea class="form-control" rows="3" name ="beschrijving" required> <?=get_data_view('gegevens','beschrijving')?> </textarea>
+                        <textarea class="form-control" rows="3" name ="beschrijving" required><?=get_data_view('gegevens','beschrijving')?></textarea>
                     </div>
                     
                     <div class="col-md-6">
