@@ -26,6 +26,60 @@
         return $results;
     }
 
+    function get_hoofdrubriek($subrubriek)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$subrubriek]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+
+        return $results;
+    }
+    
+    function get_subrubrieken($hoofdrubriek)
+    {
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE hoofdrubriek = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$hoofdrubriek]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+        {
+            $results[] = $row;
+        }
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+
+        return $results;
+    }
+
     /*function get_rubrieken_old($sorted = null)
     {
         $sorted = (is_bool($sorted)) ? $sorted : false;
@@ -62,6 +116,71 @@
 
         return $results;
     }*/
+
+    function get_rubriek_by_id($id){
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$id]);
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+        //$fetchTime = microtime(true);
+        //echo ($fetchTime - $startTime) . '<br>';
+        
+        $results = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+
+        //echo (microtime(true) - $fetchTime) . '<br>';
+        $rubriekPath = 0;
+
+        return $results['rubrieknaam'];
+    }
+    
+    function rubriek_valid($id){
+        $db = get_db();
+
+        $sql = 'SELECT * FROM Rubriek
+                WHERE rubrieknummer = ?';
+
+        //$startTime = microtime(true);
+        $result = sqlsrv_query($db, $sql, [$id]);
+        if($result === false)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }  
+    }
+
+    function get_rubriek_reeks($id, $to_id) // returns array met rubrieken reeks
+    {
+        $db = get_db();
+
+        $rubriek_reeks = [];
+
+        $sql = 'SELECT * FROM Rubriek WHERE rubrieknummer = ?';
+        $result = sqlsrv_query($db, $sql, [$id]);
+
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $rubriek = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+        $rubriek_reeks[] = $rubriek;
+
+        if ($rubriek['hoofdrubriek'] != $to_id)
+        {   
+            $rubriek_reeks = array_merge($rubriek_reeks, get_rubriek_reeks($rubriek['hoofdrubriek'], $to_id));
+        }
+
+        return $rubriek_reeks;
+    }
 
     function get_veilingen($rubrieknummer = null, $search_text = null, $pagination = null, $pagination_max = null, $order_by = null, $order_by_asc = null)
     {
@@ -152,9 +271,62 @@
         return $diff_timestamp;
     }
 
-    function add_veiling()
+    function add_veiling($titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, 
+        $verzendkosten, $verzendinstructies, $verkoper, $looptijdEindDag, $rubrieknummer, $filenaam)
     {
 
+        //VOORWERP
+        $db = get_db();
+
+        $sql = 'INSERT INTO Voorwerp (titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, plaatsnaam, landnaam, looptijdBeginDag, looptijdBeginTijd, verzendkosten, verzendinstructies, verkoper, looptijdEindDag) VALUES (?, ?, ?, ?, ? ,?, ?, ?, ?, ? ,?, ?, ?)';
+
+        $result= sqlsrv_query($db, $sql, [$titel, $beschrijving, $startprijs, $betalingswijze, $betalingsinstructie, $plaatsnaam, $landnaam, $looptijdBeginDag, $looptijdBeginTijd, 
+        $verzendkosten, $verzendinstructies, $verkoper, $looptijdEindDag]);
+
+        if($result === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+
+        //VOORWERPNUMMER
+        $sqlscope = 'SELECT @@IDENTITY as id';
+        $id = sqlsrv_query($db, $sqlscope);
+
+
+        if($id === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+        $arrayID = sqlsrv_fetch_array($id, SQLSRV_FETCH_ASSOC);
+
+
+
+        //RUBRIEK
+        $rubrieksql = 'INSERT INTO VoorwerpRubriek (rubrieknummer, voorwerpnummer) VALUES (?, ?)';
+
+        $rubriekresult= sqlsrv_query($db, $rubrieksql, [$rubrieknummer, $arrayID['id']]);
+
+        if($rubriekresult === false)
+        {
+            die(var_export(sqlsrv_errors(), true));
+        }
+
+
+        //BESTAND
+        $bestandsql = 'INSERT INTO  Bestand (filenaam, voorwerpnummer) VALUES (?, ?)';
+
+        for($i = 0; $i < count($_FILES['filenaam']['tmp_name']); $i++)
+        {
+            $uniqID = uniqid();
+            $destination=dirname(SYSTEM_FOLDER) . '/upload/'. $verkoper.'_'. $uniqID. "_" . $_FILES['filenaam']['name'][$i];
+            move_uploaded_file (($_FILES['filenaam']['tmp_name'][$i]), $destination );
+
+            $bestandresult= sqlsrv_query($db, $bestandsql, ['upload/'. $verkoper.'_'. $uniqID. "_" . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
+        }
+
+        return $arrayID['id'];
     }
 
     function get_veiling($veilingnummer)

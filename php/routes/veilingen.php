@@ -85,15 +85,190 @@
         set_data_view('title', 'Veiling');
 
         $veiling = get_veiling($voorwerpnummer);
+    });
 
-        if (empty($veiling))
+
+    add_route('GET','veiling\/create\/formulier', function(){
+        set_data_view('menu', 2);
+        set_data_view('title', 'Veiling maken');
+
+
+        return display_view('veiling_formulier');
+    });
+
+
+    add_route('POST', 'veiling\/create\/formulier', function(){
+
+        if($_SERVER['HTTP_REFERER'] == get_url(true) .  'veiling/create/formulier'){ 
+
+        $errors=[];
+        
+        if(isset($_POST['titel']))
+        {
+            if(strlen($_POST['titel']) < 3)
+            {
+                $errors[] ='Titel moet minimaal 3 tekens lang zijn.';
+            }
+            
+            else if(strlen($_POST['titel']) > 255)
+            {
+                $errors[] = 'Titel is te lang.';
+            }
+        }
+
+        if(empty($_POST['land']))
+        {
+            $errors[] = 'U heeft geen land opgegeven.';
+        }
+
+        else if(strlen($_POST['land']) > 90)
+        {
+            $errors[] = 'Landnaam te lang, deze kan maximaal 90 tekens lang zijn.';
+        }
+
+        if(empty($_POST['beschrijving']))
+        {
+            $errors[] = 'U heeft geen beschrijving opgegeven.';
+        }
+
+        if (isset($_POST['plaatsnaam'])) 
+        {
+            if (strlen($_POST['plaatsnaam']) > 50)  {
+                $errors[] ='Plaatsnaam te lang, deze kan maximaal 50 tekens lang zijn.';
+            }
+        }
+        if (empty($_POST['startprijs'])) 
+        {
+            $errors[] ='U heeft geen startprijs opgegeven.';
+        }
+
+        if (empty($_POST['betalingswijze'])) 
+        {
+            $errors[] ='U heeft geen betalingswijze opgegeven.';
+        }
+
+        if(isset($_POST['betalingsinstructie']))
+        {
+            if (strlen($_POST['betalingsinstructie']) > 255) 
+            {
+                $errors[] ='betalingsinstructie te lang, deze kan maximaal 255 karakters bevatten.';
+            }
+        }
+
+        if (empty($_POST['verzendkosten'])) 
+        {
+            $errors[] ='U heeft geen verzendkosten opgegeven.';
+        }
+
+        if(isset($_POST['verzendinstructies']))
+        {
+            if (strlen($_POST['verzendinstructies']) > 255 && strlen($_POST['verzendinstructies']) < 0) 
+            {
+                $errors[] ='verzendinstructies te groot, deze kan maximaal 255 karakters bevatten.';
+            }
+        }
+
+        if (!empty($_POST['startdatum'])) 
+        {   
+
+            if(time() >= (strtotime($_POST['startdatum'])) + (strtotime($_POST['starttijd']) - strtotime('today')) )
+            {
+                $errors[] = 'U kunt geen veiling starten in het verleden.';
+            }
+
+        }
+
+        else if(empty($_POST['startdatum']))
+        {
+            $errors[] ='U heeft geen startdatum opgegeven.';
+        }
+
+
+        if (empty($_POST['starttijd'])) 
+        {
+            $errors[] ='U heeft geen start tijd opgegeven.';
+        }
+
+        if (empty($_POST['einddatum'])) 
+        {
+            $errors[] ='U heeft geen eind datum opgegeven.';
+        }
+
+        if(!empty($_POST['einddatum']) && !empty($_POST['startdatum']))
+        {
+            if(strtotime($_POST['startdatum']) > strtotime($_POST['einddatum']) )
+            {
+                $errors[] = 'Einddatum is eerder dan begindatum.';
+            }
+
+            if(strtotime($_POST['einddatum']) < (strtotime($_POST['startdatum']) + strtotime('1 day', 0)))
+            {
+                $errors[] = 'De veiling moet minimaal 1 dag duren.';
+            }
+            
+        }
+
+        if(!empty($_FILES['filenaam']['name'][0])){
+
+                for($i = 0; $i < count($_FILES['filenaam']['error']); $i++)
+                {   
+
+                    if($_FILES['filenaam']['error'][$i] === 1)
+                        {
+                            $errors[] ='Bestand is corrupt.';
+                        }    
+
+                    if($_FILES['filenaam']['size'][$i] >= 1048576)
+                        {
+                            $errors[] ='Bestand te groot.';
+                        }  
+
+                }
+        }
+        else{
+            $errors[] = 'U moet minimaal 1 bestand uploaden.';
+        }
+
+
+        if(empty($errors))
+        {
+            $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubrieknummer'], $_FILES['filenaam'] );
+            location('veiling/' . $veilingstart);
+        }
+
+        set_data_view('errors', $errors);
+    }
+
+        set_data_view('gegevens', $_POST);
+
+        set_data_view('title', 'Veiling maken');
+        return display_view('veiling_formulier');
+
+    });
+
+    add_route('GET', 'veiling\/create', function() {
+        if (!is_user_logged_in())
         {
             location();
             return;
         }
+        
+        set_data_view('menu', 3);
+        set_data_view('title', 'Veiling rubriek kiezen');
 
-        set_data_view('veiling', $veiling);
-        set_data_view('bestanden', get_bestanden($veiling['voorwerpnummer']));
+        if ($rubrieken_cache = fetch_cache('veiling_rubriek_selecteren_rubrieken'))
+        {
+            set_data_view('rubrieken', $rubrieken_cache);
 
-        return display_view('veiling');
+        }
+        else
+        {
+            set_data_view('rubrieken', get_rubrieken());
+            $rubrieken = display_view('veiling_rubriek_selecteren_rubrieken');
+            store_cache('veiling_rubriek_selecteren_rubrieken', $rubrieken, time() + 3600 * 12);
+
+            set_data_view('rubrieken', $rubrieken);
+        }
+
+        return display_view('veiling_rubriek_selecteren');
     });
