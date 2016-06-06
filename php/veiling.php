@@ -319,11 +319,11 @@
 
         for($i = 0; $i < count($_FILES['filenaam']['tmp_name']); $i++)
         {
-
-            $destination=dirname(SYSTEM_FOLDER) . '/upload/'. $verkoper.'_'. uniqid(). "_" . $_FILES['filenaam']['name'][$i];
+            $uniqID = uniqid();
+            $destination=dirname(SYSTEM_FOLDER) . '/upload/'. $verkoper.'_'. $uniqID. "_" . $_FILES['filenaam']['name'][$i];
             move_uploaded_file (($_FILES['filenaam']['tmp_name'][$i]), $destination );
 
-            $bestandresult= sqlsrv_query($db, $bestandsql, ['upload/'. $verkoper.'_'. uniqid(). "_" . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
+            $bestandresult= sqlsrv_query($db, $bestandsql, ['upload/'. $verkoper.'_'. $uniqID. "_" . $_FILES['filenaam']['name'][$i], $arrayID['id']]);
         }
 
         return $arrayID['id'];

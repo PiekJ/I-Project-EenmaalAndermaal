@@ -166,10 +166,21 @@
             }
         }
 
-        if (empty($_POST['startdatum'])) 
+        if (!empty($_POST['startdatum'])) 
+        {   
+
+            if(time() > strtotime($_POST['startdatum']) )
+            {
+                $errors[] = 'Datum incorrect';
+            }
+
+        }
+
+        else if(empty($_POST['startdatum']))
         {
             $errors[] ='U heeft geen startdatum opgegeven';
         }
+
 
         if (empty($_POST['starttijd'])) 
         {
@@ -180,32 +191,47 @@
         {
             $errors[] ='U heeft geen eind datum opgegeven';
         }
-        if(isset($_FILES['filenaam']))
+
+        if(!empty($_POST['einddatum']) && !empty($_POST['startdatum']))
         {
- 
-            for($i = 0; $i < count($_FILES['filenaam']['error']); $i++)
+            if(strtotime($_POST['startdatum']) > strtotime($_POST['einddatum']) )
             {
-                if($_FILES['filenaam']['error'][$i] === 1)
-                    {
-                        $errors[] ='file img error';
-                    }    
-
-                if($_FILES['filenaam']['size'][$i] >= 1048576)
-                    {
-                        $errors[] ='bestand te groot';
-                    }  
-
+                $errors = 'Begindatum en einddatum incorrect';
             }
-/* */            
         }
 
+        if(!empty($_FILES['filenaam']['name'][0])){
+
+                for($i = 0; $i < count($_FILES['filenaam']['error']); $i++)
+                {   
+
+                    if($_FILES['filenaam']['error'][$i] === 1)
+                        {
+                            $errors[] ='file img error';
+                        }    
+
+                    if($_FILES['filenaam']['size'][$i] >= 1048576)
+                        {
+                            $errors[] ='bestand te groot';
+                        }  
+
+                }
+        }
+        else{
+            $errors = 'U moet minimaal 1 bestand uploaden';
+        }
+
+
+        var_dump($_POST['startdatum']);
+        var_dump(date("Y/m/d"));
 
         if(empty($errors))
         {
-
             $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubriekid'], $_FILES['filenaam'] );
             header("Location: http://localhost/GitHub/I-Project-EenmaalAndermaal/veiling/" . $veilingstart);
         }
+
+        var_dump($errors);
         set_data_view('gegevens', $_POST);
         set_data_view('errors', $errors);
         set_data_view('title', 'Veiling maken');

@@ -76,7 +76,7 @@
 
                     <h3> 4. Startprijs, betaling en verzending</h3>
                         <div class="col-md-3">
-                            <p> Startprijs </p>
+                            <p> Startprijs* </p>
                             <div class="input-group">
                                 <input type="number" min="1" step="0.01" class="form-control" placeholder="startprijs" name="startprijs" required>
                             </div>
