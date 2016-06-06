@@ -222,16 +222,13 @@
         }
 
 
-        var_dump($_POST['startdatum']);
-        var_dump(date("Y/m/d"));
-
         if(empty($errors))
         {
             $veilingstart = add_veiling($_POST['titel'], $_POST['beschrijving'], $_POST['startprijs'], $_POST['betalingswijze'], $_POST['betalingsinstructie'], $_POST['plaatsnaam'], $_POST['land'], $_POST['startdatum'], $_POST['starttijd'], $_POST['verzendkosten'], $_POST['verzendinstructies'], get_user_data('gebruikersnaam'), $_POST['einddatum'], $_POST['rubriekid'], $_FILES['filenaam'] );
             header("Location: http://localhost/GitHub/I-Project-EenmaalAndermaal/veiling/" . $veilingstart);
         }
 
-        var_dump($errors);
+
         set_data_view('gegevens', $_POST);
         set_data_view('errors', $errors);
         set_data_view('title', 'Veiling maken');
