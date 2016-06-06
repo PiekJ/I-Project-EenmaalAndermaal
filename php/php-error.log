@@ -418,3 +418,6 @@
 [06-Jun-2016 14:14:39 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 103
 [06-Jun-2016 14:14:48 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 103
 [06-Jun-2016 14:15:09 Europe/Berlin] PHP Parse error:  syntax error, unexpected ';' in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 103
+[06-Jun-2016 14:19:54 Europe/Berlin] PHP Notice:  Undefined index: starttijd in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 102
+[06-Jun-2016 14:19:54 Europe/Berlin] PHP Notice:  Undefined index: einddatum in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 103
+[06-Jun-2016 14:19:54 Europe/Berlin] PHP Notice:  Undefined index: startdatum in C:\xampp\htdocs\GitHub\I-Project-EenmaalAndermaal\php\routes\veilingen.php on line 104

@@ -99,10 +99,6 @@
 
     add_route('POST', 'veiling\/create\/formulier', function(){
 
-        echo strtotime($_POST['starttijd']) - strtotime('today') . '<br>';
-        echo strtotime($_POST['einddatum']) . '<br>';
-        echo strtotime($_POST['startdatum']) . '<br>';
-        echo strtotime('1 day') . '<br>';
         if($_SERVER['HTTP_REFERER'] == get_url(true) .  'veiling/create/formulier'){ 
 
         $errors=[];
