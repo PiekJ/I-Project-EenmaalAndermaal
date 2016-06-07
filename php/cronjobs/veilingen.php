@@ -19,7 +19,7 @@
 
             if (!empty($row['koper']))
             {
-                $message = 'Bedankt voor het bieden op de vieling '.$row['titel'].'.<br>Hierbij delen wij mee dat u de veiling heeft gewonnen, gefeliciteerd!<br>Klik <a href="' . get_url(true) . 'veiling/'.$row['voorwerpnummer'].'">hier</a> om naar de veiling pagina te gaan.';
+                $message = 'Bedankt voor het bieden op de veiling '.$row['titel'].'.<br>Hierbij delen wij mee dat u de veiling heeft gewonnen, gefeliciteerd!<br>Klik <a href="' . get_url(true) . 'veiling/'.$row['voorwerpnummer'].'">hier</a> om naar de veiling pagina te gaan.';
             
                 $headers  = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
