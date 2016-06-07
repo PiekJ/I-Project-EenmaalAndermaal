@@ -68,12 +68,12 @@
 
                 <fieldset class="form-group">
                     <label for="adres">Straat en huisnummer</label>
-                    <input type="text" class="form-control" name="adresregel1" value="<?=get_data_view('gegevens','adresregel1')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="adresregel1" value="<?=get_data_view('gegevens','adresregel1')?>" placeholder="Straatnaam 12" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" name="postcode" value="<?=get_data_view('gegevens','postcode')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="postcode" value="<?=get_data_view('gegevens','postcode')?>" placeholder="0000AA" required>
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -88,7 +88,7 @@
 
                 <fieldset class="form-group">
                     <label for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-control" name="telefoonnummer" value="<?=get_data_view('gegevens','telefoonnummer')?>" placeholder="" required>
+                    <input type="text" class="form-control" name="telefoonnummer" value="<?=get_data_view('gegevens','telefoonnummer')?>" placeholder="0699999999" required>
                 </fieldset>
                 
             <!-- beveiligingsvraag en antwoord moeten naast elkaar -->

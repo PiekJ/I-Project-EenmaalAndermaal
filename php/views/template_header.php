@@ -10,6 +10,10 @@
         <link rel="stylesheet" href="<?php echo get_url(); ?>css/template.css">
     </head>
     <body>
+        <script src="<?php echo get_url(); ?>js/jquery-1.12.3.min.js"></script>
+        <script src="<?php echo get_url(); ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo get_url(); ?>/js/jQuery.MultiFile.min.js"></script>
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -39,7 +43,7 @@
                             <li class="<?php echo (get_data_view('menu') == 2) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>account/verkoper/registreren">Aanvragen verkoopaccount</a></li>
                             
                             <?php if (check_verkoopaccount($_SESSION['user_data']['gebruikersnaam'])) { ?>
-                            <li class="<?php echo (get_data_view('menu') == 3) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>veiling/create">Start nieuwe vieling</a></li>
+                            <li class="<?php echo (get_data_view('menu') == 3) ? 'active' : ''; ?>"><a href="<?php echo get_url(true); ?>veiling/create">Start nieuwe veiling</a></li>
                             
                             <?php }} ?>
                         </ul>

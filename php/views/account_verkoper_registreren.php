@@ -138,14 +138,14 @@
                 <div class="form-group">
                         <div class="input-group">
                             <label for="rekeningnummer">Rekeningnummer</label>   
-                            <input type="text" class="form-control" name="rekeningnummer" id="rekeningnummer" value="<?=get_data_view('gegevens','rekeningnummer')?>"  required>
+                            <input type="text" class="form-control" name="rekeningnummer" id="rekeningnummer" value="<?=get_data_view('gegevens','rekeningnummer')?>" placeholder="AA00 AAAA 0000 0000 00"  required>
                         </div>
                 </div>
             <!-- Inline CSS. Alhoewel dezelfde code toegepast is als bij de andere elementen, wordt er geen ruimte gecreëerd tussen het textveld van 'banknaam' en de label 'creditcardnummer'. -->
                     <div class="form-group">   
                         <div class="input-group">
                             <label for="creditcardnummer">Creditcardnummer</label>   
-                            <input type="text" class="form-control" name="creditcardnummer" id="creditcardnummer" value="<?=get_data_view('gegevens','creditcardnummer')?>"  required >
+                            <input type="text" class="form-control" name="creditcardnummer" id="creditcardnummer" value="<?=get_data_view('gegevens','creditcardnummer')?>" placeholder="0000 0000 0000 0000" required >
                         </div>
                     </div>
                 <button type="submit" class="btn btn-primary" id="bevestig">Bevestig</button>
