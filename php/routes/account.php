@@ -177,7 +177,31 @@
 		{
 			$errors[] = 'U heeft geen geldig postcode opgegeven';
 		}
-        if (!preg_match('/^06[0-9]{8}$/', $_POST['telefoonnummer']) || !preg_match('/^0[0-9]{3}[0-9]{6}$/', $_POST['telefoonnummer']))
+
+        // /^(\+[0-9]{2}|0)[0-9]{9}$/
+
+        // +00
+        // 0
+
+        // +00 6
+        // 0 0
+        // +00 0
+        // 0 6
+
+        // +00 600000000
+        // +31 621272220
+        
+        // 0 000000000
+        // 0 313650946
+
+        // +00 000000000
+        // +31 313650946
+        
+        // 0 600000000
+        // 0 621272220
+
+
+        if (!preg_match('/^(\+[0-9]{2}|0)[0-9]{9}$/', $_POST['telefoonnummer']))
         {
             $errors[] = 'U heeft geen geldig telefoonnummer opgegeven';
         }
@@ -230,11 +254,11 @@
     //ERRORS
         
         $errors = [];
-		if (!preg_match('/^[A-Z]{2}[0-9]{2} [A-Z]{4} [0-9]{4} [0-9]{4} [0-9]{2}$/i', $_POST['rekeningnummer']))
+		if (!preg_match('/^[A-Z]{2}[0-9]{2}( |)[A-Z]{4}( |)[0-9]{4}( |)[0-9]{4} [0-9]{2}$/i', $_POST['rekeningnummer']))
 		{
 			$errors[] = 'U heeft geen geldig rekeningnummer opgegeven';
 		}
-        if (!empty($_POST['creditcardnummer']) && !preg_match('/^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/', $_POST['creditcardnummer']))
+        if (!empty($_POST['creditcardnummer']) && !preg_match('/^[0-9]{4}( |)[0-9]{4}( |)[0-9]{4}( |)[0-9]{4}$/', $_POST['creditcardnummer']))
 		{
 			$errors[] = 'U heeft geen geldig creditcardnummer opgegeven';
 		}

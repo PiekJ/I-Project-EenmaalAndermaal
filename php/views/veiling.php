@@ -64,9 +64,9 @@
             </p>
             <p class="clear"> <span style="font-weight:bold;">Start bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'startprijs'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Hoogste bieder</span><span style="float:right;"><?php echo_data_view('veiling', 'koper'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Hoogste bieder</span><span style="float:right;" id="ajax-update-hoogste-bieder"><?php echo_data_view('veiling', 'koper'); ?></span>
             </p>
-            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
+            <p class="clear"> <span style="font-weight:bold;">Hoogste bod</span><span style="float:right;" id="ajax-update-hoogste-bod">&euro; <?php echo_data_view('veiling', 'verkoopPrijs'); ?></span>
             </p>
             <p class="clear"><span style="font-weight:bold;">Jouw bod</span> 
                 <?php if (get_data_view('veiling', 'veilingGesloten') == 0) { ?>
@@ -79,7 +79,7 @@
                 <?php } } ?>
                 <form method="post">
                     <div class="input-group">
-                        <input type="text" name="bod" class="form-control" placeholder="Bod" value="<?php echo get_data_view('veiling', 'minimalBod'); ?>">
+                        <input type="text" name="bod" id="ajax-update-bod" class="form-control" placeholder="<?php echo get_data_view('veiling', 'minimalBod'); ?>">
                         <span class="input-group-btn">
                             <input type="submit" class="btn btn-primary" value="Bied">
                         </span>
@@ -95,5 +95,17 @@
             
     </div>
 </div>
+
+<script>
+    $(function() {
+        setInterval(function() {
+            $.getJSON('<?php echo get_url(true); ?>veiling/<?php echo get_data_view('veiling', 'voorwerpnummer'); ?>/update', function(data) {
+                $('#ajax-update-bod').attr('placeholder', data.bod);
+                $('#ajax-update-hoogste-bod').html(data.hoogsteBod);
+                $('#ajax-update-hoogste-bieder').html(data.hoogsteBieder);
+            });
+        }, 1000);
+    });
+</script>
 
 <?php echo display_view('template_footer'); ?>

@@ -56,14 +56,14 @@
                         <p> Titel* </p>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Titel" name="titel" value="<?=get_data_view('gegevens','titel')?>" required>
+                            <input type="text" class="form-control" name="titel" value="<?=get_data_view('gegevens','titel')?>" required>
                         </div> 
                     </div>
 
                     <div class="col-md-6">
                         <p> Land* </p>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Land" name ="land" value="<?=get_data_view('gegevens','land')?>" required>
+                            <input type="text" class="form-control" name ="land" value="<?=get_data_view('gegevens','land')?>" required>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                         <p> plaatsnaam </p>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Plaatsnam" name="plaatsnaam" value="<?=get_data_view('gegevens','plaatsnaam')?>">
+                            <input type="text" class="form-control" name="plaatsnaam" value="<?=get_data_view('gegevens','plaatsnaam')?>">
                         </div>
                     </div>
                 </div>
@@ -99,11 +99,11 @@
                         <div class="col-md-3">
                             <p> Startprijs* </p>
                             <div class="input-group">
-                                <input type="number" min="1" step="0.01" class="form-control" placeholder="startprijs" name="startprijs" value="<?=get_data_view('gegevens','startprijs')?>"required>
+                                <input type="number" min="1" step="0.01" class="form-control" name="startprijs" value="<?=get_data_view('gegevens','startprijs')?>"required>
                             </div>
                             <p> betalingswijze* </p>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="betalingswijze" name="betalingswijze" value="<?=get_data_view('gegevens','betalingswijze')?>" required>
+                                    <input type="text" class="form-control" name="betalingswijze" value="<?=get_data_view('gegevens','betalingswijze')?>" required>
                                 </div>
                         </div>
 
