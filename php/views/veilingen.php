@@ -36,7 +36,7 @@
                             <div class="col-md-4" onclick="location.href='<?php echo $veiling_url; ?>';">
                                 <div class="veiling-card">
                                     <div class="veiling-card-img">
-                                        <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15');; ?>" alt="<?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15');; ?>">
+                                        <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15'); ?>">
                                     </div>
 
                                     <div class="veiling-card-content">

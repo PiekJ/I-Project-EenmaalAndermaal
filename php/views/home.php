@@ -38,12 +38,12 @@
                                 <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
                                     <div class="veiling-card">
                                         <div class="veiling-card-img">
-                                            <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                            <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15'); ?>">
                                         </div>
 
                                         <div class="veiling-card-content">
                                             <div class="clear">
-                                                <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
+                                                <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15'); ?></h4>
 
                                                 <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
                                             </div>
@@ -88,12 +88,12 @@
                         <div class="col-md-3" onclick="location.href='<?php echo get_url(true) . 'veiling/' . $veiling['voorwerpnummer']; ?>';">
                             <div class="veiling-card">
                                 <div class="veiling-card-img">
-                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>" alt="<?php echo htmlspecialchars($veiling['titel']); ?>">
+                                    <img src="<?php echo (!empty($veiling['filenaam'])) ? get_url() . $veiling['filenaam'] : '//placehold.it/300x300'; ?>" alt="<?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15'); ?>">
                                 </div>
 
                                 <div class="veiling-card-content">
                                     <div class="clear">
-                                        <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel']); ?></h4>
+                                        <h4 class="veiling-card-title"><?php echo htmlspecialchars($veiling['titel'], ENT_HTML5, 'ISO-8859-15'); ?></h4>
 
                                         <p class="veiling-card-time countdown" data-countdown="<?php echo count_down_veiling($veiling); ?>"></p>
                                     </div>
